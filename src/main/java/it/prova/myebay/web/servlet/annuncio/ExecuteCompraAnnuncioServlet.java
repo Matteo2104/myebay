@@ -24,10 +24,8 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
     }
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAnnuncio = request.getParameter("idAnnuncio");
-		
-		response.getWriter().append(idAnnuncio);
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
@@ -46,7 +44,7 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			request.setAttribute("list_acquisti_attr", MyServiceFactory.getAcquistoServiceInstance().listAll(utenteInSessione.getId()));
 			*/
 			
-			response.getWriter().append("QUI ESEGUO L'ACQUISTO");
+			response.getWriter().append("QUI ESEGUO L'ACQUISTO DELL'ANNUNCIO " + idAnnuncio);
 		} catch (MissedLoginException e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
