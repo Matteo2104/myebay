@@ -1,10 +1,23 @@
 package it.prova.myebay.web.listener;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-//@WebListener
+import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.model.StatoUtente;
+import it.prova.myebay.model.Utente;
+import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.service.RuoloService;
+import it.prova.myebay.service.UtenteService;
+
+@WebListener
 public class LocalEntityManagerFactoryListener implements ServletContextListener {
-	/*
+	
 	private static EntityManagerFactory entityManagerFactory;
 
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -18,7 +31,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			entityManagerFactory = Persistence.createEntityManagerFactory("myebay_unit");
 			// questa chiamata viene fatta qui per semplicità ma in genere è meglio trovare
 			// altri modi per fare init
-			initAdminUserAndRuoli();
+			//initAdminUserAndRuoli();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
@@ -46,7 +59,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			}
 		}
 	}
-
+	/*
 	private void initAdminUserAndRuoli() throws Exception {
 		RuoloService ruoloServiceInstance = MyServiceFactory.getRuoloServiceInstance();
 		UtenteService utenteServiceInstance = MyServiceFactory.getUtenteServiceInstance();

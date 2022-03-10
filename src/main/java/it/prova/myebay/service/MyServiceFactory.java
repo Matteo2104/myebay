@@ -1,9 +1,17 @@
 package it.prova.myebay.service;
 
-
+import it.prova.myebay.dao.AcquistoDAO;
+import it.prova.myebay.dao.AcquistoDAOImpl;
+import it.prova.myebay.dao.AnnuncioDAO;
+import it.prova.myebay.dao.AnnuncioDAOImpl;
+import it.prova.myebay.dao.CategoriaDAO;
+import it.prova.myebay.dao.CategoriaDAOImpl;
+import it.prova.myebay.dao.RuoloDAO;
+import it.prova.myebay.dao.RuoloDAOImpl;
+import it.prova.myebay.dao.UtenteDAO;
+import it.prova.myebay.dao.UtenteDAOImpl;
 
 public class MyServiceFactory {
-	/*
 	private static AnnuncioService ANNUNCIO_SERVICE_INSTANCE;
 	private static AcquistoService ACQUISTO_SERVICE_INSTANCE;
 	private static CategoriaService CATEGORIA_SERVICE_INSTANCE;
@@ -38,28 +46,40 @@ public class MyServiceFactory {
 		return RUOLO_SERVICE_INSTANCE;
 	}
 
-	public static RegistaService getRegistaServiceInstance() {
-		if (REGISTA_SERVICE_INSTANCE == null)
-			REGISTA_SERVICE_INSTANCE = new RegistaServiceImpl();
+	public static CategoriaService getCategoriaServiceInstance() {
+		if (CATEGORIA_SERVICE_INSTANCE == null)
+			CATEGORIA_SERVICE_INSTANCE = new CategoriaServiceImpl();
 
-		if (REGISTA_DAO_INSTANCE == null)
-			REGISTA_DAO_INSTANCE = new RegistaDAOImpl();
+		if (CATEGORIA_DAO_INSTANCE == null)
+			CATEGORIA_DAO_INSTANCE = new CategoriaDAOImpl();
 
-		REGISTA_SERVICE_INSTANCE.setRegistaDAO(REGISTA_DAO_INSTANCE);
+		CATEGORIA_SERVICE_INSTANCE.setCategoriaDAO(CATEGORIA_DAO_INSTANCE);
 
-		return REGISTA_SERVICE_INSTANCE;
+		return CATEGORIA_SERVICE_INSTANCE;
 	}
 
-	public static FilmService getFilmServiceInstance() {
-		if (FILM_SERVICE_INSTANCE == null)
-			FILM_SERVICE_INSTANCE = new FilmServiceImpl();
+	public static AnnuncioService getAnnuncioServiceInstance() {
+		if (ANNUNCIO_SERVICE_INSTANCE == null)
+			ANNUNCIO_SERVICE_INSTANCE = new AnnuncioServiceImpl();
 
-		if (FILM_DAO_INSTANCE == null)
-			FILM_DAO_INSTANCE = new FilmDAOImpl();
+		if (ANNUNCIO_DAO_INSTANCE == null)
+			ANNUNCIO_DAO_INSTANCE = new AnnuncioDAOImpl();
 
-		FILM_SERVICE_INSTANCE.setFilmDAO(FILM_DAO_INSTANCE);
+		ANNUNCIO_SERVICE_INSTANCE.setAnnuncioDAO(ANNUNCIO_DAO_INSTANCE);
 
-		return FILM_SERVICE_INSTANCE;
+		return ANNUNCIO_SERVICE_INSTANCE;
 	}
-	*/
+	
+	public static AcquistoService getAcquistoServiceInstance() {
+		if (ACQUISTO_SERVICE_INSTANCE == null)
+			ACQUISTO_SERVICE_INSTANCE = new AcquistoServiceImpl();
+
+		if (ACQUISTO_DAO_INSTANCE == null)
+			ACQUISTO_DAO_INSTANCE = new AcquistoDAOImpl();
+
+		ACQUISTO_SERVICE_INSTANCE.setAcquistoDAO(ACQUISTO_DAO_INSTANCE);
+
+		return ACQUISTO_SERVICE_INSTANCE;
+	}
+	
 }
