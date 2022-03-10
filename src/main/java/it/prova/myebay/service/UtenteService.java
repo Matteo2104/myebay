@@ -14,4 +14,6 @@ public interface UtenteService {
 
 	public void aggiungiRuolo(Utente utenteEsistente, Ruolo ruoloInstance) throws Exception;
 
+	public Utente accedi(String username, String password) throws Exception;
+
 }

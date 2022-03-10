@@ -6,7 +6,7 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+	 	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 	   
 	   <title>Pagina degli acquisti</title>
 	 </head>
@@ -14,7 +14,7 @@
 	<body class="d-flex flex-column h-100">
 	 
 		<!-- Fixed navbar -->
-		<jsp:include page="../navbar.jsp"></jsp:include>
+		<jsp:include page="${pageContext.request.contextPath}/navbar.jsp"></jsp:include>
 	 
 	
 		<!-- Begin page content -->
@@ -76,7 +76,7 @@
 		</main>
 		
 		<!-- Footer -->
-		<jsp:include page="../footer.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 		
 	</body>
 </html>

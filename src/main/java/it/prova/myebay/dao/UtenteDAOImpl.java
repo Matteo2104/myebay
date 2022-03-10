@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.model.StatoUtente;
 
 public class UtenteDAOImpl implements UtenteDAO {
 	private EntityManager entityManager;
@@ -63,5 +64,15 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return null;
 	}
 
-	
+	@Override
+	public Optional<Utente> login(String username, String password) {
+		TypedQuery<Utente> query = entityManager.createQuery(
+				"select u FROM Utente u join fetch u.ruoli r "
+						+ "where u.username = :username and u.password=:password and u.stato=:statoUtente",
+				Utente.class);
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		query.setParameter("statoUtente", StatoUtente.ATTIVO);
+		return query.getResultStream().findFirst();
+	}
 }

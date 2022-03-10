@@ -8,4 +8,6 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 
 	public Optional<Utente> findByUsernameAndPassword(String username, String password);
 
+	public Optional<Utente> login(String username, String password);
+
 }

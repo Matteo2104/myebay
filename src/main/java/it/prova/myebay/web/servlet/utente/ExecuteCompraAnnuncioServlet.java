@@ -1,4 +1,4 @@
-package it.prova.myebay.web.servlet.annuncio;
+package it.prova.myebay.web.servlet.utente;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 
 
-@WebServlet("/ExecuteCompraAnnuncioServlet")
+@WebServlet("/utente/ExecuteCompraAnnuncioServlet")
 public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,6 +32,8 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
 		}
+		
+		request.setAttribute("pathRitorno", request.getContextPath());
 
 		try {
 			// esegue l'acquisto
@@ -44,7 +46,6 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			request.setAttribute("list_acquisti_attr", MyServiceFactory.getAcquistoServiceInstance().listAll(utenteInSessione.getId()));
 			*/
 			
-			response.getWriter().append("QUI ESEGUO L'ACQUISTO DELL'ANNUNCIO " + idAnnuncio);
 		} catch (MissedLoginException e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -56,7 +57,7 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 		} // mettere altre eccezioni che possono avvenire durante la transazione
 
 		//response.sendRedirect("ExecuteListFilmServlet?operationResult=SUCCESS");
-		request.getRequestDispatcher("/acquisto/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/utente/acquisto/list.jsp").forward(request, response);
 	}
 
 }

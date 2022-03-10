@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import it.prova.raccoltafilm.model.Ruolo;
+
 
 
 @Entity
@@ -152,6 +154,14 @@ public class Utente {
 	}
 	public void sottraiDaCreditoResiduo(int cifraDaSottrarre) {
 		this.creditoResiduo -= cifraDaSottrarre;
+	}
+	
+	public boolean isLoggedIn() {
+		for (Ruolo ruoloItem : ruoli) {
+			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER))
+				return true;
+		}
+		return false;
 	}
 	
 	@Override
