@@ -1,5 +1,7 @@
 package it.prova.myebay.web.listener;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +33,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			entityManagerFactory = Persistence.createEntityManagerFactory("myebay_unit");
 			// questa chiamata viene fatta qui per semplicità ma in genere è meglio trovare
 			// altri modi per fare init
-			//initAdminUserAndRuoli();
+			initAdminUserAndRuoli();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
@@ -59,7 +61,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			}
 		}
 	}
-	/*
+	
 	private void initAdminUserAndRuoli() throws Exception {
 		RuoloService ruoloServiceInstance = MyServiceFactory.getRuoloServiceInstance();
 		UtenteService utenteServiceInstance = MyServiceFactory.getUtenteServiceInstance();
@@ -80,5 +82,4 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 					ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
 		}
 	}
-	*/
 }

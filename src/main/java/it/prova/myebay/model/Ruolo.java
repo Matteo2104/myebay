@@ -22,6 +22,11 @@ public class Ruolo {
 	@Column(name = "codice")
 	private String codice;
 	
+	public Ruolo() {}
+	public Ruolo(String descrizione, String codice) {
+		this.descrizione = descrizione;
+		this.codice = codice;
+	}
 	public Long getId() {
 		return id;
 	}
