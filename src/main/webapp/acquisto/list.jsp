@@ -8,7 +8,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Pagina dei Risultati</title>
+	   <title>Pagina degli acquisti</title>
 	 </head>
 	 
 	<body class="d-flex flex-column h-100">
@@ -34,7 +34,7 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>Lista dei risultati</h5> 
+				        <h5>I tuoi acquisti</h5> 
 				    </div>
 				    <div class='card-body'>
 				    	
@@ -45,16 +45,16 @@
 				                    <tr>
 			                         	<th style="width:400px">Testo Annuncio</th>
 				                        <th style="width:100px">Prezzo</th>
-				                        <th style="width:200px">Data Pubblicazione</th>
+				                        <th style="width:200px">Data Acquisto</th>
 				                        <th style="width:200px"></th>
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${annunci_list_attribute}" var="annuncio">
+				                	<c:forEach items="${list_acquisti_attr}" var="acquisto">
 										<tr>
-											<td>${annuncio.testoAnnuncio}</td>
-											<td>${annuncio.prezzo }</td>
-											<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
+											<td>${acquisto.descrizione}</td>
+											<td>${acquisto.prezzo }</td>
+											<td><fmt:formatDate type = "date" value = "${acquisto.data}" /></td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" style='width:200px' href="ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
 											</td>

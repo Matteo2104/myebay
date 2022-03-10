@@ -36,8 +36,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 
 	@Override
 	public void update(Annuncio input) throws Exception {
-		// TODO Auto-generated method stub
-		
+		input = entityManager.merge(input);
 	}
 
 	@Override

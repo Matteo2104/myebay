@@ -39,8 +39,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public void update(Utente input) throws Exception {
-		// TODO Auto-generated method stub
-		
+		input = entityManager.merge(input);
 	}
 
 	@Override

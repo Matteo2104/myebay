@@ -150,6 +150,9 @@ public class Utente {
 	public void setAcquisti(Set<Acquisto> acquisti) {
 		this.acquisti = acquisti;
 	}
+	public void sottraiDaCreditoResiduo(int cifraDaSottrarre) {
+		this.creditoResiduo -= cifraDaSottrarre;
+	}
 	
 	@Override
 	public String toString() {
