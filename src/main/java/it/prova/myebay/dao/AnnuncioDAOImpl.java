@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 
+
 public class AnnuncioDAOImpl implements AnnuncioDAO {
 	private EntityManager entityManager;
 	
@@ -24,8 +25,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	
 	@Override
 	public List<Annuncio> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("from Annuncio", Annuncio.class).getResultList();
 	}
 
 	@Override
@@ -87,5 +87,9 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		return typedQuery.getResultList();
 	}
 
-
+	@Override
+	public Optional<Annuncio> findOneEager(Long id) throws Exception {
+		return entityManager.createQuery("from Annuncio a left join fetch a.categorie join fetch a.utenteInserimento where a.id=:idAnnuncio", Annuncio.class)
+				.setParameter("idAnnuncio", id).getResultList().stream().findFirst();
+	}
 }

@@ -11,4 +11,8 @@ public interface AnnuncioService {
 
 	public List<Annuncio> findByExample(Annuncio example) throws Exception;
 
+	public Annuncio caricaSingoloElementoEager(Long id) throws Exception;
+
+	public List<Annuncio> listAll() throws Exception;
+
 }
