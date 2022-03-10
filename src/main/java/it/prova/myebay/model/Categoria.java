@@ -18,6 +18,11 @@ public class Categoria {
 	private String descrizione;
 	@Column(name = "codice")
 	private String codice;
+	
+	public Categoria() {}
+	public Categoria(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}

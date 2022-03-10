@@ -73,7 +73,7 @@
 								<c:forEach items="${list_categorie_attr}" var="categoria" >
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="${categoria.id}"
-										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
+										id="flexCheckDefault" name="categorie"> <label class="form-check-label"
 										for="flexCheckDefault"> ${categoria.codice} </label>
 									</div>
 								</c:forEach>

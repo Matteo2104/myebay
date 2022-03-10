@@ -26,7 +26,7 @@ public class Annuncio {
 	@Column(name = "testoAnnuncio")
 	private String testoAnnuncio;
 	@Column(name = "prezzo")
-	private String prezzo;
+	private int prezzo;
 	@Column(name = "aperto")
 	private boolean aperto;
 	@Column(name = "data")
@@ -42,6 +42,11 @@ public class Annuncio {
 	@JoinTable(name = "annuncio_categoria", joinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
 	private Set<Categoria> categorie = new HashSet<>(0);
 
+	public Annuncio() {}
+	public Annuncio(String testoAnnuncio) {
+		this.testoAnnuncio = testoAnnuncio;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -50,7 +55,7 @@ public class Annuncio {
 		return testoAnnuncio;
 	}
 
-	public String getPrezzo() {
+	public int getPrezzo() {
 		return prezzo;
 	}
 
@@ -78,7 +83,7 @@ public class Annuncio {
 		this.testoAnnuncio = testoAnnuncio;
 	}
 
-	public void setPrezzo(String prezzo) {
+	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
 	}
 
