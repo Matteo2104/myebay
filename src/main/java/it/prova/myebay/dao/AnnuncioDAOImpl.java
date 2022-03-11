@@ -48,8 +48,10 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 
 	@Override
 	public void insert(Annuncio input) throws Exception {
-		// TODO Auto-generated method stub
-		
+		if (input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		entityManager.persist(input);
 	}
 
 	@Override

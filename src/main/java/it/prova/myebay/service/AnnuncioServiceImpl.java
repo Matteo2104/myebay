@@ -79,6 +79,31 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
+	public void aggiungi(Annuncio annuncio) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			annuncioDAO.setEntityManager(entityManager);
+
+			entityManager.getTransaction().begin();
+
+			
+			// eseguo quello che realmente devo fare
+			annuncioDAO.insert(annuncio);
+			
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
 	public Annuncio caricaSingoloElementoEager(Long id) throws Exception {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();

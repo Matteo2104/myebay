@@ -33,7 +33,8 @@ public class UtilityForm {
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {
 		if (StringUtils.isBlank(annuncio.getTestoAnnuncio())
-				|| annuncio.getPrezzo() < 1) {
+				|| annuncio.getPrezzo() < 1
+				|| annuncio.getCategorie().size() < 1) {
 			return false;
 		}
 		return true;

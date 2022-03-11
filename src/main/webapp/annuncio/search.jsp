@@ -79,6 +79,7 @@
 								
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra i tuoi annunci</button>
+									<a class="btn btn-primary" href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioServlet">Aggiungi nuovo annuncio</a>		
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
 								

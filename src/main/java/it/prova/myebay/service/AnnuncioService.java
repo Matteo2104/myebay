@@ -27,4 +27,6 @@ public interface AnnuncioService {
 
 	public void rimuovi(Long id) throws Exception;
 
+	public void aggiungi(Annuncio annuncio) throws Exception;
+
 }

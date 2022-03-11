@@ -43,8 +43,8 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 		
 		//System.out.println("elemento eliminato correttamente");
 
-		request.getRequestDispatcher("list.jsp").forward(request, response);
-		//response.sendRedirect("ExecuteListAnnunciServlet?operationResult=SUCCESS");
+		//request.getRequestDispatcher("list.jsp").forward(request, response);
+		response.sendRedirect("ExecuteListAnnunciServlet?operationResult=SUCCESS");
 	}
 
 }
