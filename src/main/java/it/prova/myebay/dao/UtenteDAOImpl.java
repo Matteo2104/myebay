@@ -40,8 +40,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public Optional<Utente> findOne(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Utente result = entityManager.find(Utente.class, id);
+		return result != null ? Optional.of(result) : Optional.empty();
 	}
 
 	@Override
@@ -126,5 +126,11 @@ public class UtenteDAOImpl implements UtenteDAO {
 	public List<Annuncio> list(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Optional<Utente> findOneEager(Long id) throws Exception {
+		return entityManager.createQuery("from Utente u left join fetch u.ruoli where u.id=:idUtente", Utente.class)
+				.setParameter("idUtente", id).getResultList().stream().findFirst();
 	}
 }

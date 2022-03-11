@@ -9,6 +9,7 @@ import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.model.StatoUtente;
 
 public class UtenteServiceImpl implements UtenteService {
 	private UtenteDAO utenteDAO;
@@ -141,6 +142,33 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
+	public void disabilita(Long id) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+			
+			entityManager.getTransaction().begin();
+
+			// eseguo quello che realmente devo fare
+			Utente utente = utenteDAO.findOne(id).orElse(null);
+			
+			utente.setStato(StatoUtente.DISABILITATO);
+			
+			utente = entityManager.merge(utente);
+			
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
 	public List<Utente> findByExample(Utente example) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -151,6 +179,26 @@ public class UtenteServiceImpl implements UtenteService {
 			// eseguo quello che realmente devo fare
 			return utenteDAO.findByExample(example);
 			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public Utente caricaSingoloElementoEager(Long id) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return utenteDAO.findOneEager(id).get();
 
 		} catch (Exception e) {
 			e.printStackTrace();

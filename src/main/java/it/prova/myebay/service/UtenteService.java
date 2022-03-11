@@ -22,4 +22,8 @@ public interface UtenteService {
 
 	public List<Utente> listAll() throws Exception;
 
+	public Utente caricaSingoloElementoEager(Long id) throws Exception;
+
+	public void disabilita(Long id) throws Exception;
+
 }
