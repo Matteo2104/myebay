@@ -19,4 +19,12 @@ public interface AnnuncioService {
 
 	public List<Annuncio> findByExamplePersonale(Annuncio example, Long idUserInSession) throws Exception;
 
+	public void aggiorna(Annuncio annuncio) throws Exception;
+
+	public List<Annuncio> listAll(Long id) throws Exception;
+
+	public Annuncio caricaSingoloElemento(Long id) throws Exception;
+
+	public void rimuovi(Long id) throws Exception;
+
 }

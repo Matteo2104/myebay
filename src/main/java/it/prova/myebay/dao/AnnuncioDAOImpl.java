@@ -26,9 +26,8 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 	
 	@Override
-	public List<Acquisto> list(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Annuncio> list(long id) throws Exception {
+		return entityManager.createQuery("from Annuncio a join fetch a.utenteInserimento u where u.id = :id", Annuncio.class).setParameter("id", id).getResultList();
 	}
 	
 	@Override
@@ -55,8 +54,10 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 
 	@Override
 	public void delete(Annuncio input) throws Exception {
-		// TODO Auto-generated method stub
-		
+		if (input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		entityManager.remove(entityManager.merge(input));
 	}
 
 	@Override

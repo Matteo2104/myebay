@@ -1,5 +1,6 @@
 package it.prova.myebay.utility;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Annuncio;
@@ -12,6 +13,8 @@ public class UtilityForm {
 		if (NumberUtils.isCreatable(prezzo) && !prezzo.equals("0")) {
 			result.setPrezzo(Integer.parseInt(prezzo));
 		}
+		
+		result.setAperto(true);
 				
 		if (categorie == null || categorie.length < 1) {
 			result.setCategorie(null);
@@ -26,5 +29,13 @@ public class UtilityForm {
 		}
 		
 		return result;
+	}
+	
+	public static boolean validateAnnuncioBean(Annuncio annuncio) {
+		if (StringUtils.isBlank(annuncio.getTestoAnnuncio())
+				|| annuncio.getPrezzo() < 1) {
+			return false;
+		}
+		return true;
 	}
 }
