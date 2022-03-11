@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import it.prova.myebay.model.Acquisto;
+
 public interface IBaseDAO<T> {
 	public List<T> list() throws Exception;
 
@@ -20,4 +22,6 @@ public interface IBaseDAO<T> {
 
 	// questo mi serve per l'injection
 	public void setEntityManager(EntityManager entityManager);
+
+	List<Acquisto> list(long id) throws Exception;
 }

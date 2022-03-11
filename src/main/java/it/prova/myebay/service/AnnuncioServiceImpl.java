@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class AnnuncioServiceImpl implements AnnuncioService {
@@ -28,6 +29,26 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 			// eseguo quello che realmente devo fare
 			return annuncioDAO.findByExample(example);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public List<Annuncio> findByExamplePersonale(Annuncio example, Long idUserInSession) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			annuncioDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return annuncioDAO.personalFindByExample(example, idUserInSession);
 
 		} catch (Exception e) {
 			e.printStackTrace();

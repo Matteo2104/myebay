@@ -18,7 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import it.prova.raccoltafilm.model.Ruolo;
+
 
 
 
@@ -158,7 +158,7 @@ public class Utente {
 	
 	public boolean isLoggedIn() {
 		for (Ruolo ruoloItem : ruoli) {
-			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER))
+			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER) || ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
 				return true;
 		}
 		return false;

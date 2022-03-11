@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Categoria;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
@@ -46,6 +47,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public List<Categoria> findByExample(Categoria example) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Acquisto> list(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

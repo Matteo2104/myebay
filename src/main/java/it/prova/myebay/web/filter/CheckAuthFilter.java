@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.utility.PathRitorno;
 
 
 @WebFilter(filterName = "CheckAuthFilter", urlPatterns = { "/*" })
@@ -20,7 +21,7 @@ public class CheckAuthFilter implements Filter {
 
 	//private static final String HOME_PATH = "";
 	//private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
-	private static final String[] PROTECTED_URLS = {"/utente/"};
+	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/"};
 
 	public CheckAuthFilter() {
 	}
@@ -43,10 +44,22 @@ public class CheckAuthFilter implements Filter {
 		//se non lo e' bisogna controllare sia sessione che percorsi protetti
 		if (!isInWhiteList) {
 			
+			// se sono qui dentro significa che ho interrotto la navigazione per accedere e quindi mi salvo il path
+			//System.out.println(pathAttuale);
+			PathRitorno.PATH_RITORNO = request.getParameter("pathRitorno");
+			PathRitorno.ID = request.getParameter("idAnnuncio");
+			
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			// per ora verifico soltanto se utente è in sessione
-			if (utenteInSession == null || !utenteInSession.isLoggedIn()) {
-				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+			if (utenteInSession == null) {
+				System.out.println("utente non in sessione: eseguo redirect");
+				httpRequest.getRequestDispatcher(httpRequest.getContextPath() + "/login.jsp").forward(httpRequest, httpResponse);
+				return;
+			}
+			
+			if (!utenteInSession.isLoggedIn()) {
+				System.out.println("utente in sessione ma non loggato: mando a login");
+				httpRequest.getRequestDispatcher("login.jsp").forward(httpRequest, httpResponse);
 				return;
 			}
 			

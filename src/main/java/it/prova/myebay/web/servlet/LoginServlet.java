@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.PathRitorno;
 
 
 @WebServlet("/LoginServlet")
@@ -21,16 +22,12 @@ public class LoginServlet extends HttpServlet {
     public LoginServlet() {
         super();
     }
-
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
@@ -50,7 +47,14 @@ public class LoginServlet extends HttpServlet {
 				destinazione = "login.jsp";
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				destinazione = request.getParameter("pathRitorno")!=null?request.getParameter("pathRitorno"):"PrepareSearchAnnunciServlet";
+				
+				// se ho interrotto la navigazione per loggarmi ritorno al punto in cui stavo
+				System.out.println(PathRitorno.ID);
+				
+				destinazione = PathRitorno.PATH_RITORNO==""?"areapersonale.jsp":PathRitorno.PATH_RITORNO;
+				
+				// ripristino il path di ritorno a una stringa vuota
+				PathRitorno.PATH_RITORNO = "";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,5 +64,5 @@ public class LoginServlet extends HttpServlet {
 
 		request.getRequestDispatcher(destinazione).forward(request, response);
 	}
-
+	
 }

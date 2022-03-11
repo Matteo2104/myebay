@@ -80,7 +80,7 @@
 					        <a href="ExecuteListAnnunciServlet" class='btn btn-outline-secondary' style='width:100px'>
 					            <i class='fa fa-chevron-left'></i> Indietro
 					        </a>
-					        <a href="${pageContext.request.contextPath}/utente/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-primary' style='width:200px'>
+					        <a href="${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&pathRitorno=/acquisto/ExecuteCompraAnnuncioServlet" class='btn btn-primary' style='width:200px'>
 					            <i class='fa fa-chevron-left'></i> Compra articolo
 					        </a>
 					    </div>

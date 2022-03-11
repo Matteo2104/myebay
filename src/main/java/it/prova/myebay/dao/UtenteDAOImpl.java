@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.StatoUtente;
 
 public class UtenteDAOImpl implements UtenteDAO {
@@ -74,5 +75,11 @@ public class UtenteDAOImpl implements UtenteDAO {
 		query.setParameter("password", password);
 		query.setParameter("statoUtente", StatoUtente.ATTIVO);
 		return query.getResultStream().findFirst();
+	}
+
+	@Override
+	public List<Acquisto> list(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

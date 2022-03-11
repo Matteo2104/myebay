@@ -38,9 +38,15 @@
           </li>   
         </ul>
       </div>
-      <div class="col-md-3 text-end">
-        <p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome })
-     <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+      <div class="col-md-4 text-end">
+      		<c:if test="${empty userInfo}" >
+     			<p class="navbar-text"><a href="login.jsp">Login</a></p>
+     		</c:if>
+     		<c:if test="${not empty userInfo}" >
+       			<p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome})
+       			<a href="areapersonale.jsp">Area Personale</a>
+       			<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+     		</c:if>
       </div>
     </div>
   </nav>

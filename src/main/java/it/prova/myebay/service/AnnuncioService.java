@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Utente;
 
 public interface AnnuncioService {
 
@@ -14,5 +15,8 @@ public interface AnnuncioService {
 	public Annuncio caricaSingoloElementoEager(Long id) throws Exception;
 
 	public List<Annuncio> listAll() throws Exception;
+
+
+	public List<Annuncio> findByExamplePersonale(Annuncio example, Long idUserInSession) throws Exception;
 
 }

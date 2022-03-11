@@ -4,11 +4,11 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="./header.jsp" />
+	 	<jsp:include page="../header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Raccolta Film</title>
+	   <title>Ricerca annunci</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -37,7 +37,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="navbar.jsp"></jsp:include>
+	   		<jsp:include page="../navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -51,17 +51,16 @@
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto in MyEbay!</h1>
-				        <p class="col-md-8 fs-4">Qui puoi trovare annunci di prodotti di tutti i tipi</p>
-				      </div>
+				        <h1 class="display-5 fw-bold">Cerca fra i tuoi annunci</h1>
+				 </div>
 				      
 				      <div class='card-body'>
-				      	<form method="post" action="ExecuteSearchAnnunciServlet" class="row g-3" >
+				      	<form method="post" action="ExecuteSearchAnnunciPersonaliServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo</label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo" >
+									<label for="testo" class="form-label">Testo dell'annuncio</label>
+									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo dell'annuncio" >
 								</div>
 								
 								<div class="col-md-6">
@@ -79,7 +78,7 @@
 								</c:forEach>
 								
 								<div class="col-12">
-									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra gli annunci</button>
+									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra i tuoi annunci</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
 								
@@ -131,6 +130,6 @@
 			</main>
 			
 			<!-- Footer -->
-			<jsp:include page="./footer.jsp" />
+			<jsp:include page="../footer.jsp" />
 	  </body>
 </html>

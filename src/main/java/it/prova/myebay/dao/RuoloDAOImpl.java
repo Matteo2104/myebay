@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Ruolo;
 
 public class RuoloDAOImpl implements RuoloDAO {
@@ -60,6 +61,12 @@ public class RuoloDAOImpl implements RuoloDAO {
 
 	@Override
 	public List<Ruolo> findByExample(Ruolo example) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Acquisto> list(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

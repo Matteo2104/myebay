@@ -1,6 +1,7 @@
 package it.prova.myebay.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -73,6 +74,26 @@ public class AcquistoServiceImpl implements AcquistoService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	@Override
+	public List<Acquisto> listAll(Long id) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			
+			
+			// uso l'injection per i vari DAO
+			acquistoDAO.setEntityManager(entityManager);
+			
+			return acquistoDAO.list(id);
+			
+		} catch (Exception e) {
+			
 			e.printStackTrace();
 			throw e;
 		} finally {

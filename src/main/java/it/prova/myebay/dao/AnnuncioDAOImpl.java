@@ -11,8 +11,10 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.StringUtils;
 
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
+
 
 
 public class AnnuncioDAOImpl implements AnnuncioDAO {
@@ -24,14 +26,20 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 	
 	@Override
+	public List<Acquisto> list(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Annuncio> list() throws Exception {
 		return entityManager.createQuery("from Annuncio", Annuncio.class).getResultList();
 	}
 
 	@Override
 	public Optional<Annuncio> findOne(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Annuncio result = entityManager.find(Annuncio.class, id);
+		return result != null ? Optional.of(result) : Optional.empty();
 	}
 
 	@Override
@@ -85,10 +93,52 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 
 		return typedQuery.getResultList();
 	}
+	
+	@Override
+	public List<Annuncio> personalFindByExample(Annuncio example, Long id) throws Exception {
+		Map<String, Object> paramaterMap = new HashMap<String, Object>();
+		List<String> whereClauses = new ArrayList<String>();
+
+		StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a join a.categorie c where a.id = a.id and a.aperto = 1 ");
+
+		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
+			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
+			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
+		}
+		if (example.getPrezzo() > 0) {
+			whereClauses.add(" a.prezzo >= :prezzo ");
+			paramaterMap.put("prezzo",example.getPrezzo());
+		}
+		
+		whereClauses.add(" a.utenteInserimento.id = :id ");
+		paramaterMap.put("id", id);
+		
+		if (example.getCategorie() != null) {
+			List<Long> listCategorieId = new ArrayList<>();
+			for (Categoria categoria : example.getCategorie()) {
+				listCategorieId.add(categoria.getId());
+			}
+			whereClauses.add("c.id in :listCategorieId ");
+			paramaterMap.put("listCategorieId", listCategorieId);
+		}
+		
+		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
+		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
+
+		for (String key : paramaterMap.keySet()) {
+			typedQuery.setParameter(key, paramaterMap.get(key));
+		}
+
+		return typedQuery.getResultList();
+	}
 
 	@Override
 	public Optional<Annuncio> findOneEager(Long id) throws Exception {
 		return entityManager.createQuery("from Annuncio a left join fetch a.categorie join fetch a.utenteInserimento where a.id=:idAnnuncio", Annuncio.class)
 				.setParameter("idAnnuncio", id).getResultList().stream().findFirst();
 	}
+
+	
+	
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 
 import it.prova.myebay.model.Acquisto;
+import it.prova.myebay.model.Annuncio;
 
 public class AcquistoDAOImpl implements AcquistoDAO {
 	private EntityManager entityManager;
@@ -19,6 +20,11 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 	public List<Acquisto> list() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<Acquisto> list(long id) throws Exception {
+		return entityManager.createQuery("from Acquisto a join fetch a.utenteAcquirente u where u.id = :idUtente", Acquisto.class).setParameter("idUtente", id).getResultList();
 	}
 
 	@Override
@@ -52,5 +58,7 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 }

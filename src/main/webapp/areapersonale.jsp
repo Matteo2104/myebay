@@ -37,7 +37,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="navbar.jsp"></jsp:include>
+	   		<jsp:include page="./navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -51,40 +51,14 @@
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto in MyEbay!</h1>
-				        <p class="col-md-8 fs-4">Qui puoi trovare annunci di prodotti di tutti i tipi</p>
-				      </div>
+				        <h1 class="display-5 fw-bold">Benvenuto ${userInfo.username }!</h1>
+				        <p class="col-md-8 fs-4">Vai alla lista dei tuoi acquisti</p>
+				        <a class="btn btn-primary" style='width:200px' href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">Lista Acquisti</a>
+ 						<a class="btn btn-primary" style='width:200px' href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
+				        
+				 </div>
 				      
-				      <div class='card-body'>
-				      	<form method="post" action="ExecuteSearchAnnunciServlet" class="row g-3" >
-							
-							
-								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo</label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo" >
-								</div>
-								
-								<div class="col-md-6">
-									<label for="prezzo" class="form-label">Prezzo (a partire da)</label>
-									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" >
-								</div>
-								
-								
-								<c:forEach items="${list_categorie_attr}" var="categoria" >
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${categoria.id}"
-										id="flexCheckDefault" name="categorie"> <label class="form-check-label"
-										for="flexCheckDefault"> ${categoria.codice} </label>
-									</div>
-								</c:forEach>
-								
-								<div class="col-12">
-									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra gli annunci</button>
-									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-								</div>
-								
-						</form>
-				      </div>
+				      
 			    </div>
 			    
 			  </div>
