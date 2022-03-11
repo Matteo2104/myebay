@@ -46,6 +46,7 @@ public class Annuncio {
 	public Annuncio(String testoAnnuncio) {
 		this.testoAnnuncio = testoAnnuncio;
 	}
+	
 
 	public Long getId() {
 		return id;

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import it.prova.myebay.model.Acquisto;
+import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Ruolo;
 
 public class RuoloDAOImpl implements RuoloDAO {
@@ -28,8 +29,7 @@ public class RuoloDAOImpl implements RuoloDAO {
 
 	@Override
 	public List<Ruolo> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("from Ruolo", Ruolo.class).getResultList();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class RuoloDAOImpl implements RuoloDAO {
 	}
 
 	@Override
-	public List<Acquisto> list(long id) throws Exception {
+	public List<Annuncio> list(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

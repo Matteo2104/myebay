@@ -27,6 +27,9 @@ public class Ruolo {
 		this.descrizione = descrizione;
 		this.codice = codice;
 	}
+	public Ruolo(long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}

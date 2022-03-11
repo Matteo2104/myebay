@@ -1,10 +1,16 @@
 package it.prova.myebay.utility;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
+import it.prova.myebay.model.Utente;
+import it.prova.myebay.model.Ruolo;
 
 public class UtilityForm {
 	public static Annuncio createAnnuncioFromParams(String testoAnnuncio, String prezzo, String[] categorie) {
@@ -31,6 +37,27 @@ public class UtilityForm {
 		return result;
 	}
 	
+	public static Utente createUtenteFromParams(String nome, String cognome, String username, String dataCreazione, String[] ruoli) {
+		Utente result = new Utente(nome, cognome, username);
+		
+		if (dataCreazione != null) {
+			result.setDateCreated(parseDateArrivoFromString(dataCreazione)); 
+		}
+		if (ruoli == null || ruoli.length < 1) {
+			result.setRuoli(null);
+		} else {
+			for (int i=0;i<ruoli.length;i++) {
+				try {
+					result.getRuoli().add(new Ruolo(Long.parseLong(ruoli[i])));
+				} catch (Exception e) {
+					
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {
 		if (StringUtils.isBlank(annuncio.getTestoAnnuncio())
 				|| annuncio.getPrezzo() < 1
@@ -38,5 +65,16 @@ public class UtilityForm {
 			return false;
 		}
 		return true;
+	}
+	
+	public static Date parseDateArrivoFromString(String dataDiNascitaStringParam) {
+		if (StringUtils.isBlank(dataDiNascitaStringParam))
+			return null;
+
+		try {
+			return new SimpleDateFormat("yyyy-MM-dd").parse(dataDiNascitaStringParam);
+		} catch (ParseException e) {
+			return null;
+		}
 	}
 }

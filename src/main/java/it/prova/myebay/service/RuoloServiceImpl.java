@@ -1,5 +1,7 @@
 package it.prova.myebay.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.RuoloDAO;
@@ -12,6 +14,26 @@ public class RuoloServiceImpl implements RuoloService {
 	@Override
 	public void setRuoloDAO(RuoloDAO ruoloDAO) {
 		this.ruoloDAO = ruoloDAO;
+	}
+	
+	@Override
+	public List<Ruolo> listAll() throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			ruoloDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return ruoloDAO.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
 	}
 	
 	@Override
