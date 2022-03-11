@@ -20,4 +20,6 @@ public interface UtenteService {
 
 	public List<Utente> findByExample(Utente example) throws Exception;
 
+	public List<Utente> listAll() throws Exception;
+
 }

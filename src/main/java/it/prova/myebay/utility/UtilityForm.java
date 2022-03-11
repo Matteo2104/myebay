@@ -37,12 +37,17 @@ public class UtilityForm {
 		return result;
 	}
 	
-	public static Utente createUtenteFromParams(String nome, String cognome, String username, String dataCreazione, String[] ruoli) {
+	public static Utente createUtenteFromParams(String nome, String cognome, String username, String campoVariabile, String[] ruoli) {
 		Utente result = new Utente(nome, cognome, username);
 		
-		if (dataCreazione != null) {
-			result.setDateCreated(parseDateArrivoFromString(dataCreazione)); 
+		if (campoVariabile != null) {
+			if (parseDateArrivoFromString(campoVariabile) == null) {
+				result.setPassword(campoVariabile);
+			} else {
+				result.setDateCreated(parseDateArrivoFromString(campoVariabile));
+			}
 		}
+		
 		if (ruoli == null || ruoli.length < 1) {
 			result.setRuoli(null);
 		} else {
@@ -56,6 +61,16 @@ public class UtilityForm {
 		}
 		
 		return result;
+	}
+	
+	public static boolean validateUtenteBean(Utente utenteToBeValidated) {
+		if (StringUtils.isBlank(utenteToBeValidated.getNome())
+				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
+				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
+				|| StringUtils.isBlank(utenteToBeValidated.getPassword())) {
+			return false;
+		}
+		return true;
 	}
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {

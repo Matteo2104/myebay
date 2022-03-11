@@ -32,10 +32,6 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 
 		// creo un bean
 		Utente example = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam, ruoliParam);
-		/*
-		Utente example = new Regista(nomeParam, cognomeParam, usernameParam,
-				UtilityForm.parseDateArrivoFromString(dataCreazioneParam));
-		*/
 		
 		try {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().findByExample(example));

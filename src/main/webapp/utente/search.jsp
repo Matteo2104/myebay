@@ -27,7 +27,7 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Ricerca elementi</h5> 
+				        <h5>Ricerca utenti</h5> 
 				    </div>
 				    <div class='card-body'>
 		
@@ -69,7 +69,7 @@
 								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca</button>
-								<a class="btn btn-outline-primary ml-2" href="PrepareInsertRegistaServlet">Aggiungi nuovo utente</a>
+								<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Aggiungi nuovo utente</a>
 								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 							</div>
 		

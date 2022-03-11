@@ -35,8 +35,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public List<Utente> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("from Utente", Utente.class).getResultList();
 	}
 
 	@Override
