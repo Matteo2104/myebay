@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Annuncio;
-
+import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -42,6 +42,7 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 		String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieInput = request.getParameterValues("categorie");
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
 
 		
@@ -61,12 +62,14 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 		
 		try {
 		
-			// assegno l'id, la data e l'apertura a true
+			// assegno l'id, la data e l'apertura a true, e anche l'utente in sessione
 			Annuncio annuncioOriginale = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
 			annuncio.setId(Long.parseLong(idAnnuncio));
 			annuncio.setData(annuncioOriginale.getData());
 			
-		
+			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
+			annuncio.setUtenteInserimento(utenteInSessione);
+			
 			MyServiceFactory.getAnnuncioServiceInstance().aggiorna(annuncio);
 			/*
 			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().listAll(Long.parseLong(idAnnuncio)));
