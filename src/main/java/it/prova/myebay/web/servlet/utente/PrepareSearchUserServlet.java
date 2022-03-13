@@ -28,10 +28,10 @@ public class PrepareSearchUserServlet extends HttpServlet {
 			request.setAttribute("list_utente_role_attr", MyServiceFactory.getRuoloServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("search.jsp").forward(request, response);
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("search.jsp").forward(request, response);
+		request.getRequestDispatcher("/utente/search.jsp").forward(request, response);
 	}
 
 }

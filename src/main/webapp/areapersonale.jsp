@@ -55,6 +55,11 @@
 				        <p class="fs-4 text-center">Questa è la tua area personale</p>
 				        <a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
  						<a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
+ 						<c:forEach items="${userInfo.ruoli}" var="ruolo" >
+							<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
+ 								<a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a>
+							</c:if>
+						</c:forEach>
 				        
 				 </div>
 				      

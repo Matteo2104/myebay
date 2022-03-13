@@ -70,7 +70,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select u from Utente u join fetch u.ruoli r where u.id = u.id ");
+		StringBuilder queryBuilder = new StringBuilder("select distinct u from Utente u join fetch u.ruoli r where u.id = u.id ");
 
 		if (StringUtils.isNotEmpty(example.getNome())) {
 			whereClauses.add(" u.nome  like :nome ");
@@ -123,15 +123,17 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return query.getResultStream().findFirst();
 	}
 
-	@Override
-	public List<Annuncio> list(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	@Override
 	public Optional<Utente> findOneEager(Long id) throws Exception {
 		return entityManager.createQuery("from Utente u left join fetch u.ruoli where u.id=:idUtente", Utente.class)
 				.setParameter("idUtente", id).getResultList().stream().findFirst();
+	}
+
+	@Override
+	public List<Utente> list(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

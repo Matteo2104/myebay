@@ -61,7 +61,7 @@
 								<c:forEach items="${mappa_ruoli}" var="ruolo" >
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
-										id="flexCheckDefault" name="categorie" ${ruolo.value?'checked':''}> <label class="form-check-label"
+										id="flexCheckDefault" name="ruoli" ${ruolo.value?'checked':''}> <label class="form-check-label"
 										for="flexCheckDefault"> ${ruolo.key.codice} </label>
 									</div>
 								</c:forEach>

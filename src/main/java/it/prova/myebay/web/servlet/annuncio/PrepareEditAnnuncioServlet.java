@@ -40,6 +40,12 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 		
 		try {
 			Annuncio annuncio = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
+			
+			if (!annuncio.isAperto()) {
+				throw new RuntimeException("Annuncio chiuso");
+			}
+			
+			
 			request.setAttribute("edit_annuncio_attr", annuncio);
 			
 			//request.setAttribute("list_categorie_attr", );

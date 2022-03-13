@@ -59,6 +59,7 @@ public class ExecuteEditUserServlet extends HttpServlet {
 			
 			// eseguo la validazione (i campi non possono essere vuoti) se non va a buon fine allora ritorno all'insert
 			if (!UtilityForm.validateUtenteBeanForEdit(utenteInstance)) {
+				utenteInstance.setId(Long.parseLong(idUser));
 				request.setAttribute("edit_utente_attr", utenteInstance);
 				
 				// carico su una mappa i ruoli già settati 
@@ -68,7 +69,7 @@ public class ExecuteEditUserServlet extends HttpServlet {
 				boolean check = false;
 				for (Ruolo ruolo : listaRuoli) {
 					check = false;
-					for (Ruolo ruoloUtente : utenteInstance.getRuoli()) {				// null pointer ????!?!?!?!
+					for (Ruolo ruoloUtente : utenteInstance.getRuoli()) {				
 						if (ruolo.getId() == ruoloUtente.getId()) {
 							mappa.put(ruolo, true);
 							check=true;
@@ -113,7 +114,7 @@ public class ExecuteEditUserServlet extends HttpServlet {
 		}
 		
 		//request.getRequestDispatcher("/utente/list.jsp").forward(request, response);
-		response.sendRedirect("ExecuteListAnnunciServlet?operationResult=SUCCESS");
+		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 
 	}
 

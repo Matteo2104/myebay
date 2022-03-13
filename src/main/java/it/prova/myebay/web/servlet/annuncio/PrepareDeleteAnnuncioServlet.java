@@ -2,7 +2,7 @@ package it.prova.myebay.web.servlet.annuncio;
 
 import java.io.IOException;
 
-
+import javax.management.RuntimeErrorException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,11 +37,16 @@ public class PrepareDeleteAnnuncioServlet extends HttpServlet {
 		
 		try {
 			Annuncio annuncio = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
+			
+			if (!annuncio.isAperto()) {
+				throw new RuntimeException("Annuncio chiuso");
+			}
+			
 			request.setAttribute("delete_annuncio_attr", annuncio);
 			
 			
 		} catch (Exception e) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: " + e);
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		}

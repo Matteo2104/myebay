@@ -46,7 +46,7 @@
 				    </div>
 				    <div class='card-body'>
 				    	<a class="btn btn-primary " href="PrepareInsertUserServlet">Aggiungi nuovo utente</a>
-				    
+				    	<a class="btn btn-primary " href="PrepareSearchUserServlet">Indietro</a>
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
 				                <thead>
