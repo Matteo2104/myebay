@@ -36,10 +36,8 @@
 		      <label for="inputPassword">Password</label>
 		    </div>
 		
-		    <div class="checkbox mb-3">
-		      <label>
-		        <input type="checkbox" value="remember-me"> Ricordami
-		      </label>
+		    <div class="mb-3">
+		      	<a href="${pageContext.request.contextPath}/PrepareRegisterUserServlet">Registrati</a>
 		    </div>
 		    <button class="w-100 btn btn-lg btn-primary" type="submit">Accedi</button>
 		    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>

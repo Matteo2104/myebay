@@ -66,6 +66,12 @@ public class UtilityForm {
 		return result;
 	}
 	
+	public static Utente createUtenteFromParamsForRegister(String nome, String cognome, String username, String password) {
+		Utente result = new Utente(nome, cognome, username, password);
+
+		return result;
+	}
+	
 	public static Utente createUtenteFromParamsWithStato(String nome, String cognome, String username, String stato, String[] ruoli) {
 		Utente result = new Utente(nome, cognome, username);
 		
