@@ -22,6 +22,7 @@ public class CheckAuthFilter implements Filter {
 	//private static final String HOME_PATH = "";
 	//private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
 	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/", "/annuncio/"};
+	private static final String[] ADMIN_URLS = {"/utente/"};
 
 	public CheckAuthFilter() {
 	}
@@ -50,9 +51,15 @@ public class CheckAuthFilter implements Filter {
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			// verifico se utente è in sessione
 			if (utenteInSession == null) {
-				System.out.println("utente non in sessione: eseguo redirect");
+				//System.out.println("utente non in sessione: eseguo redirect");
 				//httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);	
 				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+				return;
+			}
+			
+			if (isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
+				httpRequest.setAttribute("errorMessage", "Non si è autorizzati a proseguire in questa pagina");
+				httpRequest.getRequestDispatcher("/error.jsp").forward(httpRequest, httpResponse);	
 				return;
 			}
 			
@@ -94,7 +101,7 @@ public class CheckAuthFilter implements Filter {
 	}
 	
 	private boolean isPathForOnlyAdministrators(String requestPath) {
-		for (String urlPatternItem : PROTECTED_URLS) {
+		for (String urlPatternItem : ADMIN_URLS) {
 			if (requestPath.contains(urlPatternItem)) {
 				return true;
 			}

@@ -22,6 +22,8 @@ import javax.persistence.Table;
 
 
 
+
+
 @Entity
 @Table(name = "utente")
 public class Utente {
@@ -156,9 +158,9 @@ public class Utente {
 		this.creditoResiduo -= cifraDaSottrarre;
 	}
 	
-	public boolean isLoggedIn() {
+	public boolean isAdmin() {
 		for (Ruolo ruoloItem : ruoli) {
-			if (ruoloItem.getCodice().equals(Ruolo.ROLE_CLASSIC_USER) || ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
+			if (ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
 				return true;
 		}
 		return false;
