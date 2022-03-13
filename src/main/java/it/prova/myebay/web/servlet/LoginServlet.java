@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				
 				// se ho interrotto la navigazione per loggarmi ritorno al punto in cui stavo
-				System.out.println(PathRitorno.ID);
+				//System.out.println(PathRitorno.ID);
 				
 				destinazione = PathRitorno.PATH_RITORNO==""?"areapersonale.jsp":PathRitorno.PATH_RITORNO;
 				
@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			destinazione = "login.jsp";
-			request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
+			request.setAttribute("errorMessage", "Si è verificato un errore");
 		}
 
 		request.getRequestDispatcher(destinazione).forward(request, response);

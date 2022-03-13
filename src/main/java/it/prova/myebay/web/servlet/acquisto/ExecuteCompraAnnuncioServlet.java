@@ -62,7 +62,7 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			return;
 		} // mettere altre eccezioni che possono avvenire durante la transazione
 
-		response.sendRedirect("ExecuteListAcquistiServlet?operationResult=SUCCESS");
+		response.sendRedirect(request.getContextPath() + "/acquisto/ExecuteListAcquistiServlet?operationResult=SUCCESS");
 		//request.getRequestDispatcher("ExecuteListAcquistiServlet").forward(request, response);
 		
 		//System.out.println("STO ANDANDO A LIST");

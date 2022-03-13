@@ -6,7 +6,7 @@
 		<title>Accedi</title>
 	
 		<!-- Common imports in pages -->
-	 	<jsp:include page="header.jsp" />
+	 	<jsp:include page="./header.jsp" />
 	
 	
 		 <!-- Custom styles for login -->

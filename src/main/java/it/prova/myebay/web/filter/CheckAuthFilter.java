@@ -43,24 +43,26 @@ public class CheckAuthFilter implements Filter {
 		//se non lo e' bisogna controllare sia sessione che percorsi protetti
 		if (!isInWhiteList) {
 			
-			// se sono qui dentro significa che ho interrotto la navigazione per accedere e quindi mi salvo il path
-			//System.out.println(pathAttuale);
+			// se sono qui dentro significa che ho interrotto la navigazione per accedere e quindi mi salvo il path e l'id
 			PathRitorno.PATH_RITORNO = request.getParameter("pathRitorno");
 			PathRitorno.ID = request.getParameter("idAnnuncio");
 			
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
-			// per ora verifico soltanto se utente è in sessione
+			// verifico se utente è in sessione
 			if (utenteInSession == null) {
 				System.out.println("utente non in sessione: eseguo redirect");
-				httpRequest.getRequestDispatcher(httpRequest.getContextPath() + "/login.jsp").forward(httpRequest, httpResponse);
+				//httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);	
+				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
 				return;
 			}
 			
+			/*
 			if (!utenteInSession.isLoggedIn()) {
 				System.out.println("utente in sessione ma non loggato: mando a login");
 				httpRequest.getRequestDispatcher("login.jsp").forward(httpRequest, httpResponse);
 				return;
 			}
+			*/
 			
 			/*
 			//controllo che utente abbia ruolo admin se nel path risulta presente /admin/
