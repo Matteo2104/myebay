@@ -23,7 +23,7 @@ public class ExecuteListAnnunciServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().listAll());
+			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().getAnnunciAttivi());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore!");
 			request.getRequestDispatcher("error.jsp").forward(request, response);

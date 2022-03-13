@@ -33,7 +33,7 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
-		System.out.println("SONO TORNATO IN COMPRA ANNUNCIO");
+		//System.out.println("SONO TORNATO IN COMPRA ANNUNCIO");
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			idAnnuncio = PathRitorno.ID;
@@ -54,17 +54,17 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			
 		} catch (InsufficientCreditException e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e);
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e);
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		} // mettere altre eccezioni che possono avvenire durante la transazione
 
-		//response.sendRedirect("ExecuteListAcquistiServlet?operationResult=SUCCESS");
-		request.getRequestDispatcher("ExecuteListAcquistiServlet").forward(request, response);
+		response.sendRedirect("ExecuteListAcquistiServlet?operationResult=SUCCESS");
+		//request.getRequestDispatcher("ExecuteListAcquistiServlet").forward(request, response);
 		
-		System.out.println("STO ANDANDO A LIST");
+		//System.out.println("STO ANDANDO A LIST");
 	}
 }

@@ -31,6 +31,11 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 	
 	@Override
+	public List<Annuncio> listOnlyActive() throws Exception {
+		return entityManager.createQuery("from Annuncio a where a.aperto = 1", Annuncio.class).getResultList();
+	}
+	
+	@Override
 	public List<Annuncio> list() throws Exception {
 		return entityManager.createQuery("from Annuncio", Annuncio.class).getResultList();
 	}
