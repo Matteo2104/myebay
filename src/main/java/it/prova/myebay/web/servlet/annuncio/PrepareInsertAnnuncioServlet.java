@@ -1,6 +1,10 @@
 package it.prova.myebay.web.servlet.annuncio;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
 import it.prova.myebay.service.MyServiceFactory;
 
 
@@ -24,6 +29,14 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setAttribute("insert_annuncio_attr", new Annuncio());
+			
+			List<Categoria> listaCategorie = MyServiceFactory.getCategoriaServiceInstance().listAll();
+			Map<Categoria, Boolean> mappa = new HashMap<>();
+			for (Categoria categoria : listaCategorie) {
+				mappa.put(categoria, false);
+			}
+			request.setAttribute("mappa_categorie", mappa);
+			
 			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,7 +44,7 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("insert.jsp").forward(request, response);
+		request.getRequestDispatcher("/annuncio/insert.jsp").forward(request, response);
 	}
 
 

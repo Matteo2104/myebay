@@ -39,21 +39,21 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 		Utente utenteInstance = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, ruoliParam);
 		try {
 			
-		// se la validazione non risulta ok
-		if (!UtilityForm.validateUtenteBean(utenteInstance)) {
-			request.setAttribute("insert_utente_attr", utenteInstance);
-			request.setAttribute("list_utente_role_attr", MyServiceFactory.getRuoloServiceInstance().listAll());
-			request.setAttribute("list_utente_rolechecked_attr", Arrays.asList(ruoliParam));
-			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-			request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
-			return;
-		}
-
-		// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
-		// occupiamoci delle operazioni di business
-		utenteInstance.setStato(StatoUtente.CREATO);
-		//System.out.println(utenteInstance);
-		utenteInstance.setDateCreated(new Date());
+			// se la validazione non risulta ok
+			if (!UtilityForm.validateUtenteBean(utenteInstance)) {
+				request.setAttribute("insert_utente_attr", utenteInstance);
+				request.setAttribute("list_utente_role_attr", MyServiceFactory.getRuoloServiceInstance().listAll());
+				request.setAttribute("list_utente_rolechecked_attr", Arrays.asList(ruoliParam));
+				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
+				request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
+				return;
+			}
+	
+			// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
+			// occupiamoci delle operazioni di business
+			utenteInstance.setStato(StatoUtente.CREATO);
+			//System.out.println(utenteInstance);
+			utenteInstance.setDateCreated(new Date());
 		
 		
 			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteInstance);

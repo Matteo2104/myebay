@@ -64,6 +64,11 @@
 				            </table>
 				        </div>
 				   
+				   		<div class='card-footer'>
+					        <a href="../areapersonale.jsp" class='btn btn-outline-secondary' style='width:100px'>
+					            <i class='fa fa-chevron-left'></i> Indietro
+					        </a>
+					    </div>
 					<!-- end card-body -->			   
 			    </div>
 			<!-- end card -->

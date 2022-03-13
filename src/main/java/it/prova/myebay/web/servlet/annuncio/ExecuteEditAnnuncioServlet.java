@@ -81,7 +81,9 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/annuncio/ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
+
+		//request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
 	}
 
 }

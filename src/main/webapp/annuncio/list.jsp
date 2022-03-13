@@ -56,9 +56,9 @@
 											<td>${annuncio.prezzo }</td>
 											<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
 											<td>
-												<a class="btn  btn-sm btn-secondary" style='width:100px' href="${pageContext.request.contextPath}/ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
-												<a class="btn  btn-sm btn-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
-												<a class="btn  btn-sm btn-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
+												<a class="btn  btn-sm btn-outline-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
+												<a class="btn btn-outline-danger btn-sm" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
 											</td>
 										</tr>
 									</c:forEach>

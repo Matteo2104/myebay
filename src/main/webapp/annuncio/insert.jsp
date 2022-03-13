@@ -8,7 +8,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Inserisci Nuovo Utente</title>
+	   <title>Inserisci Nuovo Annuncio</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   
@@ -35,7 +35,7 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Inserisci nuovo utente</h5> 
+				        <h5>Inserisci nuovo Annuncio</h5> 
 				    </div>
 				    <div class='card-body'>
 		
@@ -55,11 +55,11 @@
 									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${insert_annuncio_attr.prezzo}" required>
 								</div>
 							
-								<c:forEach items="${list_categorie_attr}" var="categoria" >
+								<c:forEach items="${mappa_categorie}" var="ruolo" >
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${categoria.id}"
-										id="flexCheckDefault" name="categorie"> <label class="form-check-label"
-										for="flexCheckDefault"> ${categoria.codice} </label>
+										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
+										id="flexCheckDefault" name="categorie" ${ruolo.value?'checked':''}> <label class="form-check-label"
+										for="flexCheckDefault"> ${ruolo.key.codice} </label>
 									</div>
 								</c:forEach>
 			
@@ -67,7 +67,7 @@
 
 								
 							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<button type="submit" name="submit" value="" id="submit" class="btn btn-primary">Conferma</button>
 							</div>
 		
 						</form>

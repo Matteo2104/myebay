@@ -28,6 +28,9 @@
             --> 
             <div class="col-md-3 text-end">
 				<c:forEach items="${userInfo.ruoli}" var="ruolo" >
+					<c:if test="${ruolo.codice == 'ROLE_CLASSIC_USER'}">
+						<li class="navbar-text"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioServlet">Inserisci un nuovo Annuncio</a></li>
+					</c:if>
 					<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
 						<li class="navbar-text"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a></li>
 					</c:if>
@@ -42,7 +45,7 @@
      		</c:if>
      		<c:if test="${not empty userInfo}" >
        			<p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome})
-       			<a href="areapersonale.jsp">Area Personale</a>
+       			<a href="${pageContext.request.contextPath}/areapersonale.jsp">Area Personale</a>
        			<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
      		</c:if>
       </div>

@@ -17,8 +17,10 @@ public class UtilityForm {
 	public static Annuncio createAnnuncioFromParams(String testoAnnuncio, String prezzo, String[] categorie) {
 		Annuncio result = new Annuncio(testoAnnuncio);
 		
-		if (NumberUtils.isCreatable(prezzo) && !prezzo.equals("0")) {
-			result.setPrezzo(Integer.parseInt(prezzo));
+		if (NumberUtils.isCreatable(prezzo)) {
+			if (Integer.parseInt(prezzo) > 0) {
+				result.setPrezzo(Integer.parseInt(prezzo));
+			}
 		}
 		
 		result.setAperto(true);

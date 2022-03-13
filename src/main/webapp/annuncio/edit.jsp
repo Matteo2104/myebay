@@ -54,7 +54,6 @@
 								
 								<div class="col-12">
 									<button type="submit" name="idAnnuncio" value="${edit_annuncio_attr.id}" class="btn btn-primary">Conferma</button>
-									<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Add New</a>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
 						</form>
