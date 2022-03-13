@@ -53,13 +53,16 @@
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold text-center">Benvenuto ${userInfo.nome}!</h1>
 				        <p class="fs-4 text-center">Questa è la tua area personale</p>
-				        <a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
- 						<a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
- 						<c:forEach items="${userInfo.ruoli}" var="ruolo" >
-							<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
- 								<a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a>
-							</c:if>
-						</c:forEach>
+				        <div class="fs-4 text-center">
+				        	<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
+ 							<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
+ 							<c:forEach items="${userInfo.ruoli}" var="ruolo" >
+								<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
+ 									<a class="btn btn-primary col-lg w-25" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a>
+								</c:if>
+							</c:forEach>
+				        </div>
+				        
 				        
 				 </div>
 				      
