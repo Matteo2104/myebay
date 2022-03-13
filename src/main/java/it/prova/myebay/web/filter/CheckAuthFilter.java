@@ -21,7 +21,7 @@ public class CheckAuthFilter implements Filter {
 
 	//private static final String HOME_PATH = "";
 	//private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
-	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/"};
+	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/", "/annuncio/"};
 
 	public CheckAuthFilter() {
 	}
@@ -29,9 +29,8 @@ public class CheckAuthFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
@@ -75,8 +74,9 @@ public class CheckAuthFilter implements Filter {
 			
 			
 		}
-
+		
 		chain.doFilter(request, response);
+		
 	}
 	
 	private boolean isPathInWhiteList(String requestPath) {

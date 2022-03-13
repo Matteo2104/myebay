@@ -12,25 +12,30 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
           </li>
+         </ul> 
+       </div> 
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
-          <c:forEach items="${userInfo.ruoli}" var="ruolo" >
-				<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
-					<li><a class="nav-link active" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a></li>
-				</c:if>
-			</c:forEach>
+        
           
+           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
-              
-				
-            </ul> 
-          </li>   
-        </ul>
-      </div>
+            --> 
+            <div class="col-md-3 text-end">
+				<c:forEach items="${userInfo.ruoli}" var="ruolo" >
+					<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
+						<li class="navbar-text"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a></li>
+					</c:if>
+				</c:forEach>
+			</div>
+         
+          
+
       <div class="col-md-4 text-end">
       		<c:if test="${empty userInfo}" >
      			<p class="navbar-text"><a href="login.jsp">Login</a></p>

@@ -24,13 +24,15 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 	
 	@Override
 	public List<Acquisto> list(long id) throws Exception {
-		return entityManager.createQuery("from Acquisto a join fetch a.utenteAcquirente u where u.id = :idUtente", Acquisto.class).setParameter("idUtente", id).getResultList();
+		return entityManager
+				.createQuery("from Acquisto a left join fetch a.utenteAcquirente u where u.id = :idUtente", Acquisto.class)
+				.setParameter("idUtente", id).getResultList();
 	}
 
 	@Override
 	public Optional<Acquisto> findOne(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Acquisto result = entityManager.find(Acquisto.class, id);
+		return result != null ? Optional.of(result) : Optional.empty();
 	}
 
 	@Override

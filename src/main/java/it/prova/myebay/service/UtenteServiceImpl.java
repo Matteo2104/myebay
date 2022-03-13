@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
+import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 
@@ -53,6 +54,32 @@ public class UtenteServiceImpl implements UtenteService {
 			return result.isPresent() ? result.get() : null;
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void aggiorna(Utente utente) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			entityManager.getTransaction().begin();
+
+			
+			// eseguo quello che realmente devo fare
+			utenteDAO.update(utente);
+			
+			entityManager.getTransaction().commit();
+
+
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -180,6 +207,25 @@ public class UtenteServiceImpl implements UtenteService {
 			return utenteDAO.findByExample(example);
 			
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public Utente caricaSingoloElemento(Long id) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return utenteDAO.findOne(id).get();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

@@ -6,15 +6,15 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+	 	<jsp:include page="./header.jsp" />
 	   
-	   <title>Pagina degli acquisti</title>
+	   <title>Pagina dei Risultati</title>
 	 </head>
 	 
 	<body class="d-flex flex-column h-100">
 	 
 		<!-- Fixed navbar -->
-		<jsp:include page="../navbar.jsp"></jsp:include>
+		<jsp:include page="./navbar.jsp"></jsp:include>
 	 
 	
 		<!-- Begin page content -->
@@ -34,7 +34,7 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>I tuoi acquisti</h5> 
+				        <h5>Lista dei risultati</h5> 
 				    </div>
 				    <div class='card-body'>
 				    	
@@ -45,18 +45,18 @@
 				                    <tr>
 			                         	<th style="width:400px">Testo Annuncio</th>
 				                        <th style="width:100px">Prezzo</th>
-				                        <th style="width:200px">Data Acquisto</th>
-				                        <th style="width:200px"></th>
+				                        <th style="width:200px">Data Pubblicazione</th>
+				                        <th style="width:250px"></th>
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${list_acquisti_attr}" var="acquisto">
+				                	<c:forEach items="${annunci_list_attribute}" var="annuncio">
 										<tr>
-											<td>${acquisto.descrizione}</td>
-											<td>${acquisto.prezzo }</td>
-											<td><fmt:formatDate type = "date" value = "${acquisto.data}" /></td>
+											<td>${annuncio.testoAnnuncio}</td>
+											<td>${annuncio.prezzo }</td>
+											<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" style='width:200px' href="ExecuteVisualizzaAcquistoServlet?idAcquisto=${acquisto.id}">Dettaglio</a>
+												<a class="btn btn-sm btn-primary" style='width:400px' href="${pageContext.request.contextPath}/ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -76,7 +76,7 @@
 		</main>
 		
 		<!-- Footer -->
-		<jsp:include page="../footer.jsp" />
+		<jsp:include page="./footer.jsp" />
 		
 	</body>
 </html>

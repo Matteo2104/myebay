@@ -100,4 +100,24 @@ public class AcquistoServiceImpl implements AcquistoService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
+	
+	@Override
+	public Acquisto caricaSingoloElemento(Long id) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			acquistoDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return acquistoDAO.findOne(id).orElse(null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
 }

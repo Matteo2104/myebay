@@ -24,5 +24,5 @@ public interface IBaseDAO<T> {
 	// questo mi serve per l'injection
 	public void setEntityManager(EntityManager entityManager);
 
-	public List<Annuncio> list(long id) throws Exception;
+	public List<T> list(long id) throws Exception;
 }

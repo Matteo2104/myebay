@@ -16,6 +16,7 @@ public interface AcquistoService {
 
 	public void acquista(Long id, Utente utenteInSessione) throws Exception;
 	public List<Acquisto> listAll(Long id) throws Exception;
+	public Acquisto caricaSingoloElemento(Long id) throws Exception;
 	
 
 }

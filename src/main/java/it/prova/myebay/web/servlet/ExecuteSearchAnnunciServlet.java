@@ -1,4 +1,5 @@
-package it.prova.myebay.web.servlet.annuncio;
+package it.prova.myebay.web.servlet;
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -33,8 +34,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		//System.out.println(example);
 		
 		try {
-			request.setAttribute("annunci_list_attribute",
-					MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
+			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
@@ -42,7 +42,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 		//response.getWriter().append("fin qui tutto ok");
 	}
 

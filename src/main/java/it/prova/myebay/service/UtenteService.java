@@ -26,4 +26,8 @@ public interface UtenteService {
 
 	public void disabilita(Long id) throws Exception;
 
+	public Utente caricaSingoloElemento(Long id) throws Exception;
+
+	public void aggiorna(Utente utente) throws Exception;
+
 }

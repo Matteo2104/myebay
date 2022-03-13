@@ -8,7 +8,7 @@
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Raccolta Film</title>
+	   <title>My Ebay</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -37,7 +37,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="navbar.jsp"></jsp:include>
+	   		<jsp:include page="./navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -51,8 +51,8 @@
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto in MyEbay!</h1>
-				        <p class="col-md-8 fs-4">Qui puoi trovare annunci di prodotti di tutti i tipi</p>
+				        <h1 class="display-3 fw-bold text-center">Benvenuto in MyEbay!</h1>
+				        <p class="fs-4 text-center" >Qui puoi trovare annunci di prodotti di tutti i tipi</p>
 				      </div>
 				      
 				      <div class='card-body'>
@@ -66,12 +66,12 @@
 								
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo (a partire da)</label>
-									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" >
+									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" min="1" >
 								</div>
 								
 								
 								<c:forEach items="${list_categorie_attr}" var="categoria" >
-									<div class="form-check">
+									<div class="form-check col-md-6">
 										<input class="form-check-input" type="checkbox" value="${categoria.id}"
 										id="flexCheckDefault" name="categorie"> <label class="form-check-label"
 										for="flexCheckDefault"> ${categoria.codice} </label>

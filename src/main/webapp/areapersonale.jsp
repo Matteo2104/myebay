@@ -8,7 +8,7 @@
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Raccolta Film</title>
+	   <title>Area Personale</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -51,10 +51,10 @@
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto ${userInfo.username }!</h1>
-				        <p class="col-md-8 fs-4">Vai alla lista dei tuoi acquisti</p>
-				        <a class="btn btn-primary" style='width:200px' href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">Lista Acquisti</a>
- 						<a class="btn btn-primary" style='width:200px' href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
+				        <h1 class="display-5 fw-bold text-center">Benvenuto ${userInfo.nome}!</h1>
+				        <p class="fs-4 text-center">Questa è la tua area personale</p>
+				        <a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
+ 						<a class="btn btn-primary button-center" style='width:200px' href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
 				        
 				 </div>
 				      

@@ -1,4 +1,4 @@
-package it.prova.myebay.web.servlet.annuncio;
+package it.prova.myebay.web.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -39,7 +39,7 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 
 			if (annuncioInstance == null) {
 				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("error.jsp").forward(request, response);
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
 				return;
 			}
 
@@ -48,11 +48,11 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella visualizzazione dettagli");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/annuncio/show.jsp").forward(request, response);
+		request.getRequestDispatcher("show.jsp").forward(request, response);
 	}
 
 }

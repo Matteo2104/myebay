@@ -11,6 +11,7 @@ import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.model.StatoUtente;
 
 public class UtilityForm {
 	public static Annuncio createAnnuncioFromParams(String testoAnnuncio, String prezzo, String[] categorie) {
@@ -63,11 +64,53 @@ public class UtilityForm {
 		return result;
 	}
 	
+	public static Utente createUtenteFromParamsWithStato(String nome, String cognome, String username, String stato, String[] ruoli) {
+		Utente result = new Utente(nome, cognome, username);
+		
+		if (stato != null) {
+			switch (stato) {
+			case "CREATO": 
+				result.setStato(StatoUtente.CREATO);
+				break;
+			case "ATTIVO": 
+				result.setStato(StatoUtente.ATTIVO);
+				break;
+			case "DISABILITATO": 
+				result.setStato(StatoUtente.DISABILITATO);
+				break;
+			}
+		}
+		
+		if (ruoli == null || ruoli.length < 1) {
+			result.setRuoli(null);
+		} else {
+			for (int i=0;i<ruoli.length;i++) {
+				try {
+					result.getRuoli().add(new Ruolo(Long.parseLong(ruoli[i])));
+				} catch (Exception e) {
+					
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	public static boolean validateUtenteBean(Utente utenteToBeValidated) {
 		if (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
 				|| StringUtils.isBlank(utenteToBeValidated.getPassword())) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean validateUtenteBeanForEdit(Utente utenteToBeValidated) {
+		if (StringUtils.isBlank(utenteToBeValidated.getNome())
+				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
+				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
+				|| utenteToBeValidated.getStato() == null) {
 			return false;
 		}
 		return true;
