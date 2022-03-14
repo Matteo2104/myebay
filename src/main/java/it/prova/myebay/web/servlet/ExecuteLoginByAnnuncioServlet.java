@@ -8,29 +8,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.PathRitorno;
 
 
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/ExecuteLoginByAnnuncioServlet")
+public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public LoginServlet() {
+    public ExecuteLoginByAnnuncioServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
+		String idAnnuncio = request.getParameter("idAnnuncio");
+		
+		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
+			request.setAttribute("errorMessage", "Errore: id non è numerico: pagina execute");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+			return;
+		}
 
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
 			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
@@ -38,25 +48,22 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		String destinazione = null;
-
 		try {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
 				request.setAttribute("errorMessage", "Utente non trovato.");
-				destinazione = "login.jsp";
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				
-				destinazione = "areapersonale.jsp";
+				request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			destinazione = "login.jsp";
 			request.setAttribute("errorMessage", "Si è verificato un errore");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 
-		request.getRequestDispatcher(destinazione).forward(request, response);
+		request.getRequestDispatcher("show.jsp").forward(request, response);
 	}
-	
+
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it">
 
@@ -18,8 +19,7 @@
 	<body class="text-center">
 	    
 		<main class="form-signin">
-		  <form action="LoginServlet" method="post" novalidate="novalidate">
-		  
+		  <form action="${idAnnuncio!=null?'ExecuteLoginByAnnuncioServlet':'LoginServlet'}" method="post" novalidate="novalidate">
 	  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 		 		 ${errorMessage}
 			</div>
@@ -37,9 +37,12 @@
 		    </div>
 		
 		    <div class="mb-3">
-		      	<a href="${pageContext.request.contextPath}/PrepareRegisterUserServlet">Registrati</a>
+		      	<a href="${pageContext.request.contextPath}/PrepareRegisterUserServlet?idAnnuncio=${idAnnuncio}">Registrati</a>
 		    </div>
-		    <button class="w-100 btn btn-lg btn-primary" type="submit">Accedi</button>
+
+		    <button class="w-100 btn btn-lg btn-primary" type="submit" name="idAnnuncio" value="${idAnnuncio}">Accedi</button>
+		   
+		   
 		    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
 		  </form>
 		</main>

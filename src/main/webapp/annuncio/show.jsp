@@ -7,7 +7,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	
-	   <title>Visualizza Elemento</title>
+	   <title>Dettaglio annuncio</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">

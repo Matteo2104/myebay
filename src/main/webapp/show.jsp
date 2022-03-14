@@ -7,7 +7,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="./header.jsp" />
 	 	
-	   <title>Visualizza Elemento</title>
+	   <title>Dettaglio annuncio</title>
 	   
 	 </head>
 	   <body class="d-flex flex-column h-100">
@@ -80,9 +80,18 @@
 					        <a href="ExecuteListAnnunciServlet" class='btn btn-outline-secondary' style='width:100px'>
 					            <i class='fa fa-chevron-left'></i> Indietro
 					        </a>
-					        <a href="${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&pathRitorno=/acquisto/ExecuteCompraAnnuncioServlet" class='btn btn-primary' style='width:200px'>
-					            <i class='fa fa-chevron-left'></i> Compra articolo
-					        </a>
+					        <!-- <a href="${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&pathRitorno=/acquisto/ExecuteCompraAnnuncioServlet" class='btn btn-primary' style='width:200px'>  -->
+					         <!-- <a href="${userInfo==null?'${pageContext.request.contextPath}/PrepareLoginByAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}':'${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}'}" class='btn btn-primary' style='width:200px'> -->
+					         
+					        <c:if test="${userInfo==null }">
+					        	<a href="${pageContext.request.contextPath}/PrepareLoginByAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-primary' style='width:200px'>Compra</a>
+					        </c:if>
+					        <c:if test="${userInfo!=null }">
+					        	<a href="${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-primary' style='width:200px'>Compra</a>
+					        </c:if>
+					           
+					            
+					        
 					    </div>
 					<!-- end card -->
 					</div>	
