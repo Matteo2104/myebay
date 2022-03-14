@@ -3,6 +3,9 @@ package it.prova.myebay.web.servlet.utente;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.model.Categoria;
+import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
@@ -42,8 +47,31 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 			// se la validazione non risulta ok
 			if (!UtilityForm.validateUtenteBean(utenteInstance)) {
 				request.setAttribute("insert_utente_attr", utenteInstance);
-				request.setAttribute("list_utente_role_attr", MyServiceFactory.getRuoloServiceInstance().listAll());
-				request.setAttribute("list_utente_rolechecked_attr", Arrays.asList(ruoliParam));
+				
+				List<Ruolo> listaRuoli = MyServiceFactory.getRuoloServiceInstance().listAll();
+				Map<Ruolo, Boolean> mappa = new HashMap<>();
+				
+				
+				boolean check = false;
+				for (Ruolo ruolo : listaRuoli) {
+					// se sono state selezionate categorie valorizzo la mappa, altrimenti la riempi con tutti valori settati a false
+					if (ruoliParam != null) {
+						check = false;
+						for (int i=0;i<ruoliParam.length;i++) {
+							if (ruolo.getId().toString().equals(ruoliParam[i])) {
+								mappa.put(ruolo, true);
+								check=true;
+							}
+						}
+						if (!check) {
+							mappa.put(ruolo, false);
+						}	
+					} else {
+						mappa.put(ruolo, false);
+					}
+				}
+				request.setAttribute("mappa_ruoli", mappa);
+				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
 				return;

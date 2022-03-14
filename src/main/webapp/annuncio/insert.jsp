@@ -55,11 +55,11 @@
 									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${insert_annuncio_attr.prezzo}" required>
 								</div>
 							
-								<c:forEach items="${mappa_categorie}" var="ruolo" >
+								<c:forEach items="${mappa_categorie}" var="categoria" >
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
-										id="flexCheckDefault" name="categorie" ${ruolo.value?'checked':''}> <label class="form-check-label"
-										for="flexCheckDefault"> ${ruolo.key.codice} </label>
+										<input class="form-check-input" type="checkbox" value="${categoria.key.id}"
+										id="flexCheckDefault" name="categorie" ${categoria.value?'checked':''}> <label class="form-check-label"
+										for="flexCheckDefault"> ${categoria.key.codice} </label>
 									</div>
 								</c:forEach>
 			

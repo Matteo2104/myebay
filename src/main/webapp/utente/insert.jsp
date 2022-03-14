@@ -65,34 +65,12 @@
 									<input type="text" class="form-control" name="password" id=password placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
 								</div>
 								
-								<c:forEach items="${list_utente_role_attr}" var="ruolo" >
-									<c:if test="${list_utente_rolechecked_attr!=null}">
-										<c:choose >
-											<c:when test="${fn:contains(list_utente_rolechecked_attr, ruolo.id)}" >
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value="${ruolo.id}"
-													id="flexCheckDefault" name="ruoli" checked> <label class="form-check-label"
-													for="flexCheckDefault"> ${ruolo.descrizione} </label>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value="${ruolo.id}"
-													id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
-													for="flexCheckDefault"> ${ruolo.descrizione} </label>
-												</div>
-											</c:otherwise>
-										</c:choose>
-									</c:if>
-									<c:if test="${list_utente_rolechecked_attr==null}">
-										
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value="${ruolo.id}"
-													id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
-													for="flexCheckDefault"> ${ruolo.descrizione} </label>
-												</div>
-											
-									</c:if>
+								<c:forEach items="${mappa_ruoli}" var="ruolo" >
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
+										id="flexCheckDefault" name="categorie" ${ruolo.value?'checked':''}> <label class="form-check-label"
+										for="flexCheckDefault"> ${ruolo.key.codice} </label>
+									</div>
 								</c:forEach>
 								
 
