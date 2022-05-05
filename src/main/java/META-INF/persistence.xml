@@ -15,14 +15,14 @@
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/myebay?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value="Alfa.romeo8c"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
 			
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 			<property name="hibernate.connection.pool_size" value="10"/>
 			
 			<property name="hibernate.show_sql" value="true"/>
 			<!-- create-drop,create,update,validate -->
-			<property name="hibernate.hbm2ddl.auto" value=""/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 		</properties>
 	</persistence-unit>
 </persistence>

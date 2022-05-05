@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
-import it.prova.myebay.utility.PathRitorno;
+import it.prova.myebay.utility.Interfaccia;
+import it.prova.myebay.utility.Path;
 
 
 @WebFilter(filterName = "CheckAuthFilter", urlPatterns = { "/*" })
@@ -41,25 +42,29 @@ public class CheckAuthFilter implements Filter {
 		//vediamo se il path risulta tra quelli 'liberi di passare'
 		boolean isInWhiteList = isPathInWhiteList(pathAttuale);
 		
+		//se il tipo di interfaccia è 0 significa che è il primo start dell'app
+		//allora la imposto a 1 di default;
+		Path.initPathInterfaccia();
+		
 		//se non lo e' bisogna controllare sia sessione che percorsi protetti
 		if (!isInWhiteList) {
 			
 			// se sono qui dentro significa che ho interrotto la navigazione per accedere e quindi mi salvo il path e l'id
-			PathRitorno.PATH_RITORNO = request.getParameter("pathRitorno");
-			PathRitorno.ID = request.getParameter("idAnnuncio");
+			Path.PATH_RITORNO = request.getParameter("pathRitorno");
+			Path.ID = request.getParameter("idAnnuncio");
 			
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			// verifico se utente è in sessione
 			if (utenteInSession == null) {
 				//System.out.println("utente non in sessione: eseguo redirect");
 				//httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);	
-				httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+				httpResponse.sendRedirect(httpRequest.getContextPath() + "?errorMessage=ERROR");
 				return;
 			}
 			
 			if (isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
 				httpRequest.setAttribute("errorMessage", "Non si è autorizzati a proseguire in questa pagina");
-				httpRequest.getRequestDispatcher("/error.jsp").forward(httpRequest, httpResponse);	
+				httpRequest.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(httpRequest, httpResponse);	
 				return;
 			}
 			

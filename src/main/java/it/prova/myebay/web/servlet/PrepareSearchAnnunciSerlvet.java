@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("")
@@ -20,15 +21,17 @@ public class PrepareSearchAnnunciSerlvet extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {
 			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Errore nell'esecuzione della ricerca");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
+		if (request.getParameter("errorMessage") != null && request.getParameter("errorMessage").equals("ERROR"))
+			request.setAttribute("errorMessage", "Sessione Scaduta");
 		// la funzione di ricerca si trova nella home-page
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/index.jsp").forward(request, response);
 	}
 
 }

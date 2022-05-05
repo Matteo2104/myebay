@@ -4,11 +4,11 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+	 	<jsp:include page="./header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Ricerca annunci</title>
+	   <title>My Ebay</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -37,7 +37,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
+	   		<jsp:include page="./navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -48,29 +48,34 @@
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
+				<div class="alert alert-success alert-dismissible fade show  ${successMessage==null?'d-none':'' }" role="alert">
+				  ${successMessage}
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+				</div>
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Cerca fra i tuoi annunci</h1>
-				 </div>
+				        <h1 class="display-3 fw-bold text-center">Benvenuto in MyEbay! 2 Interfaccia</h1>
+				        <p class="fs-4 text-center" >Qui puoi trovare annunci di prodotti di tutti i tipi</p>
+				      </div>
 				      
 				      <div class='card-body'>
-				      	<form method="post" action="ExecuteSearchAnnunciPersonaliServlet" class="row g-3" >
+				      	<form method="post" action="ExecuteSearchAnnunciServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo dell'annuncio</label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo dell'annuncio" >
+									<label for="testo" class="form-label">Testo</label>
+									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo" >
 								</div>
 								
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo (a partire da)</label>
-									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" >
+									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" min="1" >
 								</div>
 								
 								
 								<c:forEach items="${list_categorie_attr}" var="categoria" >
-									<div class="form-check">
+									<div class="form-check col-md-6">
 										<input class="form-check-input" type="checkbox" value="${categoria.id}"
 										id="flexCheckDefault" name="categorie"> <label class="form-check-label"
 										for="flexCheckDefault"> ${categoria.codice} </label>
@@ -78,8 +83,7 @@
 								</c:forEach>
 								
 								<div class="col-12">
-									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra i tuoi annunci</button>
-									<a class="btn btn-primary" href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioServlet">Aggiungi nuovo annuncio</a>		
+									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra gli annunci</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
 								
@@ -131,6 +135,6 @@
 			</main>
 			
 			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
+			<jsp:include page="./footer.jsp" />
 	  </body>
 </html>

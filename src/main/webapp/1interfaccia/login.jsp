@@ -11,7 +11,7 @@
 	
 	
 		 <!-- Custom styles for login -->
-	    <link href="assets/css/signin.css" rel="stylesheet">
+	    <link href="./1interfaccia/assets/css/signin.css" rel="stylesheet">
 	
 	</head>
 	
@@ -24,7 +24,7 @@
 		 		 ${errorMessage}
 			</div>
 		  
-		    <img class="mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+		    <img class="mb-4" src="1interfaccia/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 		    <h1 class="h3 mb-3 fw-normal">Inserire credenziali d'accesso</h1>
 		
 		    <div class="form-floating">

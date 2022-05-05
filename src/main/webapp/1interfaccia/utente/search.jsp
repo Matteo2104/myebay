@@ -58,13 +58,19 @@
 								
 								
 								
-								<c:forEach items="${list_utente_role_attr}" var="ruolo" >
+								
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${ruolo.id}"
+										<input class="form-check-input" type="checkbox" value="${Ruolo.ROLE_ADMIN}"
 										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
-										for="flexCheckDefault"> ${ruolo.descrizione} </label>
+										for="flexCheckDefault"> Admin </label>
 									</div>
-								</c:forEach>
+									
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="${Ruolo.ROLE_CLASSIC_USER}"
+										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
+										for="flexCheckDefault"> Classic User </label>
+									</div>
+								
 								
 								
 							<div class="col-12">

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
-import it.prova.myebay.utility.PathRitorno;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/ExecuteLoginByAnnuncioServlet")
@@ -22,7 +22,6 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
     
     public ExecuteLoginByAnnuncioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -38,13 +37,14 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 		
 		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Errore: id non è numerico: pagina execute");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
+		// validazione dei campi
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
 			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
 			return;
 		}
 
@@ -52,7 +52,7 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
 				request.setAttribute("errorMessage", "Utente non trovato.");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
@@ -60,10 +60,10 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
 
-		request.getRequestDispatcher("show.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/show.jsp").forward(request, response);
 	}
 
 }

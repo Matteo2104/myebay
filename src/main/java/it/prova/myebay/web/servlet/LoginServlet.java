@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
-import it.prova.myebay.utility.PathRitorno;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/LoginServlet")
@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
 
+		// validazione dei campi
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
 			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -44,15 +45,14 @@ public class LoginServlet extends HttpServlet {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
 				request.setAttribute("errorMessage", "Utente non trovato.");
-				destinazione = "login.jsp";
+				destinazione = Path.PATH_INTERFACCIA + "/login.jsp";
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				
-				destinazione = "areapersonale.jsp";
+				destinazione = Path.PATH_INTERFACCIA + "/areapersonale.jsp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			destinazione = "login.jsp";
+			destinazione = Path.PATH_INTERFACCIA + "/login.jsp";
 			request.setAttribute("errorMessage", "Si è verificato un errore");
 		}
 

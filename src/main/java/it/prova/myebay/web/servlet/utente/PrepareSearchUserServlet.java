@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/PrepareSearchUserServlet")
@@ -18,20 +19,18 @@ public class PrepareSearchUserServlet extends HttpServlet {
   
     public PrepareSearchUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setAttribute("search_utente_attr", new Utente());
-			request.setAttribute("list_utente_role_attr", MyServiceFactory.getRuoloServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/utente/search.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/search.jsp").forward(request, response);
 	}
 
 }

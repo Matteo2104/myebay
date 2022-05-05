@@ -13,6 +13,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/SwitchInterface">Cambia Interfaccia</a>
+          </li>
           <c:forEach items="${userInfo.ruoli}" var="ruolo" >
 					<c:if test="${ruolo.codice == 'ROLE_ADMIN'}">
 						<li class="nav-item"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a></li>

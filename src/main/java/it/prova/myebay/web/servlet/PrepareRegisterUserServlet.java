@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/PrepareRegisterUserServlet")
@@ -29,11 +30,11 @@ public class PrepareRegisterUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("register.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/register.jsp").forward(request, response);
 	}
 
 	

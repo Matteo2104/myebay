@@ -12,17 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
-
-
-
-
 
 @Entity
 @Table(name = "utente")
@@ -48,10 +39,13 @@ public class Utente {
 	@Enumerated(EnumType.STRING)
 	private StatoUtente stato = StatoUtente.CREATO;
 
-	// un utente ha più ruoli
-	@ManyToMany
-	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
-	private Set<Ruolo> ruoli = new HashSet<>(0);
+//	// un utente ha più ruoli
+//	@ManyToMany
+//	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
+//	private Set<Ruolo> ruoli = new HashSet<>(0);
+	
+	@Enumerated(EnumType.STRING)
+	private Ruolo ruolo;
 	
 	// un utente ha più annunci
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteInserimento")
@@ -112,8 +106,8 @@ public class Utente {
 	public StatoUtente getStato() {
 		return stato;
 	}
-	public Set<Ruolo> getRuoli() {
-		return ruoli;
+	public Ruolo getRuolo() {
+		return ruolo;
 	}
 	public Set<Annuncio> getAnnunci() {
 		return annunci;
@@ -145,8 +139,8 @@ public class Utente {
 	public void setStato(StatoUtente stato) {
 		this.stato = stato;
 	}
-	public void setRuoli(Set<Ruolo> ruoli) {
-		this.ruoli = ruoli;
+	public void setRuolo(Ruolo ruolo) {
+		this.ruolo = ruolo;
 	}
 	public void setAnnunci(Set<Annuncio> annunci) {
 		this.annunci = annunci;
@@ -159,11 +153,7 @@ public class Utente {
 	}
 	
 	public boolean isAdmin() {
-		for (Ruolo ruoloItem : ruoli) {
-			if (ruoloItem.getCodice().equals(Ruolo.ROLE_ADMIN))
-				return true;
-		}
-		return false;
+		return this.getRuolo().equals(Ruolo.ROLE_ADMIN);
 	}
 	
 	@Override
