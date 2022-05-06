@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.StatoUtente;
 
@@ -66,11 +67,11 @@ public class UtenteDAOImpl implements UtenteDAO {
 	}
 
 	@Override
-	public List<Utente> findByExample(Utente example) throws Exception {
+	public List<Utente> findByExample(UtenteDTO example) throws Exception {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select u from Utente u left join fetch u.ruoli r where u.id = u.id ");
+		StringBuilder queryBuilder = new StringBuilder("select u from Utente u where u.id = u.id ");
 
 		if (StringUtils.isNotEmpty(example.getNome())) {
 			whereClauses.add(" u.nome  like :nome ");
@@ -90,13 +91,13 @@ public class UtenteDAOImpl implements UtenteDAO {
 		}
 		
 		if (example.getRuoli() != null) {
-			List<Long> idRuoliList = new ArrayList<>();
+			List<Ruolo> ruoliList = new ArrayList<>();
 			for (Ruolo ruolo : example.getRuoli()) {
-				idRuoliList.add(ruolo.getId());
+				ruoliList.add(ruolo);
 			}
 		
-			whereClauses.add("r.id in :idRuoliList");
-			paramaterMap.put("idRuoliList", idRuoliList);
+			whereClauses.add("u.ruolo in :ruoliList");
+			paramaterMap.put("ruoliList", ruoliList);
 		}
 		
 		
@@ -132,6 +133,12 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public List<Utente> list(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utente> findByExample(Utente example) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

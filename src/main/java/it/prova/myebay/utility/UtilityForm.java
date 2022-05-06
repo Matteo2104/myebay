@@ -7,6 +7,8 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Utente;
@@ -40,30 +42,31 @@ public class UtilityForm {
 		return result;
 	}
 	
-	public static Utente createUtenteFromParams(String nome, String cognome, String username, String campoVariabile, String[] ruoli) {
-		Utente result = new Utente(nome, cognome, username);
-		
-		if (campoVariabile != null) {
-			if (parseDateArrivoFromString(campoVariabile) == null) {
-				result.setPassword(campoVariabile);
-			} else {
-				result.setDateCreated(parseDateArrivoFromString(campoVariabile));
-			}
+	public static UtenteDTO createUtenteSearchFromParams(String nome, String cognome, String username, String dateCreated, String[] ruoli) {
+		UtenteDTO utenteDTO = new UtenteSearch();
+		utenteDTO.setNome(nome);
+		utenteDTO.setCognome(cognome);
+		utenteDTO.setUsername(username);
+
+		if (parseDateArrivoFromString(dateCreated) != null) {
+			// result.setPassword(campoVariabile);
+			utenteDTO.setDateCreated(parseDateArrivoFromString(dateCreated));
 		}
+		
+		
+		System.out.println(utenteDTO);
 		
 		if (ruoli == null || ruoli.length < 1) {
-			result.setRuoli(null);
+			utenteDTO.setRuoli(null);
 		} else {
 			for (int i=0;i<ruoli.length;i++) {
-				try {
-					result.getRuoli().add(new Ruolo(Long.parseLong(ruoli[i])));
-				} catch (Exception e) {
-					
-				}
+				
+				utenteDTO.getRuoli().add(Ruolo.fromString(ruoli[i]));
+				
 			}
 		}
 		
-		return result;
+		return utenteDTO;
 	}
 	
 	public static Utente createUtenteFromParamsForRegister(String nome, String cognome, String username, String password) {

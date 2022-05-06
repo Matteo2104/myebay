@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
@@ -19,7 +21,6 @@ public class ExecuteSearchUserServlet extends HttpServlet {
    
     public ExecuteSearchUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -31,17 +32,17 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 		String[] ruoliParam = request.getParameterValues("ruoli");
 
 		// creo un bean
-		Utente example = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam, ruoliParam);
+		UtenteDTO example = UtilityForm.createUtenteSearchFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam, ruoliParam);
 		
 		try {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("/utente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/list.jsp").forward(request, response);
 	}
 
 }

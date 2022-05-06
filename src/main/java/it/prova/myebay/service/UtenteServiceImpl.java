@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.UtenteDAO;
+import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 import it.prova.myebay.model.Annuncio;
@@ -196,7 +197,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public List<Utente> findByExample(Utente example) throws Exception {
+	public List<Utente> findByExample(UtenteDTO example) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
