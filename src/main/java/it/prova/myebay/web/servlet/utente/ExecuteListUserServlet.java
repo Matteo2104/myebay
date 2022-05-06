@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/ExecuteListUserServlet")
@@ -30,11 +31,11 @@ public class ExecuteListUserServlet extends HttpServlet {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
 	}
 
 }

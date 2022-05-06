@@ -62,18 +62,14 @@
 					
 								<div class="col-md-6">
 									<label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="password" id=password placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
+									<input type="password" class="form-control" name="password" id=password placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
 								</div>
 								
-								<c:forEach items="${mappa_ruoli}" var="ruolo" >
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
-										id="flexCheckDefault" name="categorie" ${ruolo.value?'checked':''}> <label class="form-check-label"
-										for="flexCheckDefault"> ${ruolo.key.codice} </label>
-									</div>
-								</c:forEach>
-								
-
+								<select class="form-select" aria-label="Default select example" id="ruolo" name="ruolo">
+								  <option selected value=""> - Ruolo - </option>
+								  <option value="ROLE_ADMIN">ADMIN</option>
+								  <option value="ROLE_CLASSIC_USER">CLASSIC USER</option>
+								</select>
 								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>

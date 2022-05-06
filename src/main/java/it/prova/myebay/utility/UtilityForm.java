@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
@@ -43,7 +44,7 @@ public class UtilityForm {
 	}
 	
 	public static UtenteDTO createUtenteSearchFromParams(String nome, String cognome, String username, String dateCreated, String[] ruoli) {
-		UtenteDTO utenteDTO = new UtenteSearch();
+		UtenteSearch utenteDTO = new UtenteSearch();
 		utenteDTO.setNome(nome);
 		utenteDTO.setCognome(cognome);
 		utenteDTO.setUsername(username);
@@ -65,6 +66,20 @@ public class UtilityForm {
 				
 			}
 		}
+		
+		return utenteDTO;
+	}
+	
+	public static UtenteInsert createUtenteInsertFromParams(String nome, String cognome, String username, String password, String ruolo) {
+		UtenteInsert utenteDTO = new UtenteInsert();
+		utenteDTO.setNome(nome);
+		utenteDTO.setCognome(cognome);
+		utenteDTO.setUsername(username);
+		utenteDTO.setPassword(password);
+		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
+		
+		System.out.println(utenteDTO);
+		
 		
 		return utenteDTO;
 	}
@@ -107,11 +122,12 @@ public class UtilityForm {
 		return result;
 	}
 	
-	public static boolean validateUtenteBean(Utente utenteToBeValidated) {
+	public static boolean validateUtenteInsertBean(UtenteInsert utenteToBeValidated) {
 		if (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
-				|| StringUtils.isBlank(utenteToBeValidated.getPassword())) {
+				|| StringUtils.isBlank(utenteToBeValidated.getPassword())
+				|| utenteToBeValidated.getRuolo() == null) {
 			return false;
 		}
 		return true;

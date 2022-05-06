@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/PrepareInsertUserServlet")
@@ -28,25 +30,16 @@ public class PrepareInsertUserServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("insert_utente_attr", new Utente());
-
-			List<Ruolo> listaRuoli = MyServiceFactory.getRuoloServiceInstance().listAll();
-			Map<Ruolo, Boolean> mappa = new HashMap<>();
-			
-			// riempio la mappa con valori tutti settati a false di default
-			for (Ruolo ruolo : listaRuoli) {
-				mappa.put(ruolo, false);
-			}
+			request.setAttribute("insert_utente_attr", new UtenteInsert());
 				
-			request.setAttribute("mappa_ruoli", mappa);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/insert.jsp").forward(request, response);
 	}
 
 

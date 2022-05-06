@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
@@ -37,64 +40,41 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
-		String[] ruoliParam = request.getParameterValues("ruoli");
+		String ruoloParam = request.getParameter("ruolo");
 
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
-		Utente utenteInstance = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, ruoliParam);
+		UtenteInsert utenteDTO = UtilityForm.createUtenteInsertFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, ruoloParam);
 		try {
 			
 			// se la validazione non risulta ok
-			if (!UtilityForm.validateUtenteBean(utenteInstance)) {
-				request.setAttribute("insert_utente_attr", utenteInstance);
+			if (!UtilityForm.validateUtenteInsertBean(utenteDTO)) {
+				request.setAttribute("insert_utente_attr", utenteDTO);
 				
-				List<Ruolo> listaRuoli = MyServiceFactory.getRuoloServiceInstance().listAll();
-				Map<Ruolo, Boolean> mappa = new HashMap<>();
-				
-				
-				boolean check = false;
-				for (Ruolo ruolo : listaRuoli) {
-					// se sono state selezionate categorie valorizzo la mappa, altrimenti la riempi con tutti valori settati a false
-					if (ruoliParam != null) {
-						check = false;
-						for (int i=0;i<ruoliParam.length;i++) {
-							if (ruolo.getId().toString().equals(ruoliParam[i])) {
-								mappa.put(ruolo, true);
-								check=true;
-							}
-						}
-						if (!check) {
-							mappa.put(ruolo, false);
-						}	
-					} else {
-						mappa.put(ruolo, false);
-					}
-				}
-				request.setAttribute("mappa_ruoli", mappa);
 				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/insert.jsp").forward(request, response);
 				return;
 			}
 	
 			// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
 			// occupiamoci delle operazioni di business
-			utenteInstance.setStato(StatoUtente.CREATO);
-			//System.out.println(utenteInstance);
-			utenteInstance.setDateCreated(new Date());
+			Utente utenteToInsert = utenteDTO.toModel();
+			utenteToInsert.setStato(StatoUtente.CREATO);
+			utenteToInsert.setDateCreated(new Date());
+			utenteToInsert.setCreditoResiduo(0);
 		
 		
-			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteInstance);
+			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteToInsert);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/insert.jsp").forward(request, response);
 			return;
 		}
 
 		// andiamo ai risultati
-		// uso il sendRedirect con parametro per evitare il problema del double save on
-		// refresh
+		// uso il sendRedirect con parametro per evitare il problema del double save on refresh
 		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 	}
 

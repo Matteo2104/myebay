@@ -11,7 +11,6 @@ public abstract class UtenteDTO {
 	protected String nome;
 	protected String cognome;
 	protected String username;
-	protected Date dateCreated;
 	protected List<Ruolo> ruoli = new ArrayList<>();
 	
 	public UtenteDTO() {
@@ -41,12 +40,6 @@ public abstract class UtenteDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
 	public List<Ruolo> getRuoli() {
 		return ruoli;
 	}
@@ -56,8 +49,7 @@ public abstract class UtenteDTO {
 	
 	@Override
 	public String toString() {
-		return "UtenteDTO [nome=" + nome + ", cognome=" + cognome + ", username=" + username + ", dateCreated="
-				+ dateCreated + "]";
+		return "UtenteDTO [nome=" + nome + ", cognome=" + cognome + ", username=" + username + "]";
 	}
 	
 	/*
