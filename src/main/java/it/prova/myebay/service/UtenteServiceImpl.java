@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteEdit;
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 import it.prova.myebay.model.Annuncio;
@@ -63,7 +65,28 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void aggiorna(Utente utente) throws Exception {
+	public Utente findById(long id) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			Optional<Utente> result = utenteDAO.findOne(id);
+			return result.isPresent() ? result.get() : null;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void aggiorna(Utente utenteEdit, Utente utenteInstance) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -74,7 +97,12 @@ public class UtenteServiceImpl implements UtenteService {
 
 			
 			// eseguo quello che realmente devo fare
-			utenteDAO.update(utente);
+			utenteEdit.setNome(utenteInstance.getNome());
+			utenteEdit.setCognome(utenteInstance.getCognome());
+			utenteEdit.setUsername(utenteInstance.getUsername());
+			utenteEdit.setStato(utenteInstance.getStato());
+			utenteEdit.setRuolo(utenteInstance.getRuolo());
+			utenteDAO.update(utenteEdit);
 			
 			entityManager.getTransaction().commit();
 
@@ -197,7 +225,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public List<Utente> findByExample(UtenteDTO example) throws Exception {
+	public List<Utente> findByExample(UtenteSearch example) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {

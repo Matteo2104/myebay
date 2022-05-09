@@ -1,6 +1,8 @@
 package it.prova.myebay.web.servlet.utente;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
@@ -32,7 +35,7 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 		String[] ruoliParam = request.getParameterValues("ruoli");
 
 		// creo un bean
-		UtenteDTO example = UtilityForm.createUtenteSearchFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam, ruoliParam);
+		UtenteSearch example = UtilityForm.createUtenteSearchFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam, ruoliParam);
 		
 		try {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().findByExample(example));

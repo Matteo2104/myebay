@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteEdit;
 import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
@@ -43,7 +44,7 @@ public class UtilityForm {
 		return result;
 	}
 	
-	public static UtenteDTO createUtenteSearchFromParams(String nome, String cognome, String username, String dateCreated, String[] ruoli) {
+	public static UtenteSearch createUtenteSearchFromParams(String nome, String cognome, String username, String dateCreated, String[] ruoli) {
 		UtenteSearch utenteDTO = new UtenteSearch();
 		utenteDTO.setNome(nome);
 		utenteDTO.setCognome(cognome);
@@ -80,6 +81,19 @@ public class UtilityForm {
 		
 		System.out.println(utenteDTO);
 		
+		
+		return utenteDTO;
+	}
+	
+	public static UtenteEdit createUtenteEditFromParams(String nome, String cognome, String username, String stato, String ruolo) {
+		UtenteEdit utenteDTO = new UtenteEdit();
+		utenteDTO.setNome(nome);
+		utenteDTO.setCognome(cognome);
+		utenteDTO.setUsername(username);
+		utenteDTO.setStato(StatoUtente.fromString(stato));
+		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
+		
+		System.out.println(utenteDTO);
 		
 		return utenteDTO;
 	}
@@ -133,7 +147,7 @@ public class UtilityForm {
 		return true;
 	}
 	
-	public static boolean validateUtenteBeanForEdit(Utente utenteToBeValidated) {
+	public static boolean validateUtenteBeanForEdit(UtenteEdit utenteToBeValidated) {
 		if (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 

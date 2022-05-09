@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
 
@@ -19,8 +20,6 @@ public interface UtenteService {
 
 	public Utente accedi(String username, String password) throws Exception;
 
-	public List<Utente> findByExample(UtenteDTO example) throws Exception;
-
 	public List<Utente> listAll() throws Exception;
 
 	public Utente caricaSingoloElementoEager(Long id) throws Exception;
@@ -29,6 +28,10 @@ public interface UtenteService {
 
 	public Utente caricaSingoloElemento(Long id) throws Exception;
 
-	public void aggiorna(Utente utente) throws Exception;
+	public Utente findById(long id) throws Exception;
+
+	public void aggiorna(Utente utenteEdit, Utente utenteInstance) throws Exception;
+
+	public List<Utente> findByExample(UtenteSearch example) throws Exception;
 
 }

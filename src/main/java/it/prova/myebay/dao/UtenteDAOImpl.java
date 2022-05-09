@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.StatoUtente;
 
@@ -67,7 +68,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 	}
 
 	@Override
-	public List<Utente> findByExample(UtenteDTO example) throws Exception {
+	public List<Utente> findByExample(UtenteSearch example) throws Exception {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
@@ -139,6 +140,12 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public List<Utente> findByExample(Utente example) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utente> findByExample(UtenteDTO example) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

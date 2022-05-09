@@ -55,20 +55,14 @@
   									<option ${edit_utente_attr.stato == 'DISABILITATO'?'selected':''} value="DISABILITATO">Disabilitato</option>
 								</select>
 								
-								
-						
-										
-								<c:forEach items="${mappa_ruoli}" var="ruolo" >
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${ruolo.key.id}"
-										id="flexCheckDefault" name="ruoli" ${ruolo.value?'checked':''}> <label class="form-check-label"
-										for="flexCheckDefault"> ${ruolo.key.codice} </label>
-									</div>
-								</c:forEach>
+								<select class="form-select" aria-label="Default select example" id="ruolo" name="ruolo">
+								  <option ${edit_utente_attr.stato == 'ROLE_ADMIN'?'selected':''} value="ROLE_ADMIN">ADMIN</option>
+								  <option ${edit_utente_attr.stato == 'ROLE_CLASSIC_USER'?'selected':''} value="ROLE_CLASSIC_USER">CLASSIC USER</option>
+								</select>
 								
 								<div class="col-12">
 									<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="btn btn-primary">Conferma</button>
-									<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Add New</a>
+									<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Add new</a>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								</div>
 						</form>

@@ -18,6 +18,7 @@ import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/PrepareEditUserServlet")
@@ -47,30 +48,13 @@ public class PrepareEditUserServlet extends HttpServlet {
 			// carico su request l'utente
 			request.setAttribute("edit_utente_attr", utente);
 			
-			List<Ruolo> listaRuoli = MyServiceFactory.getRuoloServiceInstance().listAll();
-			Map<Ruolo, Boolean> mappa = new HashMap<>();
-			
-			boolean check = false;
-			for (Ruolo ruolo : listaRuoli) {
-				check = false;
-				for (Ruolo ruoloUtente : utente.getRuoli()) {
-					if (ruolo.getId() == ruoloUtente.getId()) {
-						mappa.put(ruolo, true);
-						check=true;
-					}
-				}
-				if (!check) {
-					mappa.put(ruolo, false);
-				}
-			}
-			request.setAttribute("mappa_ruoli", mappa);
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/utente/edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/edit.jsp").forward(request, response);
 	}
 
 	

@@ -35,7 +35,7 @@ public class ExecuteListUserServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/list.jsp").forward(request, response);
 	}
 
 }
