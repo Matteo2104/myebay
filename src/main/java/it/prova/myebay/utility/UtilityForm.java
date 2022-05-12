@@ -18,7 +18,7 @@ import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 
 public class UtilityForm {
-	public static Annuncio createAnnuncioFromParams(String testoAnnuncio, String prezzo, String[] categorie) {
+	public static Annuncio createAnnuncioPersonaleSearchFromParams(String testoAnnuncio, String prezzo, String[] categorie) {
 		Annuncio result = new Annuncio(testoAnnuncio);
 		
 		if (NumberUtils.isCreatable(prezzo)) {

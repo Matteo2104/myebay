@@ -16,6 +16,7 @@ import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
@@ -39,10 +40,10 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioFromParams(testoInput, prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
 		example.setData(new Date());
 		
-		System.out.println(example);
+		//System.out.println(example);
 		
 		try {
 		
@@ -78,7 +79,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 				request.setAttribute("mappa_categorie", mappa);
 				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/annuncio/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/insert.jsp").forward(request, response);
 				return;
 			}
 			
@@ -94,7 +95,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nell'inserimento");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		

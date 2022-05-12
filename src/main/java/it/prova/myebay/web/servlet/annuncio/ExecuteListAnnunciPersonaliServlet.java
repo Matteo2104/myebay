@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/ExecuteListAnnunciPersonaliServlet")
@@ -32,10 +33,10 @@ public class ExecuteListAnnunciPersonaliServlet extends HttpServlet {
 			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().listAll(utenteInSessione.getId()));
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore!");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/list.jsp").forward(request, response);
 	}
 
 	

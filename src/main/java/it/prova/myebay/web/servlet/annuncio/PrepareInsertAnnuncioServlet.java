@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/PrepareInsertAnnuncioServlet")
@@ -41,10 +42,10 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/annuncio/insert.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/insert.jsp").forward(request, response);
 	}
 
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 /**
@@ -33,9 +34,9 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioFromParams(testoInput, prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
 		
-		//System.out.println(example);
+		System.out.println(example);
 		
 		try {
 			request.setAttribute("annunci_list_attribute",
@@ -43,11 +44,11 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/list.jsp").forward(request, response);
 		//response.getWriter().append("fin qui tutto ok");
 	}
 
