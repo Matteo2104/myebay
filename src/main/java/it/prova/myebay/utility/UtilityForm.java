@@ -79,7 +79,7 @@ public class UtilityForm {
 		utenteDTO.setPassword(password);
 		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
 		
-		System.out.println(utenteDTO);
+		//System.out.println(utenteDTO);
 		
 		
 		return utenteDTO;
@@ -93,7 +93,7 @@ public class UtilityForm {
 		utenteDTO.setStato(StatoUtente.fromString(stato));
 		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
 		
-		System.out.println(utenteDTO);
+		//System.out.println(utenteDTO);
 		
 		return utenteDTO;
 	}

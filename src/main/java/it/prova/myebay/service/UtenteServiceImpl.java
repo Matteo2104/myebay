@@ -1,5 +1,6 @@
 package it.prova.myebay.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -276,6 +277,35 @@ public class UtenteServiceImpl implements UtenteService {
 			return utenteDAO.findOneEager(id).get();
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void registra(Utente utente) throws Exception {
+		// questo è come una connection
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			utente.setRuolo(Ruolo.ROLE_CLASSIC_USER);
+			utente.setStato(StatoUtente.ATTIVO); // in teoria andrebbe eseguita la conferma
+			utente.setDateCreated(new Date());
+			
+			utenteDAO.insert(utente);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {

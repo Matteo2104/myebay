@@ -6,7 +6,6 @@
         version="2.2">
 	<persistence-unit name="myebay_unit" transaction-type="RESOURCE_LOCAL">
 		<class>it.prova.myebay.model.Utente</class>
-		<class>it.prova.myebay.model.Ruolo</class>
 		<class>it.prova.myebay.model.Categoria</class>
 		<class>it.prova.myebay.model.Acquisto</class>
 		<class>it.prova.myebay.model.Annuncio</class>
@@ -22,7 +21,7 @@
 			
 			<property name="hibernate.show_sql" value="true"/>
 			<!-- create-drop,create,update,validate -->
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.hbm2ddl.auto" value="none"/>
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/PrepareDeleteUserServlet")
@@ -30,12 +31,12 @@ public class PrepareDeleteUserServlet extends HttpServlet {
 		
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
 		try {
-			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElementoEager(Long.parseLong(idUser));
+			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(idUser));
 
 			// da testare
 			if (utenteInstance == null) {
@@ -57,11 +58,11 @@ public class PrepareDeleteUserServlet extends HttpServlet {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("home").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/utente/delete.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/delete.jsp").forward(request, response);
 	}
 
 	

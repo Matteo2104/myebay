@@ -56,8 +56,8 @@
 								</select>
 								
 								<select class="form-select" aria-label="Default select example" id="ruolo" name="ruolo">
-								  <option ${edit_utente_attr.stato == 'ROLE_ADMIN'?'selected':''} value="ROLE_ADMIN">ADMIN</option>
-								  <option ${edit_utente_attr.stato == 'ROLE_CLASSIC_USER'?'selected':''} value="ROLE_CLASSIC_USER">CLASSIC USER</option>
+								  <option ${edit_utente_attr.ruolo == 'ROLE_ADMIN'?'selected':''} value="ROLE_ADMIN">ADMIN</option>
+								  <option ${edit_utente_attr.ruolo == 'ROLE_CLASSIC_USER'?'selected':''} value="ROLE_CLASSIC_USER">CLASSIC USER</option>
 								</select>
 								
 								<div class="col-12">

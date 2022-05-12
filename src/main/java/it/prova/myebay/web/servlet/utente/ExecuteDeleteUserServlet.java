@@ -13,6 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/ExecuteDeleteUserServlet")
@@ -31,7 +32,7 @@ public class ExecuteDeleteUserServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -44,11 +45,11 @@ public class ExecuteDeleteUserServlet extends HttpServlet {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		response.sendRedirect(request.getContextPath() + "/utente/ExecuteListUserServlet?operationResult=SUCCESS");
+		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 	}
 
 }

@@ -34,4 +34,6 @@ public interface UtenteService {
 
 	public List<Utente> findByExample(UtenteSearch example) throws Exception;
 
+	public void registra(Utente utente) throws Exception;
+
 }

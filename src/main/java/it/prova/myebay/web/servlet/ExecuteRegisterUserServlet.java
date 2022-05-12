@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
@@ -24,7 +27,6 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
    
     public ExecuteRegisterUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,35 +37,44 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
-		Utente utenteInstance = UtilityForm.createUtenteFromParamsForRegister(nomeParam, cognomeParam, usernameParam, passwordParam);
+		UtenteInsert utenteInstance = UtilityForm.createUtenteInsertFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, "ROLE_CLASSIC_USER");
+		Utente utenteToRegister = null;
+		Utente utenteInSession = null;
+		String destinazione = null;
+		
 		try {
 			
 			// se la validazione non risulta ok
-			if (!UtilityForm.validateUtenteBean(utenteInstance)) {
+			if (!UtilityForm.validateUtenteInsertBean(utenteInstance)) {
 				request.setAttribute("insert_utente_attr", utenteInstance);
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("register.jsp").forward(request, response);
+				request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/register.jsp").forward(request, response);
 				return;
 			}
 	
 			// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
-			utenteInstance.setStato(StatoUtente.CREATO);
-			utenteInstance.setDateCreated(new Date());
-			utenteInstance.getRuoli().add(new Ruolo(2));
-		
-		
-			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteInstance);
+			utenteToRegister = utenteInstance.toModel();
+			MyServiceFactory.getUtenteServiceInstance().registra(utenteToRegister);
+			
+			// se sono qui l'utente è registrato e salvato nel DB
+			// quindi posso effettuare simultaneamente il login
+			utenteInSession = MyServiceFactory.getUtenteServiceInstance().accedi(usernameParam, passwordParam);
+			if (utenteInSession == null) {
+				request.setAttribute("errorMessage", "Utente non trovato.");
+				destinazione = Path.PATH_INTERFACCIA + "/login.jsp";
+			} else {
+				request.getSession().setAttribute("userInfo", utenteInstance);
+				destinazione = Path.PATH_INTERFACCIA + "/areapersonale.jsp";
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
-
-		//request.setAttribute("inputUsername", usernameParam);
-		request.setAttribute("successMessage", "Registrazione avvenuta correttamente");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher(destinazione).forward(request, response);
 	}
 
 }

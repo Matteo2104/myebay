@@ -58,29 +58,14 @@
 							  <dd class="col-sm-9">${delete_utente_attr.stato}</dd>
 					    	</dl>
 					    	
-					    	<p>
-							  <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-							    Info Ruoli
-							  </a>
-							</p>
+					    	<dl class="row">
+							  <dt class="col-sm-3 text-right">Ruolo:</dt>
+							  <dd class="col-sm-9">${delete_utente_attr.ruolo}</dd>
+					    	</dl>
 					    	
 					    </div>
 					    
-							<!-- info ruoli -->
-							<div class="collapse" id="collapseExample">
-							<div class="card card-body">
-								<c:forEach items="${delete_utente_attr.ruoli}" var="ruolo" >
-									<dl class="row">
-								  	<dt class="col-sm-3 text-right">Codice:</dt>
-								  	<dd class="col-sm-9">${ruolo.codice}</dd>
-							   		</dl>
-							   		<dl class="row">
-								 	 <dt class="col-sm-3 text-right">Descrizione:</dt>
-								  	<dd class="col-sm-9">${ruolo.descrizione}</dd>
-							   		</dl>
-								</c:forEach>  
-							  </div>
-							 </div>
+							
 							 
 					<!-- end card -->
 					</div>	

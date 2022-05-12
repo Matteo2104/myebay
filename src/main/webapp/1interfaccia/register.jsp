@@ -47,22 +47,22 @@
 							
 								<div class="col-md-6">
 									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
-									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${insert_utente_attr.nome }" required>
+									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${registra_utente_attr.nome }" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="cognome" class="form-label">Cognome <span class="text-danger">*</span></label>
-									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${insert_utente_attr.cognome }" required>
+									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${registra_utente_attr.cognome }" required>
 								</div>
 							
 								<div class="col-md-6">
 									<label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire lo username" value="${insert_utente_attr.username }" required>
+									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire lo username" value="${registra_utente_attr.username }" required>
 								</div>
 					
 								<div class="col-md-6">
 									<label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="password" id=password placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
+									<input type="text" class="form-control" name="password" id=password placeholder="Inserire la password" value="${registra_utente_attr.password }" required>
 								</div>
 								
 

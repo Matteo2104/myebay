@@ -60,13 +60,13 @@
 								
 								
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${Ruolo.ROLE_ADMIN}"
+										<input class="form-check-input" type="checkbox" value="ROLE_ADMIN"
 										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
 										for="flexCheckDefault"> Admin </label>
 									</div>
 									
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${Ruolo.ROLE_CLASSIC_USER}"
+										<input class="form-check-input" type="checkbox" value="ROLE_CLASSIC_USER"
 										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
 										for="flexCheckDefault"> Classic User </label>
 									</div>

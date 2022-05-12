@@ -70,5 +70,12 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			admin.setRuolo(Ruolo.ROLE_ADMIN);
 			utenteServiceInstance.inserisciNuovo(admin);	
 		}
+		
+		if (utenteServiceInstance.findByUsernameAndPassword("LesPaul2", "1234") == null) {
+			Utente classic = new Utente("LesPaul2", "1234", "Matteo", "Scarcella", new Date());
+			classic.setStato(StatoUtente.ATTIVO);
+			classic.setRuolo(Ruolo.ROLE_CLASSIC_USER);
+			utenteServiceInstance.inserisciNuovo(classic);	
+		}
 	}
 }

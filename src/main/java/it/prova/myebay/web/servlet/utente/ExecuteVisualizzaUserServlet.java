@@ -11,6 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/utente/ExecuteVisualizzaUserServlet")
@@ -29,22 +30,22 @@ public class ExecuteVisualizzaUserServlet extends HttpServlet {
 		
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		try {
-			Utente utente = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElementoEager(Long.parseLong(idUser));
+			Utente utente = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(idUser));
 			request.setAttribute("visualizza_utente_attr", utente);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/utente/show.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/show.jsp").forward(request, response);
 	}
 
 	

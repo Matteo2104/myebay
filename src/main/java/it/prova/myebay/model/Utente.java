@@ -156,10 +156,13 @@ public class Utente {
 		return this.getRuolo().equals(Ruolo.ROLE_ADMIN);
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Utente [id=" + id + ", username=" + username + ", password=" + password + ", nome=" + nome
 				+ ", cognome=" + cognome + ", dateCreated=" + dateCreated + ", creditoResiduo=" + creditoResiduo
-				+ ", stato=" + stato + "]";
+				+ ", stato=" + stato + ", ruolo=" + ruolo + "]";
 	}
+	
+	
 }
