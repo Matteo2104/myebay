@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/PrepareSearchAnnunciPersonaliServlet")
@@ -16,7 +17,6 @@ public class PrepareSearchAnnunciPersonaliServlet extends HttpServlet {
        
 	public PrepareSearchAnnunciPersonaliServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -25,9 +25,9 @@ public class PrepareSearchAnnunciPersonaliServlet extends HttpServlet {
 			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Errore nell'esecuzione della ricerca");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("search.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/search.jsp").forward(request, response);
 	}
 
 	

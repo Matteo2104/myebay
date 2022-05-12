@@ -65,7 +65,7 @@
 				        </div>
 				   
 				   		<div class='card-footer'>
-					        <a href="../areapersonale.jsp" class='btn btn-outline-secondary' style='width:100px'>
+					        <a href="${pageContext.request.contextPath}/1interfaccia/areapersonale.jsp" class='btn btn-outline-secondary' style='width:100px'>
 					            <i class='fa fa-chevron-left'></i> Indietro
 					        </a>
 					    </div>

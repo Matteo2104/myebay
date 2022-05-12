@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/acquisto/ExecuteListAcquistiServlet")
@@ -30,7 +31,7 @@ public class ExecuteListAcquistiServlet extends HttpServlet {
 			
 		} 
 		
-		request.getRequestDispatcher("/acquisto/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/acquisto/list.jsp").forward(request, response);
 	}
     
     

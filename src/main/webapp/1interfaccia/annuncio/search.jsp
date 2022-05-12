@@ -81,6 +81,9 @@
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra i tuoi annunci</button>
 									<a class="btn btn-success" href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioServlet">Aggiungi nuovo annuncio</a>		
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
+									<a href="${pageContext.request.contextPath}/1interfaccia/areapersonale.jsp" class='btn btn-outline-secondary' style='width:100px'>
+					            		<i class='fa fa-chevron-left'></i> Indietro
+					       			</a>
 								</div>
 								
 						</form>
