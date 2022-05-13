@@ -64,7 +64,10 @@
 				            </table>
 				        </div>
 				   
-					<!-- end card-body -->			   
+					<!-- end card-body -->	
+					<a href="${pageContext.request.contextPath}" class='btn btn-outline-secondary' style='width:100px'>
+						<i class='fa fa-chevron-left'></i> Indietro
+					</a>		   
 			    </div>
 			<!-- end card -->
 			</div>	

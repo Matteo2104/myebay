@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/ExecuteListAnnunciServlet")
@@ -17,19 +19,23 @@ public class ExecuteListAnnunciServlet extends HttpServlet {
     
     public ExecuteListAnnunciServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().getAnnunciAttivi());
+			if (Example.annuncioExample != null) {
+				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(Example.annuncioExample));
+			} else {
+				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().getAnnunciAttivi());
+			}
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore!");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		
+		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
 	}
 
 }

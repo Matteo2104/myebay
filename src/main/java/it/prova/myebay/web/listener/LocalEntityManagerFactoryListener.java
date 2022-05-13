@@ -10,9 +10,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.service.CategoriaService;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.service.UtenteService;
 
@@ -63,7 +65,9 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 	
 	private void initAdminUserAndRuoli() throws Exception {
 		UtenteService utenteServiceInstance = MyServiceFactory.getUtenteServiceInstance();
+		CategoriaService categoriaServiceInstance = MyServiceFactory.getCategoriaServiceInstance();
 		
+		// utente ADMIN
 		if (utenteServiceInstance.findByUsernameAndPassword("admin", "admin") == null) {
 			Utente admin = new Utente("admin", "admin", "Mario", "Rossi", new Date());
 			admin.setStato(StatoUtente.ATTIVO);
@@ -71,11 +75,33 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			utenteServiceInstance.inserisciNuovo(admin);	
 		}
 		
+		// utente CLASSIC_USER
 		if (utenteServiceInstance.findByUsernameAndPassword("LesPaul2", "1234") == null) {
 			Utente classic = new Utente("LesPaul2", "1234", "Matteo", "Scarcella", new Date());
 			classic.setStato(StatoUtente.ATTIVO);
 			classic.setRuolo(Ruolo.ROLE_CLASSIC_USER);
 			utenteServiceInstance.inserisciNuovo(classic);	
 		}
+		
+		
+		// categoria VESTITI
+		if (categoriaServiceInstance.findByCodice("VESTITI") == null) {
+			Categoria vestiti = new Categoria("Vestiti", "VESTITI");
+			categoriaServiceInstance.inserisciNuovo(vestiti);	
+		}
+		
+		// categoria TECH
+		if (categoriaServiceInstance.findByCodice("TECH") == null) {
+			Categoria tech = new Categoria("Tech", "TECH");
+			categoriaServiceInstance.inserisciNuovo(tech);
+		}
+		
+		// categoria PER LA CASA
+		if (categoriaServiceInstance.findByCodice("PER LA CASA") == null) {
+			Categoria perLaCasa = new Categoria("Per la casa", "PER LA CASA");
+			categoriaServiceInstance.inserisciNuovo(perLaCasa);
+		}
+		
+		
 	}
 }

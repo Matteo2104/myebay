@@ -23,6 +23,12 @@ public class Categoria {
 	public Categoria(Long id) {
 		this.id = id;
 	}
+	public Categoria(String descrizione, String codice) {
+		this.descrizione = descrizione;
+		this.codice = codice;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,6 +47,8 @@ public class Categoria {
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Categoria [id=" + id + ", descrizione=" + descrizione + ", codice=" + codice + "]";

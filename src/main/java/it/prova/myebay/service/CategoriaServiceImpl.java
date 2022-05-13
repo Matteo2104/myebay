@@ -3,6 +3,7 @@ package it.prova.myebay.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import it.prova.myebay.dao.CategoriaDAO;
 import it.prova.myebay.model.Categoria;
@@ -28,6 +29,49 @@ public class CategoriaServiceImpl implements CategoriaService {
 			return categoriaDAO.list();
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public Categoria findByCodice(String codice) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			categoriaDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return categoriaDAO.findByCodice(codice);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void inserisciNuovo(Categoria categoria) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			categoriaDAO.setEntityManager(entityManager);
+			
+			entityManager.getTransaction().begin();
+
+			// eseguo quello che realmente devo fare
+			categoriaDAO.insert(categoria);
+			
+			entityManager.getTransaction().commit();
+
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {

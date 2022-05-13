@@ -12,11 +12,11 @@ import it.prova.myebay.utility.Path;
 
 
 @WebServlet("")
-public class PrepareSearchAnnunciSerlvet extends HttpServlet {
+public class PrepareSearchAnnunciServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
-    public PrepareSearchAnnunciSerlvet() {
+    public PrepareSearchAnnunciServlet() {
         super();
     }
 

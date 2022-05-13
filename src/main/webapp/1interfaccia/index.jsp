@@ -60,7 +60,7 @@
 				      </div>
 				      
 				      <div class='card-body'>
-				      	<form method="post" action="ExecuteSearchAnnunciServlet" class="row g-3" >
+				      	<form method="post" action="${pageContext.request.contextPath}/ExecuteSearchAnnunciServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">

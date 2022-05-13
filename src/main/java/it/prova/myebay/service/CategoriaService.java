@@ -11,4 +11,8 @@ public interface CategoriaService {
 
 	public List<Categoria> listAll() throws Exception;
 
+	public Categoria findByCodice(String codice) throws Exception;
+
+	public void inserisciNuovo(Categoria categoria) throws Exception;
+
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 import it.prova.myebay.service.MyServiceFactory;
@@ -30,7 +31,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		String[] categorieIdInput = request.getParameterValues("categorie");
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioFromParams(testoInput, prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
 				
 		try {
 			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
@@ -41,6 +42,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 			return;
 		}
 		
+		Example.annuncioExample = example;
 		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
 		//response.getWriter().append("fin qui tutto ok");
 	}
