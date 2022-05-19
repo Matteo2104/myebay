@@ -34,8 +34,10 @@
      			
      			<c:if test="${not empty userInfo}" >
 					<span class="navbar-text">
-            			Utente: ${userInfo.username} (${userInfo.nome } ${userInfo.cognome})
+            			Utente: ${userInfo.username} (${userInfo.nome } ${userInfo.cognome}) ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Credito:':''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?userInfo.creditoResiduo:''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Euro':''}
             		</span>
+            		
+            		
 
 
           				<a class="nav-link active text-white" href="${pageContext.request.contextPath}/1interfaccia/areapersonale.jsp">Area Personale</a>

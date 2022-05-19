@@ -80,6 +80,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			Utente classic = new Utente("LesPaul2", "1234", "Matteo", "Scarcella", new Date());
 			classic.setStato(StatoUtente.ATTIVO);
 			classic.setRuolo(Ruolo.ROLE_CLASSIC_USER);
+			classic.setCreditoResiduo(300);
 			utenteServiceInstance.inserisciNuovo(classic);	
 		}
 		

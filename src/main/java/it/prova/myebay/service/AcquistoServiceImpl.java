@@ -80,6 +80,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
+	
 	@Override
 	public List<Acquisto> listAll(Long id) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
