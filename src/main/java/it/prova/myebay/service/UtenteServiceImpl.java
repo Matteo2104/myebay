@@ -3,16 +3,11 @@ package it.prova.myebay.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
-
 import it.prova.myebay.dao.UtenteDAO;
-import it.prova.myebay.dto.UtenteDTO;
-import it.prova.myebay.dto.UtenteEdit;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
-import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 
@@ -212,6 +207,33 @@ public class UtenteServiceImpl implements UtenteService {
 			Utente utente = utenteDAO.findOne(id).orElse(null);
 			
 			utente.setStato(StatoUtente.DISABILITATO);
+			
+			utente = entityManager.merge(utente);
+			
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
+	@Override
+	public void abilita(Long id, String stato) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+			
+			entityManager.getTransaction().begin();
+
+			// eseguo quello che realmente devo fare
+			Utente utente = utenteDAO.findOne(id).orElse(null);
+			
+			utente.setStato(StatoUtente.fromString(stato));
 			
 			utente = entityManager.merge(utente);
 			

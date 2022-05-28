@@ -15,19 +15,19 @@ import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
 
 
-@WebServlet("/utente/PrepareDeleteUserServlet")
-public class PrepareDeleteUserServlet extends HttpServlet {
+@WebServlet("/utente/PrepareActionUserServlet")
+public class PrepareActionUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public PrepareDeleteUserServlet() {
+    public PrepareActionUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idUser = request.getParameter("idUser");
+		String path = "";
 		
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
@@ -45,24 +45,26 @@ public class PrepareDeleteUserServlet extends HttpServlet {
 						response);
 				return;
 			}
-
-			if (utenteInstance.getStato() == StatoUtente.DISABILITATO) {
-				request.setAttribute("errorMessage", "Utente già disabilitato");
-				request.getRequestDispatcher("/utente/ExecuteListUserServlet").forward(request, response);
-				return;
-			}
-
+			
+			// se l'utente è disabilitato lo abilito 
+			if (utenteInstance.getStato() == StatoUtente.DISABILITATO)
+				path += "/" + Path.PATH_INTERFACCIA + "/utente/abilita.jsp";
+				
+			// se l'utente è già abilitato lo disabilito
+			if (utenteInstance.getStato() != StatoUtente.DISABILITATO)
+				path += "/" + Path.PATH_INTERFACCIA + "/utente/delete.jsp";
+			
 			request.setAttribute("delete_utente_attr", utenteInstance);
+
 			
 		} catch (Exception e) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/delete.jsp").forward(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	

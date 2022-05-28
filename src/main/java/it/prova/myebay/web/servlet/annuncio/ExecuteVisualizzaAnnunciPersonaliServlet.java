@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.Annuncio;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet")
@@ -27,7 +28,6 @@ public class ExecuteVisualizzaAnnunciPersonaliServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
@@ -39,20 +39,19 @@ public class ExecuteVisualizzaAnnunciPersonaliServlet extends HttpServlet {
 
 			if (annuncioInstance == null) {
 				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("/error.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 				return;
 			}
 
 			request.setAttribute("show_annuncio_attr", annuncioInstance);
 		} catch (Exception e) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella visualizzazione dettagli");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/annuncio/show.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/show.jsp").forward(request, response);
 	}
 
 }

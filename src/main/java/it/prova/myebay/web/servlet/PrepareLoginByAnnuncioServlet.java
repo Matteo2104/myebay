@@ -23,8 +23,11 @@ public class PrepareLoginByAnnuncioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// propago l'id
 		String idAnnuncio = request.getParameter("idAnnuncio");
+		// propago l'id
+		Path.ID = idAnnuncio;
+		
 		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
-			request.setAttribute("errorMessage", "Errore: id non è numerico: pagina prepare");
+			request.setAttribute("errorMessage", "Errore: id non è numerico");
 			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}

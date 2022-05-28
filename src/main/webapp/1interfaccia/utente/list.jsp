@@ -60,22 +60,7 @@
 				                </thead>
 				                <tbody>
 				                	<c:forEach items="${users_list_attr}" var="userItem">
-				                		<c:if test="${userItem.stato == 'DISABILITATO'}">
-				                			<tr class='alert alert-danger'>
-												<td>${userItem.nome }</td>
-												<td>${userItem.cognome }</td>
-												<td>${userItem.username }</td>
-												<td><fmt:formatDate type = "date" value = "${userItem.dateCreated}" /></td>
-												<td>
-													<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/ExecuteVisualizzaUserServlet?idUser=${userItem.id}">Visualizza</a>
-													<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/PrepareEditUserServlet?idUser=${userItem.id}">Modifica</a>
-													<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareDeleteUserServlet?idUser=${userItem.id}">Disabilita</a>
-												</td>
-											</tr>
-				                		</c:if>
 				                		
-				                			
-				                		<c:if test="${userItem.stato != 'DISABILITATO'}">
 				                			<tr>
 												<td>${userItem.nome }</td>
 												<td>${userItem.cognome }</td>
@@ -84,11 +69,14 @@
 												<td>
 													<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/ExecuteVisualizzaUserServlet?idUser=${userItem.id}">Visualizza</a>
 													<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/PrepareEditUserServlet?idUser=${userItem.id}">Modifica</a>
-													<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareDeleteUserServlet?idUser=${userItem.id}">Disabilita</a>
+													<c:if test="${userItem.stato == 'DISABILITATO'}">
+														<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/utente/PrepareActionUserServlet?idUser=${userItem.id}">Abilita</a>
+							                		</c:if>
+							                		<c:if test="${userItem.stato != 'DISABILITATO'}">
+							                			<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareDeleteUserServlet?idUser=${userItem.id}">Disabilita</a>
+							                		</c:if>
 												</td>
 											</tr>
-				                		</c:if>
-										
 									</c:forEach>
 				                </tbody>
 				            </table>

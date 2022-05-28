@@ -62,11 +62,7 @@
 							<div class="card card-body">
 								<c:forEach items="${show_annuncio_attr.categorie}" var="categoria" >
 									<dl class="row">
-								  	<dt class="col-sm-3 text-right">Codice:</dt>
-								  	<dd class="col-sm-9">${categoria.codice}</dd>
-							   		</dl>
-							   		<dl class="row">
-								 	 <dt class="col-sm-3 text-right">Descrizione:</dt>
+								  	<dt class="col-sm-3 text-right">Categoria:</dt>
 								  	<dd class="col-sm-9">${categoria.descrizione}</dd>
 							   		</dl>
 								</c:forEach>  

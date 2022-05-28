@@ -36,4 +36,6 @@ public interface UtenteService {
 
 	public void registra(Utente utente) throws Exception;
 
+	public void abilita(Long id, String stato) throws Exception;
+
 }

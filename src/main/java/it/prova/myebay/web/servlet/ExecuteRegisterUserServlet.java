@@ -34,6 +34,9 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
+		
+		String idAnnuncio = Path.ID;
+		Path.ID = "";
 
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
@@ -59,12 +62,20 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 			// se sono qui l'utente è registrato e salvato nel DB
 			// quindi posso effettuare simultaneamente il login
 			utenteInSession = MyServiceFactory.getUtenteServiceInstance().accedi(usernameParam, passwordParam);
+			
+			
 			if (utenteInSession == null) {
-				request.setAttribute("errorMessage", "Utente non trovato.");
+				request.setAttribute("errorMessage", "Si è verificato un errore in fase di login");
 				destinazione = Path.PATH_INTERFACCIA + "/login.jsp";
 			} else {
-				request.getSession().setAttribute("userInfo", utenteInstance);
-				destinazione = Path.PATH_INTERFACCIA + "/areapersonale.jsp";
+				request.getSession().setAttribute("userInfo", utenteInSession);
+			
+				if (idAnnuncio.isEmpty()) {
+					destinazione = Path.PATH_INTERFACCIA + "/areapersonale.jsp";
+				} else {
+					request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
+					destinazione = Path.PATH_INTERFACCIA + "/show.jsp";
+				}
 			}
 			
 		} catch (Exception e) {

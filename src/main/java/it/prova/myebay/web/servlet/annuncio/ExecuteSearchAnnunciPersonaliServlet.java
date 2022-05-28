@@ -13,9 +13,6 @@ import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
-/**
- * Servlet implementation class ExecuteSearchAnnunciPersonaliServlet
- */
 @WebServlet("/annuncio/ExecuteSearchAnnunciPersonaliServlet")
 public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +20,6 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
     
     public ExecuteSearchAnnunciPersonaliServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -36,7 +32,7 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 		// creo un bean
 		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
 		
-		System.out.println(example);
+		//System.out.println(example);
 		
 		try {
 			request.setAttribute("annunci_list_attribute",
@@ -49,7 +45,6 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/list.jsp").forward(request, response);
-		//response.getWriter().append("fin qui tutto ok");
 	}
 
 }
