@@ -43,7 +43,7 @@
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th style="width:400px">Testo Annuncio</th>
+			                         	<th style="width:400px">Titolo</th>
 				                        <th style="width:100px">Prezzo</th>
 				                        <th style="width:200px">Data Pubblicazione</th>
 				                        <th style="width:250px"></th>
@@ -52,13 +52,16 @@
 				                <tbody>
 				                	<c:forEach items="${annunci_list_attribute}" var="annuncio">
 										<tr>
-											<td>${annuncio.testoAnnuncio}</td>
+											<td>${annuncio.aperto?'':'VENDUTO - '}${annuncio.titolo}</td>
 											<td>${annuncio.prezzo }</td>
 											<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
-												<a class="btn btn-outline-danger btn-sm" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
+												
+												<c:if test="${show_annuncio_attr.aperto}">
+													<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
+													<a class="btn btn-outline-danger btn-sm" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
+												</c:if>
 											</td>
 										</tr>
 									</c:forEach>

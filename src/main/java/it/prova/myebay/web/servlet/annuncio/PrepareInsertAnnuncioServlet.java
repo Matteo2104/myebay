@@ -24,7 +24,6 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
     
     public PrepareInsertAnnuncioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +37,7 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
 			}
 			request.setAttribute("mappa_categorie", mappa);
 			
-			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
+			//request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore");

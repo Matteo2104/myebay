@@ -1,6 +1,7 @@
 package it.prova.myebay.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -108,9 +109,9 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			annuncioDAO.setEntityManager(entityManager);
 
 			entityManager.getTransaction().begin();
-
 			
 			// eseguo quello che realmente devo fare
+			annuncio.setData(new Date());
 			annuncioDAO.insert(annuncio);
 			
 			entityManager.getTransaction().commit();

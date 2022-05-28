@@ -20,7 +20,6 @@ public class ExecuteListAnnunciPersonaliServlet extends HttpServlet {
    
     public ExecuteListAnnunciPersonaliServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	

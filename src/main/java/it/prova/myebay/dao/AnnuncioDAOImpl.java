@@ -5,16 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import org.apache.commons.lang3.StringUtils;
-
-import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
-
 
 
 public class AnnuncioDAOImpl implements AnnuncioDAO {
@@ -74,9 +69,9 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 
 		StringBuilder queryBuilder = new StringBuilder("select distinct a from Annuncio a left join fetch a.categorie c where a.id = a.id and a.aperto = 1 ");
 
-		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
-			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
-			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
+		if (StringUtils.isNotEmpty(example.getTitolo())) {
+			whereClauses.add(" a.titolo  like :titolo ");
+			paramaterMap.put("titolo", "%" + example.getTitolo() + "%");
 		}
 		if (example.getPrezzo() > 0) {
 			whereClauses.add(" a.prezzo >= :prezzo ");
@@ -107,11 +102,11 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select distinct a from Annuncio a left join fetch a.categorie c where a.id = a.id and a.aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder("select distinct a from Annuncio a left join fetch a.categorie c where a.id = a.id ");
 
-		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
-			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
-			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
+		if (StringUtils.isNotEmpty(example.getTitolo())) {
+			whereClauses.add(" a.titolo  like :titolo ");
+			paramaterMap.put("titolo", "%" + example.getTitolo() + "%");
 		}
 		if (example.getPrezzo() > 0) {
 			whereClauses.add(" a.prezzo >= :prezzo ");

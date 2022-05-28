@@ -46,7 +46,12 @@
 							
 							
 								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo dell'annuncio <span class="text-danger">*</span></label>
+									<label for="testo" class="form-label">Titolo <span class="text-danger">*</span></label>
+									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo dell'annuncio" value="${insert_annuncio_attr.testoAnnuncio}" required>
+								</div>
+								
+								<div class="col-md-6">
+									<label for="testo" class="form-label">Descrizione<span class="text-danger">*</span></label>
 									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo dell'annuncio" value="${insert_annuncio_attr.testoAnnuncio}" required>
 								</div>
 								

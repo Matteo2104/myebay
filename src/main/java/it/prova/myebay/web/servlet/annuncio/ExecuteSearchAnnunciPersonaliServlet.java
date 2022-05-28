@@ -24,13 +24,15 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String testoInput = request.getParameter("testo");
+		String titoloInput = request.getParameter("titolo");
+		//String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieIdInput = request.getParameterValues("categorie");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
+		// il secondo parametro è vuoto perche la ricerca avviene per titolo
+		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(titoloInput, "", prezzoInput, categorieIdInput);
 		
 		//System.out.println(example);
 		

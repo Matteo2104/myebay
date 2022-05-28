@@ -64,8 +64,8 @@
 							
 							
 								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo</label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il testo" >
+									<label for="titolo" class="form-label">Titolo</label>
+									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo dell'annuncio" >
 								</div>
 								
 								<div class="col-md-6">

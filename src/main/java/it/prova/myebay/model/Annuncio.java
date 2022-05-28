@@ -23,6 +23,8 @@ public class Annuncio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	@Column(name = "titolo")
+	private String titolo;
 	@Column(name = "testoAnnuncio")
 	private String testoAnnuncio;
 	@Column(name = "prezzo")
@@ -43,7 +45,8 @@ public class Annuncio {
 	private Set<Categoria> categorie = new HashSet<>(0);
 
 	public Annuncio() {}
-	public Annuncio(String testoAnnuncio) {
+	public Annuncio(String titolo, String testoAnnuncio) {
+		this.titolo = titolo;
 		this.testoAnnuncio = testoAnnuncio;
 	}
 	
@@ -103,11 +106,20 @@ public class Annuncio {
 	public void setCategorie(Set<Categoria> categorie) {
 		this.categorie = categorie;
 	}
-
+	
+	public String getTitolo() {
+		return titolo;
+	}
+	
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Annuncio [id=" + id + ", testoAnnuncio=" + testoAnnuncio + ", prezzo=" + prezzo + ", aperto=" + aperto
-				+ ", data=" + data + "]";
+		return "Annuncio [id=" + id + ", titolo=" + titolo + ", testoAnnuncio=" + testoAnnuncio + ", prezzo=" + prezzo
+				+ ", aperto=" + aperto + ", data=" + data + ", utenteInserimento=" + utenteInserimento + "]";
 	}
 	
 }

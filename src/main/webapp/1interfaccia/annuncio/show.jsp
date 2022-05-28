@@ -22,7 +22,7 @@
 			  
 			  		<div class='card'>
 					    <div class='card-header'>
-					        <h5>Visualizza dettagli annuncio</h5>
+					        <h5>${show_annuncio_attr.aperto?'':'VENDUTO - '}${show_annuncio_attr.titolo}</h5>
 					    </div>
 					    
 					
@@ -51,6 +51,8 @@
 							  <dt class="col-sm-3 text-right">Proprietario dell'annuncio:</dt>
 							  <dd class="col-sm-9">${show_annuncio_attr.utenteInserimento.username}</dd>
 					    	</dl>
+					    	
+					    	
 					    	
 					    	<!-- info Regista -->
 					    	<p>

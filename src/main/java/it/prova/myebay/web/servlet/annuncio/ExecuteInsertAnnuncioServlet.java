@@ -1,17 +1,14 @@
 package it.prova.myebay.web.servlet.annuncio;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Utente;
@@ -27,11 +24,11 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
    
     public ExecuteInsertAnnuncioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String titoloInput = request.getParameter("titolo");
 		String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieIdInput = request.getParameterValues("categorie");
@@ -40,10 +37,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(testoInput, prezzoInput, categorieIdInput);
-		example.setData(new Date());
-		
-		//System.out.println(example);
+		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(titoloInput, testoInput, prezzoInput, categorieIdInput);
 		
 		try {
 		
@@ -83,7 +77,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 				return;
 			}
 			
-			//System.out.println(example);
+		
 			// valorizzo il campo utente
 			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			example.setUtenteInserimento(utenteInSessione);
