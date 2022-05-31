@@ -28,11 +28,6 @@
 					
 					    <div class='card-body'>
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${show_acquisto_attr.id}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Testo Annuncio:</dt>
 							  <dd class="col-sm-9">${show_acquisto_attr.descrizione}</dd>
 					    	</dl>

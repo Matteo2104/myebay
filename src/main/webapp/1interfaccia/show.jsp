@@ -28,11 +28,6 @@
 					
 					    <div class='card-body'>
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.id}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Testo Annuncio:</dt>
 							  <dd class="col-sm-9">${show_annuncio_attr.testoAnnuncio}</dd>
 					    	</dl>
@@ -60,12 +55,14 @@
 							</p>
 							<div class="collapse" id="collapseExample">
 							<div class="card card-body">
-								<c:forEach items="${show_annuncio_attr.categorie}" var="categoria" >
+								
 							   		<dl class="row">
 								 	 <dt class="col-sm-3 text-right">Descrizione:</dt>
-								  	<dd class="col-sm-9">${categoria.descrizione}</dd>
+								 	 <c:forEach items="${show_annuncio_attr.categorie}" var="categoria" >
+								  		<dd class="col-sm-9">${categoria.descrizione}</dd>
+								  	 </c:forEach> 
 							   		</dl>
-								</c:forEach>  
+								 
 							  </div>
 							 </div>
 					    	
