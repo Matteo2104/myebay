@@ -60,9 +60,13 @@
 								
 									<dl class="row">
 								  	<dt class="col-sm-3 text-right">Categoria:</dt>
-								  	<c:forEach items="${show_annuncio_attr.categorie}" var="categoria" >
-								  	<dd class="col-sm-9">${categoria.descrizione}</dd>
-								  	</c:forEach> 
+								  	
+								  		<dd class="col-sm-9">
+								  		<c:forEach items="${show_annuncio_attr.categorie}" var="categoria">
+								  			${categoria.descrizione}
+								  		</c:forEach>
+								  		</dd>
+								  	 
 							   		</dl>
 								 
 							  </div>
