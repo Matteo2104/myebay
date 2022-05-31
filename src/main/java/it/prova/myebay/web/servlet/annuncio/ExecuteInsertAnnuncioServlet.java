@@ -83,7 +83,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 			example.setUtenteInserimento(utenteInSessione);
 
 		
-		
+			System.out.println(example);
 			MyServiceFactory.getAnnuncioServiceInstance().aggiungi(example);
 			
 		} catch (Exception e) {
