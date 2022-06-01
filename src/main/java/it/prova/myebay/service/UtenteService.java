@@ -38,4 +38,6 @@ public interface UtenteService {
 
 	public void abilita(Long id, String stato) throws Exception;
 
+	public void ricarica(long id, int credito) throws Exception;
+
 }

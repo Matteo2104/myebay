@@ -61,6 +61,7 @@
 								<c:if test="${userInfo.ruolo == 'ROLE_CLASSIC_USER'}">
  									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
 									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
+									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/credito/PrepareRicaricaServlet">Effettua una ricarica</a>
 								</c:if>
 							
 				        </div>
