@@ -47,12 +47,13 @@
 			  	
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
-				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Ops!</h1>
+				 	<div class="container-fluid py-5" align="center">
+				    	<h1 class="display-5 fw-bold">Ops!</h1>
 				        <p class="col-md-8 fs-4">${errorMessage}</p>
-				      </div>
-				      
-				      
+				        <c:if test="${insufficientCredit != null}">
+				        	<a class="btn btn-primary" style="width:400px" href="${pageContext.request.contextPath}/credito/PrepareRicaricaServlet">Effettua una ricarica</a>
+				        </c:if>
+				 	</div>     
 			    </div>
 			    
 			  </div>

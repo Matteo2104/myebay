@@ -28,20 +28,6 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String idAnnuncio = request.getParameter("idAnnuncio");
-		
-		/*
-		if (!NumberUtils.isCreatable(idAnnuncio)) {
-			idAnnuncio = Path.ID;
-			
-			if (!NumberUtils.isCreatable(idAnnuncio)) {
-				request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
-				return;
-			}
-			
-			Path.ID = "";
-		}
-		*/
 
 		try {
 			// esegue l'acquisto
@@ -50,6 +36,7 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			
 		} catch (InsufficientCreditException e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e.getMessage());
+			request.setAttribute("insufficientCredit", 1);
 			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
