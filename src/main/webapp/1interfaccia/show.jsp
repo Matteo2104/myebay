@@ -22,7 +22,7 @@
 			  
 			  		<div class='card'>
 					    <div class='card-header'>
-					        <h5>Visualizza dettagli annuncio</h5>
+					        <h5>${show_annuncio_attr.aperto?'':'VENDUTO - '}${show_annuncio_attr.titolo}</h5>
 					    </div>
 					    
 					

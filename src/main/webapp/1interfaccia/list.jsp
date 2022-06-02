@@ -43,7 +43,7 @@
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th style="width:400px">Testo Annuncio</th>
+			                         	<th style="width:400px">Titolo Annuncio</th>
 				                        <th style="width:100px">Prezzo</th>
 				                        <th style="width:200px">Data Pubblicazione</th>
 				                        <th style="width:250px"></th>
@@ -52,7 +52,7 @@
 				                <tbody>
 				                	<c:forEach items="${annunci_list_attribute}" var="annuncio">
 										<tr>
-											<td>${annuncio.testoAnnuncio}</td>
+											<td>${annuncio.aperto?'':'VENDUTO - '}${annuncio.titolo}</td>
 											<td>${annuncio.prezzo }</td>
 											<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
 											<td>
