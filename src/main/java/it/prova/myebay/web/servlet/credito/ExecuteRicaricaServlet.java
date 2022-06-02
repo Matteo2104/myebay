@@ -26,17 +26,22 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String credito = request.getParameter("credito");
 		
+		// controllo se il credito non è stato inserito
+		if (credito.isEmpty()) {
+			request.setAttribute("errorMessage", "Inserire un valore!");
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/credito/ricarica.jsp").forward(request, response);
+			return;
+		}
+			
+		// controllo se l'utente è in sessione
+		Utente utenteInSession = (Utente) request.getSession().getAttribute("userInfo");			
+		if (utenteInSession == null) {
+			response.sendRedirect(request.getContextPath() + "?errorMessage=ERROR");
+			return;
+		}
+		
 		try {
-			if (credito.isEmpty())
-				throw new Exception("Si è verificato un errore");
-			
-			// controllo se l'utente è in sessione
-			Utente utenteInSession = (Utente) request.getSession().getAttribute("userInfo");			
-			if (utenteInSession == null) {
-				response.sendRedirect(request.getContextPath() + "?errorMessage=ERROR");
-				return;
-			}
-			
+
 			// se sono qui va tutto ok - procedo con l'operazione
 			MyServiceFactory.getUtenteServiceInstance().ricarica(utenteInSession.getId(), Integer.parseInt(credito));
 			
@@ -48,8 +53,7 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/areapersonale.jsp").forward(request, response);
-		//response.sendRedirect("ExecuteAreaPersonaleServlet?operationResult=SUCCESS");
+		response.sendRedirect("ExecuteAreaPersonaleServlet");
 	}
 
 }
