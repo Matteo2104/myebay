@@ -46,9 +46,7 @@ public class CheckAuthFilter implements Filter {
 		//se non lo e' bisogna controllare sia sessione che percorsi protetti
 		if (!isInWhiteList) {
 			
-			// se sono qui dentro significa che ho interrotto la navigazione per accedere e quindi mi salvo il path e l'id
-			//Path.PATH_RITORNO = request.getParameter("pathRitorno");
-			//Path.ID = request.getParameter("idAnnuncio");
+
 			
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			// verifico se utente è in sessione

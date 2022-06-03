@@ -64,9 +64,7 @@
 									<label for="password" class="form-label">Password <span class="text-danger">*</span></label>
 									<input type="password" class="form-control" name="password" id=password placeholder="Inserire la password" value="${registra_utente_attr.password }" required>
 								</div>
-								
-								<p>${idAnnuncio}</p>
-								
+																
 							<div class="col-12">
 								<button type="submit" name="idAnnuncio" id="idAnnuncio" value="${idAnnuncio}" class="btn btn-primary">Conferma</button>
 							</div>
