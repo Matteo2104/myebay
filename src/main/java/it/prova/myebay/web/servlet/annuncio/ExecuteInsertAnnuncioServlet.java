@@ -37,7 +37,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 
 		
 		// creo un bean
-		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(titoloInput, testoInput, prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioFromParams(titoloInput, testoInput, prezzoInput, categorieIdInput);
 		
 		try {
 		

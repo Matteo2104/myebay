@@ -16,6 +16,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/PrepareEditAnnuncioServlet")
@@ -25,7 +26,6 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
     
     public PrepareEditAnnuncioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -34,7 +34,7 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -45,10 +45,8 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 				throw new RuntimeException("Annuncio chiuso");
 			}
 			
-			
 			request.setAttribute("edit_annuncio_attr", annuncio);
 			
-			//request.setAttribute("list_categorie_attr", );
 			List<Categoria> listaCategorie = MyServiceFactory.getCategoriaServiceInstance().listAll();
 			Map<Categoria, Boolean> mappa = new HashMap<>();
 			
@@ -70,11 +68,11 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/edit.jsp").forward(request, response);
 	}
 
 	

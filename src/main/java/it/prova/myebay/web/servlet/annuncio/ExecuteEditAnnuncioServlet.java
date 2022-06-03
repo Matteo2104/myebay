@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
@@ -29,15 +30,16 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		
-		
+		// se non ricevo correttamente l'id vado in errore 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
 		
 		// estraggo input
+		String titoloInput = request.getParameter("titolo");
 		String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieInput = request.getParameterValues("categorie");
@@ -48,41 +50,40 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 		
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
-		Annuncio annuncio = UtilityForm.createAnnuncioFromParams(testoInput, prezzoInput, categorieInput);
+		Annuncio annuncio = UtilityForm.createAnnuncioFromParams(titoloInput, testoInput, prezzoInput, categorieInput);
 
 		
 		// se la validazione non risulta ok
 		if (!UtilityForm.validateAnnuncioBean(annuncio)) {
 			request.setAttribute("edit_annuncio_attr", annuncio);
 			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-			request.getRequestDispatcher("edit.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/edit.jsp").forward(request, response);
 			return;
 		}
 		
 		try {
-		
-			// assegno l'id, la data e l'apertura a true, e anche l'utente in sessione
+			// carico l'annuncio originale
 			Annuncio annuncioOriginale = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
+			
+			// assegno l'id, la data e l'apertura a true, e anche l'utente in sessione
 			annuncio.setId(Long.parseLong(idAnnuncio));
 			annuncio.setData(annuncioOriginale.getData());
-			
 			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
-			annuncio.setUtenteInserimento(utenteInSessione);
 			
+			if (utenteInSessione.getId() == annuncioOriginale.getUtenteInserimento().getId())
+				annuncio.setUtenteInserimento(utenteInSessione); 
+			
+			
+			// aggiorno
 			MyServiceFactory.getAnnuncioServiceInstance().aggiorna(annuncio);
-			/*
-			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().listAll(Long.parseLong(idAnnuncio)));
-			request.setAttribute("successMessage", "Operazione effettuata con successo");
-			*/
+			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/annuncio/ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
-
-		//request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
 	}
 
 }

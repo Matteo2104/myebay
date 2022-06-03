@@ -58,8 +58,8 @@
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>
 												
-												<c:if test="${show_annuncio_attr.aperto}">
-													<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
+												<c:if test="${annuncio.aperto}">
+													<a class="btn  btn-sm btn-outline-warning ml-2 mr-2" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
 													<a class="btn btn-outline-danger btn-sm" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
 												</c:if>
 											</td>

@@ -32,7 +32,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		
 		// creo un bean
 		// il secondo parametro è vuoto perche la ricerca avviene per titolo
-		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(titoloInput, "", prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioFromParams(titoloInput, "", prezzoInput, categorieIdInput);
 				
 		try {
 			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));

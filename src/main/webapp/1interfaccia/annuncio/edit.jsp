@@ -32,16 +32,20 @@
 				    <div class='card-body'>
 		
 							<form method="post" action="ExecuteEditAnnuncioServlet" class="row g-3" >
-							
+								
+								<div class="col-md-6">
+									<label for="titolo" class="form-label">Titolo: </label>
+									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Modifica il titolo" value="${edit_annuncio_attr.titolo}" >
+								</div>
 							
 								<div class="col-md-6">
-									<label for="testo" class="form-label">Testo Annuncio: </label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Inserire il nome" value="${edit_annuncio_attr.testoAnnuncio}" >
+									<label for="testo" class="form-label">Descrizione: </label>
+									<input type="text" name="testo" id="testo" class="form-control" placeholder="Modifica il nome" value="${edit_annuncio_attr.testoAnnuncio}" >
 								</div>
 								
 								<div class="col-md-6">
 									<label for="cognome" class="form-label">Prezzo: </label>
-									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${edit_annuncio_attr.prezzo}" >
+									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Modifica il prezzo" value="${edit_annuncio_attr.prezzo}" >
 								</div>
 								
 								<c:forEach items="${mappa_categorie}" var="categoria" >
@@ -54,7 +58,10 @@
 								
 								<div class="col-12">
 									<button type="submit" name="idAnnuncio" value="${edit_annuncio_attr.id}" class="btn btn-primary">Conferma</button>
-									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
+									<input class="btn btn-outline-warning" type="reset" value="Ripulisci"/>
+									<a href="${pageContext.request.contextPath}/annuncio/ExecuteListAnnunciPersonaliServlet" class='btn btn-outline-secondary' style='width:100px'>
+					            		<i class='fa fa-chevron-left'></i> Indietro
+					       			</a>
 								</div>
 						</form>
   

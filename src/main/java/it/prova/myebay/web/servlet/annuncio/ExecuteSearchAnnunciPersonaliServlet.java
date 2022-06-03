@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -32,7 +33,7 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 		
 		// creo un bean
 		// il secondo parametro è vuoto perche la ricerca avviene per titolo
-		Annuncio example = UtilityForm.createAnnuncioPersonaleSearchFromParams(titoloInput, "", prezzoInput, categorieIdInput);
+		Annuncio example = UtilityForm.createAnnuncioFromParams(titoloInput, "", prezzoInput, categorieIdInput);
 		
 		//System.out.println(example);
 		
@@ -46,6 +47,7 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 			return;
 		}
 		
+		Example.annuncioExample = example;
 		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/list.jsp").forward(request, response);
 	}
 
