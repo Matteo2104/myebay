@@ -62,7 +62,7 @@
 					
 								<div class="col-md-6">
 									<label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="password" id=password placeholder="Inserire la password" value="${registra_utente_attr.password }" required>
+									<input type="password" class="form-control" name="password" id=password placeholder="Inserire la password" value="${registra_utente_attr.password }" required>
 								</div>
 								
 

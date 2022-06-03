@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.dto.UtenteInsert;
+import it.prova.myebay.exception.UserRegisteredException;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
@@ -59,7 +60,7 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 			utenteToRegister = utenteInstance.toModel();
 			MyServiceFactory.getUtenteServiceInstance().registra(utenteToRegister);
 			
-			// se sono qui l'utente è registrato e salvato nel DB
+			// se sono qui l'utente è stato registrato e salvato nel DB
 			// quindi posso effettuare simultaneamente il login
 			utenteInSession = MyServiceFactory.getUtenteServiceInstance().accedi(usernameParam, passwordParam);
 			
@@ -78,6 +79,10 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 				}
 			}
 			
+		} catch (UserRegisteredException e) {
+			request.setAttribute("errorMessage", "L'utente inserito è già esistente");
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");

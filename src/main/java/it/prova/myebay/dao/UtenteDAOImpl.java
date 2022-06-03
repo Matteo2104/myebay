@@ -30,6 +30,14 @@ public class UtenteDAOImpl implements UtenteDAO {
 		query.setParameter("password", password);
 		return query.getResultStream().findFirst();
 	}
+	
+	@Override
+	public Optional<Utente> findByUsername(String username) {
+		TypedQuery<Utente> query = entityManager.createQuery(
+				"select u FROM Utente u  " + "where u.username = :username", Utente.class);
+		query.setParameter("username", username);
+		return query.getResultStream().findFirst();
+	}
 
 	@Override
 	public List<Utente> list() throws Exception {

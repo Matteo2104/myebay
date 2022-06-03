@@ -16,8 +16,6 @@ public interface UtenteService {
 
 	public void inserisciNuovo(Utente utenteInstance) throws Exception;
 
-	public void aggiungiRuolo(Utente utenteEsistente, Ruolo ruoloInstance) throws Exception;
-
 	public Utente accedi(String username, String password) throws Exception;
 
 	public List<Utente> listAll() throws Exception;
@@ -39,5 +37,4 @@ public interface UtenteService {
 	public void abilita(Long id, String stato) throws Exception;
 
 	public void ricarica(long id, int credito) throws Exception;
-
 }
