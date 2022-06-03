@@ -1,7 +1,6 @@
 package it.prova.myebay.web.filter;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,9 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.prova.myebay.model.Utente;
-import it.prova.myebay.utility.Interfaccia;
 import it.prova.myebay.utility.Path;
 
 
@@ -22,7 +19,7 @@ public class CheckAuthFilter implements Filter {
 
 	//private static final String HOME_PATH = "";
 	//private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
-	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/", "/annuncio/", "/credito"};
+	private static final String[] PROTECTED_URLS = {"/utente/", "/acquisto/", "/annuncio/", "/credito/", "/areapersonale.jsp"};
 	private static final String[] ADMIN_URLS = {"/utente/"};
 
 	public CheckAuthFilter() {

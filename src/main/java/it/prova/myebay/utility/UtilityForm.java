@@ -3,11 +3,8 @@ package it.prova.myebay.utility;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-
-import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.dto.UtenteEdit;
 import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.dto.UtenteSearch;
@@ -104,6 +101,7 @@ public class UtilityForm {
 		return result;
 	}
 	
+	/*
 	public static Utente createUtenteFromParamsWithStato(String nome, String cognome, String username, String stato, String[] ruoli) {
 		Utente result = new Utente(nome, cognome, username);
 		
@@ -135,7 +133,7 @@ public class UtilityForm {
 		
 		return result;
 	}
-	
+	*/
 	public static boolean validateUtenteInsertBean(UtenteInsert utenteToBeValidated) {
 		if (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())

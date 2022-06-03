@@ -21,8 +21,8 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 	
 	@Override
-	public List<Annuncio> list(long id) throws Exception {
-		return entityManager.createQuery("from Annuncio a join fetch a.utenteInserimento u where u.id = :id", Annuncio.class).setParameter("id", id).getResultList();
+	public List<Annuncio> list(long userId) throws Exception {
+		return entityManager.createQuery("from Annuncio a join fetch a.utenteInserimento u where u.id = :id", Annuncio.class).setParameter("id", userId).getResultList();
 	}
 	
 	@Override

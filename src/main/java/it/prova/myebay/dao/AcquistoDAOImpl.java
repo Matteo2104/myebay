@@ -2,11 +2,8 @@ package it.prova.myebay.dao;
 
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
-
 import it.prova.myebay.model.Acquisto;
-import it.prova.myebay.model.Annuncio;
 
 public class AcquistoDAOImpl implements AcquistoDAO {
 	private EntityManager entityManager;
@@ -23,10 +20,10 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 	}
 	
 	@Override
-	public List<Acquisto> list(long id) throws Exception {
+	public List<Acquisto> list(long userId) throws Exception {
 		return entityManager
 				.createQuery("from Acquisto a left join fetch a.utenteAcquirente u where u.id = :idUtente", Acquisto.class)
-				.setParameter("idUtente", id).getResultList();
+				.setParameter("idUtente", userId).getResultList();
 	}
 
 	@Override

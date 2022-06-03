@@ -5,17 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import org.apache.commons.lang3.StringUtils;
-
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.dto.UtenteSearch;
-import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.StatoUtente;
 
 public class UtenteDAOImpl implements UtenteDAO {
@@ -130,12 +126,6 @@ public class UtenteDAOImpl implements UtenteDAO {
 	public Optional<Utente> findOneEager(Long id) throws Exception {
 		return entityManager.createQuery("from Utente u left join fetch u.ruoli where u.id=:idUtente", Utente.class)
 				.setParameter("idUtente", id).getResultList().stream().findFirst();
-	}
-
-	@Override
-	public List<Utente> list(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

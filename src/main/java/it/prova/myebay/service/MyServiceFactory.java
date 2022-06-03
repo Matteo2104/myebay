@@ -6,8 +6,6 @@ import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.dao.AnnuncioDAOImpl;
 import it.prova.myebay.dao.CategoriaDAO;
 import it.prova.myebay.dao.CategoriaDAOImpl;
-import it.prova.myebay.dao.RuoloDAO;
-import it.prova.myebay.dao.RuoloDAOImpl;
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.dao.UtenteDAOImpl;
 
@@ -16,13 +14,11 @@ public class MyServiceFactory {
 	private static AcquistoService ACQUISTO_SERVICE_INSTANCE;
 	private static CategoriaService CATEGORIA_SERVICE_INSTANCE;
 	private static UtenteService UTENTE_SERVICE_INSTANCE;
-	private static RuoloService RUOLO_SERVICE_INSTANCE;
 	
 	private static AnnuncioDAO ANNUNCIO_DAO_INSTANCE;
 	private static AcquistoDAO ACQUISTO_DAO_INSTANCE;
 	private static CategoriaDAO CATEGORIA_DAO_INSTANCE;
 	private static UtenteDAO UTENTE_DAO_INSTANCE;
-	private static RuoloDAO RUOLO_DAO_INSTANCE;
 
 	public static UtenteService getUtenteServiceInstance() {
 		if (UTENTE_SERVICE_INSTANCE == null)
@@ -35,16 +31,7 @@ public class MyServiceFactory {
 		return UTENTE_SERVICE_INSTANCE;
 	}
 
-	public static RuoloService getRuoloServiceInstance() {
-		if (RUOLO_SERVICE_INSTANCE == null)
-			RUOLO_SERVICE_INSTANCE = new RuoloServiceImpl();
 
-		if (RUOLO_DAO_INSTANCE == null)
-			RUOLO_DAO_INSTANCE = new RuoloDAOImpl();
-
-		RUOLO_SERVICE_INSTANCE.setRuoloDAO(RUOLO_DAO_INSTANCE);
-		return RUOLO_SERVICE_INSTANCE;
-	}
 
 	public static CategoriaService getCategoriaServiceInstance() {
 		if (CATEGORIA_SERVICE_INSTANCE == null)

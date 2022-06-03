@@ -2,13 +2,9 @@ package it.prova.myebay.dao;
 
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
-import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Categoria;
-import it.prova.myebay.model.Utente;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 	private EntityManager entityManager;
@@ -56,11 +52,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		return null;
 	}
 
-	@Override
-	public List<Acquisto> list(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	@Override
 	public Categoria findByCodice(String codice) throws Exception {
