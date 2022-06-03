@@ -28,8 +28,15 @@ public class PrepareSearchAnnunciServlet extends HttpServlet {
 			request.setAttribute("errorMessage", "Errore nell'esecuzione della ricerca");
 			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 		}
+		
+		// se vengo da una sessione scaduta
 		if (request.getParameter("errorMessage") != null && request.getParameter("errorMessage").equals("ERROR"))
 			request.setAttribute("errorMessage", "Sessione Scaduta");
+		
+		// se vengo da un logout
+		if (request.getParameter("successMessage") != null && request.getParameter("successMessage").equals("LOGOUT"))
+			request.setAttribute("successMessage", "Logout effettuato con successo");
+		
 		// la funzione di ricerca si trova nella home-page
 		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/index.jsp").forward(request, response);
 	}

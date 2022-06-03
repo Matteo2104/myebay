@@ -53,8 +53,6 @@ public class CheckAuthFilter implements Filter {
 			Utente utenteInSession = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			// verifico se utente è in sessione
 			if (utenteInSession == null) {
-				//System.out.println("utente non in sessione: eseguo redirect");
-				//httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);	
 				httpResponse.sendRedirect(httpRequest.getContextPath() + "?errorMessage=ERROR");
 				return;
 			}
