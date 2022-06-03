@@ -6,22 +6,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.utility.Path;
 
 
-@WebServlet("/PrepareRegisterUserServlet")
-public class PrepareRegisterUserServlet extends HttpServlet {
+@WebServlet("/PrepareRegisterUserByAnnuncioServlet")
+public class PrepareRegisterUserByAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public PrepareRegisterUserServlet() {
+    public PrepareRegisterUserByAnnuncioServlet() {
         super();
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idAnnuncio = request.getParameter("idAnnuncio");
+    			
 		try {
 			request.setAttribute("registra_utente_attr", new Utente());
 		} catch (Exception e) {
@@ -31,9 +33,8 @@ public class PrepareRegisterUserServlet extends HttpServlet {
 			return;
 		}
 		
+		request.setAttribute("idAnnuncio", idAnnuncio);
 		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/register.jsp").forward(request, response);
 	}
-
-	
 
 }

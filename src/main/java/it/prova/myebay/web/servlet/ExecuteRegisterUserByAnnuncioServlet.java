@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.exception.UserRegisteredException;
 import it.prova.myebay.model.Utente;
@@ -14,20 +15,28 @@ import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
 
-@WebServlet("/ExecuteRegisterUserServlet")
-public class ExecuteRegisterUserServlet extends HttpServlet {
+@WebServlet("/ExecuteRegisterUserByAnnuncioServlet")
+public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public ExecuteRegisterUserServlet() {
+    
+    public ExecuteRegisterUserByAnnuncioServlet() {
         super();
     }
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomeParam = request.getParameter("nome");
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
+
+		String idAnnuncio = request.getParameter("idAnnuncio");
+		
+		if (idAnnuncio.isEmpty()) {
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			return;
+		}
 
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
@@ -60,6 +69,8 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 			
 			request.getSession().setAttribute("userInfo", utenteInSession);
 			
+			request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
+			
 		} catch (UserRegisteredException e) {
 			request.setAttribute("errorMessage", "L'utente inserito è già esistente");
 			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
@@ -71,7 +82,7 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 			return;
 		}
 
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/areapersonale.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/show.jsp").forward(request, response);
 	}
 
 }

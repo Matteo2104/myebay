@@ -42,7 +42,7 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form method="post" action="ExecuteRegisterUserServlet" class="row g-3" novalidate="novalidate">
+							<form method="post" action="${idAnnuncio!=null?'ExecuteRegisterUserByAnnuncioServlet':'ExecuteRegisterUserServlet'}" class="row g-3" novalidate="novalidate">
 							
 							
 								<div class="col-md-6">
@@ -65,10 +65,10 @@
 									<input type="password" class="form-control" name="password" id=password placeholder="Inserire la password" value="${registra_utente_attr.password }" required>
 								</div>
 								
-
+								<p>${idAnnuncio}</p>
 								
 							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<button type="submit" name="idAnnuncio" id="idAnnuncio" value="${idAnnuncio}" class="btn btn-primary">Conferma</button>
 							</div>
 		
 						</form>

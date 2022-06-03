@@ -3,8 +3,6 @@ package it.prova.myebay.utility;
 public class Path {
 	public static String PATH_RITORNO = "";
 	
-	public static String ID = "";
-	
 	public static String PATH_INTERFACCIA = "";
 	
 	// inizializza il path dell'interfaccia

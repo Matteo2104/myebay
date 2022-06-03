@@ -37,7 +37,13 @@
 		    </div>
 		
 		    <div class="mb-3">
-		      	<a href="${pageContext.request.contextPath}/PrepareRegisterUserServlet?idAnnuncio=${idAnnuncio}">Registrati</a>
+		    	<c:if test="${idAnnuncio != null}">
+		      		<a href="${pageContext.request.contextPath}/PrepareRegisterUserByAnnuncioServlet?idAnnuncio=${idAnnuncio}">Registrati</a>
+		    	</c:if>
+		    	
+		    	<c:if test="${idAnnuncio == null}">
+		      		<a href="${pageContext.request.contextPath}/PrepareRegisterUserServlet">Registrati</a>
+		    	</c:if>
 		    </div>
 
 		    <button class="w-100 btn btn-lg btn-primary" type="submit" name="idAnnuncio" value="${idAnnuncio}">Accedi</button>

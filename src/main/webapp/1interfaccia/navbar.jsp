@@ -28,7 +28,7 @@
 			
 				<c:if test="${empty userInfo}" >
 
-            			<a class="nav-link active text-white" href="${pageContext.request.contextPath}/PrepareLoginServlet">Login</a>
+            			<a class="nav-link active text-white" href="${pageContext.request.contextPath}/PrepareLoginServlet">Accedi o Registrati</a>
 
      			</c:if>
      			
