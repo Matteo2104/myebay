@@ -61,22 +61,6 @@ public class CheckAuthFilter implements Filter {
 				return;
 			}
 			
-			/*
-			if (!utenteInSession.isLoggedIn()) {
-				System.out.println("utente in sessione ma non loggato: mando a login");
-				httpRequest.getRequestDispatcher("login.jsp").forward(httpRequest, httpResponse);
-				return;
-			}
-			*/
-			
-			/*
-			//controllo che utente abbia ruolo admin se nel path risulta presente /admin/
-			if(isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
-				httpRequest.setAttribute("errorMessage", "Non si è autorizzati alla navigazione richiesta");
-				httpRequest.getRequestDispatcher("/index.jsp").forward(httpRequest, httpResponse);
-				return;
-			}
-			*/
 			
 			
 			

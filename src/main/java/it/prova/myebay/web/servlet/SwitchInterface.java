@@ -21,12 +21,11 @@ public class SwitchInterface extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Path.switchPathInterfaccia();
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/index.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath());
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

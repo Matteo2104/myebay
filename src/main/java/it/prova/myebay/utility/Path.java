@@ -22,5 +22,7 @@ public class Path {
 		}
 		
 		PATH_INTERFACCIA = Interfaccia.TYPE + "interfaccia";
+		
+		System.out.println(Interfaccia.TYPE);
 	}
 }

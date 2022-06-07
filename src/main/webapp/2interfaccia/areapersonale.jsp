@@ -4,11 +4,11 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="./header.jsp" />
+	 	<jsp:include page="header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>My Ebay</title>
+	   <title>Area Personale</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -37,7 +37,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="./navbar.jsp"></jsp:include>
+	   		<jsp:include page="navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -48,48 +48,33 @@
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
-				<div class="alert alert-success alert-dismissible fade show  ${successMessage==null?'d-none':'' }" role="alert">
-				  ${successMessage}
+				
+				<div class="alert alert-success alert-dismissible fade show ${operationResult==null?'d-none':'' }" role="alert">
+				  ${operationResult}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-3 fw-bold text-center">Benvenuto in MyEbay!</h1>
-				        <p class="fs-4 text-center" >Qui puoi trovare annunci di prodotti di tutti i tipi</p>
-				      </div>
+				        <h1 class="display-5 fw-bold text-center">Benvenuto ${userInfo.nome}!</h1>
+				        <p class="fs-4 text-center">Questa è la tua area personale</p>
+				        <div class="fs-4 text-center">
+ 							
+								<c:if test="${userInfo.ruolo == 'ROLE_ADMIN'}">
+ 									<a class="btn btn-primary col-lg w-25" href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a>
+								</c:if>
+								<c:if test="${userInfo.ruolo == 'ROLE_CLASSIC_USER'}">
+ 									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/annuncio/PrepareSearchAnnunciPersonaliServlet">Gestione Annunci</a>
+									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/acquisto/ExecuteListAcquistiServlet">I tuoi Acquisti</a>
+									<a class="btn btn-primary col-lg w-25"  href="${pageContext.request.contextPath}/credito/PrepareRicaricaServlet">Effettua una ricarica</a>
+								</c:if>
+							
+				        </div>
+				        
+				        
+				 </div>
 				      
-				      <div class='card-body'>
-				      	<form method="post" action="${pageContext.request.contextPath}/ExecuteSearchAnnunciServlet" class="row g-3" >
-							
-							
-								<div class="col-md-6">
-									<label for="titolo" class="form-label">Titolo</label>
-									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo dell'annuncio" >
-								</div>
-								
-								<div class="col-md-6">
-									<label for="prezzo" class="form-label">Prezzo (a partire da)</label>
-									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" min="1" >
-								</div>
-								
-								<div class='card-body' align="center">
-									<c:forEach items="${list_categorie_attr}" var="categoria" >
-										<div class="form-check col-md-2">
-											<input class="form-check-input" type="checkbox" value="${categoria.id}"
-											id="flexCheckDefault" name="categorie"> <label class="form-check-label"
-											for="flexCheckDefault"> ${categoria.codice} </label>
-										</div>
-									</c:forEach>
-								</div>
-								
-								<div class="col-12" align="center">
-									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca tra gli annunci</button>
-									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-								</div>
-								
-						</form>
-				      </div>
+				      
 			    </div>
 			    
 			  </div>
@@ -136,6 +121,6 @@
 			</main>
 			
 			<!-- Footer -->
-			<jsp:include page="./footer.jsp" />
+			<jsp:include page="footer.jsp" />
 	  </body>
 </html>
