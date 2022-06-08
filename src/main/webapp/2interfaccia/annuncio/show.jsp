@@ -2,94 +2,79 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
-	 	
-	   <title>Dettaglio annuncio</title>
-	   
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
+<head>
+	<jsp:include page="../header.jsp" />		
+	<title>Dettaglio annuncio</title>   
+</head>
+<body>
+	
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		
+		<div class="notification is-primary">
+			<div class="box">
+				<h2 class="title is-2">${show_annuncio_attr.aperto?'':'VENDUTO - '}${show_annuncio_attr.titolo}</h2>
+				
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Testo Annuncio:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_annuncio_attr.testoAnnuncio}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Prezzo:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_annuncio_attr.prezzo}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Data Pubblicazione:</h5>
+				  	</div>
+				  	<div class="column">
+				    	<fmt:formatDate type = "date" value = "${show_annuncio_attr.data}" />
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Proprietario dell'annuncio:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_annuncio_attr.utenteInserimento.username}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Categorie:</h5>
+				  	</div>
+				  	<div class="column">
+				  		<c:forEach items="${show_annuncio_attr.categorie}" var="categoria">
+				    		${categoria.descrizione}; 
+				  		</c:forEach>
+				  	</div>
+				</div>
+				
+			</div>
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class='card'>
-					    <div class='card-header'>
-					        <h5>${show_annuncio_attr.aperto?'':'VENDUTO - '}${show_annuncio_attr.titolo}</h5>
-					    </div>
-					    
-					
-					    <div class='card-body'>
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Testo Annuncio:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.testoAnnuncio}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Prezzo:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.prezzo}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data Pubblicazione:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_annuncio_attr.data}" /></dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Proprietario dell'annuncio:</dt>
-							  <dd class="col-sm-9">${show_annuncio_attr.utenteInserimento.username}</dd>
-					    	</dl>
-					    	
-					    	
-					    	
-					    	<!-- info Regista -->
-					    	<p>
-							  <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-							    Categorie
-							  </a>
-							</p>
-							<div class="collapse" id="collapseExample">
-							<div class="card card-body">
-								
-									<dl class="row">
-								  	<dt class="col-sm-3 text-right">Categoria:</dt>
-								  	
-								  		<dd class="col-sm-9">
-								  		<c:forEach items="${show_annuncio_attr.categorie}" var="categoria">
-								  			${categoria.descrizione}
-								  		</c:forEach>
-								  		</dd>
-								  	 
-							   		</dl>
-								 
-							  </div>
-							 </div>
-					    	
-					    <!-- end card body -->
-					    </div>
-					    
-					    <div class='card-footer'>
-					        <a href="ExecuteListAnnunciPersonaliServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
-					        </a>
-					    </div>
-					<!-- end card -->
-					</div>	
-			  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
+			<div>
+				<a href="ExecuteListAnnunciPersonaliServlet" class="button" style='width:100px'>Indietro</a>
+					           	            	        
+			</div>
 			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+		</div>
+		
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
+</body>
 </html>
