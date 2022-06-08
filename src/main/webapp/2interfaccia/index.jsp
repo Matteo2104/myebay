@@ -10,6 +10,13 @@
 	<jsp:include page="./navbar.jsp"></jsp:include>
 	    
 	<div class="container">
+
+		<c:if test="${errorMessage != null}">
+			<div class="notification is-warning">
+				<button class="delete"></button>
+				${errorMessage}
+			</div>
+		</c:if>
 	
 		<div class="notification is-primary has-text-centered">
 			<h1 class="title is-1">Benvenuto in MyEbay!</h1>
