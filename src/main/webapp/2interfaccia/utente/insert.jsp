@@ -66,26 +66,15 @@
 					</div>
 				</div>
 				
-				<div class="dropdown is-active">
-					<div class="dropdown-trigger">
-						<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-							<span>Ruolo</span>
-							<span class="icon is-small">
-								<i class="fas fa-angle-down" aria-hidden="true"></i>
-				      		</span>
-				    	</button>
-				  	</div>
-					<div class="dropdown-menu" id="dropdown-menu" role="menu">
-				    	<div class="dropdown-content">
-				    		<a href="#" class="dropdown-item">
-				        		Admin
-				      		</a>
-				      		<a class="dropdown-item">
-				        		Classic User
-				      		</a>
-				    	</div>
+				<div class="field has-text-centered">
+					<div class="select">
+				    	<select id="ruolo" name="ruolo">
+						    <option value="ROLE_ADMIN">Admin</option>
+						    <option value="ROLE_CLASSIC_USER">Classic User</option>
+						</select>
 					</div>
 				</div>
+				
 				
 				<div align="center">
 					<input class="button is-info" type="submit" value="Inserisci Nuovo Utente">

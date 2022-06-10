@@ -37,6 +37,10 @@
 	  			
 			</table>
 	
+			<div>
+				<a href="${pageContext.request.contextPath}" class="button" style='width:100px'>Indietro</a>
+			</div>
+		
 		</div>
 	</div>
 	

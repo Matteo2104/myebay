@@ -21,21 +21,28 @@
 		
 		<div class="notification is-primary">
 			<form class="box" action="${idAnnuncio!=null?'ExecuteLoginByAnnuncioServlet':'LoginServlet'}" method="post">
-				<div class="field">
-			    	<label class="label">Nome Utente</label>
-			    	<div class="control">
-			      		<input class="input" name="inputUsername" type="text" placeholder="Username">
-			    	</div>
-			  	</div>
-			
-			  	<div class="field">
-			    	<label class="label">Password</label>
-			    	<div class="control">
-			      		<input class="input" name="inputPassword" type="password" placeholder="Password">
-			    	</div>
-			  	</div>
+				<div class="columns">
+					<div class="column">
+						<div class="field">
+					    	<label class="label">Nome Utente</label>
+					    	<div class="control">
+					      		<input class="input" name="inputUsername" type="text" placeholder="Username">
+					    	</div>
+					  	</div>
+					</div>
+					
+					<div class="column">
+						<div class="field">
+					    	<label class="label">Password</label>
+					    	<div class="control">
+					      		<input class="input" name="inputPassword" type="password" placeholder="Password">
+					    	</div>
+					  	</div>
+					</div>
+				</div>
+			  	
 			  
-			  	<div>
+			  	<div class="field">
 					<c:if test="${idAnnuncio != null}">
 						<a href="${pageContext.request.contextPath}/PrepareRegisterUserByAnnuncioServlet?idAnnuncio=${idAnnuncio}">Registrati</a>
 					</c:if>

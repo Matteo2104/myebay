@@ -57,7 +57,7 @@
 			</table>
 
 			<div>
-				<a href="${pageContext.request.contextPath}/1interfaccia/areapersonale.jsp" class="button" style='width:100px'>Indietro</a>
+				<a href="${pageContext.request.contextPath}/2interfaccia/areapersonale.jsp" class="button" style='width:100px'>Indietro</a>
 			</div>
 	
 		</div>

@@ -102,7 +102,7 @@
     <li><a href="${pageContext.request.contextPath}/SwitchInterface">Cambia Interfaccia</a></li>
     	
   	<c:if test="${userInfo.ruolo == 'ROLE_ADMIN'}">
-		<li><a href="${pageContext.request.contextPath}/utente/PrepareSearchUserServlet">Gestione Utenze</a></li>
+		<li><a href="${pageContext.request.contextPath}/utente/PrepareInsertUserServlet">Crea Nuovo Utente</a></li>
 	</c:if>
 	<c:if test="${userInfo.ruolo == 'ROLE_CLASSIC_USER'}">
 		<li><a href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioServlet">Inserisci un nuovo Annuncio</a></li>

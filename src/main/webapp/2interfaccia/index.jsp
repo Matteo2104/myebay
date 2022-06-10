@@ -25,20 +25,29 @@
   		
   		<form method="post" action="${pageContext.request.contextPath}/ExecuteSearchAnnunciServlet">
 	  		<div class="notification is-primary has-text-centered">
-	  		
-				<div class="field">
-					<label class="label">Titolo</label>
-					<div class="control">
-				    	<input class="input" type="text" name="titolo" placeholder="Titolo Annuncio">
-				  	</div>
-				</div>
+	  			
+	  			<div class="columns">
+	  				<div class="column">
+	  					<div class="field">
+							<label class="label">Titolo</label>
+							<div class="control">
+						    	<input class="input" type="text" name="titolo" placeholder="Titolo Annuncio">
+						  	</div>
+						</div>
+	  				</div>
+	  				
+	  				<div class="column">
+	  					<div class="field">
+							<label class="label">Prezzo (a partire da)</label>
+							<div class="control">
+						    	<input class="input" type="number" min="1" name="prezzo" placeholder="Prezzo">
+						  	</div>
+						</div>
+	  				</div>
+	  			</div>
 				
-				<div class="field">
-					<label class="label">Prezzo (a partire da)</label>
-					<div class="control">
-				    	<input class="input" type="number" name="prezzo" placeholder="Prezzo">
-				  	</div>
-				</div>
+				
+				
 				
 				<c:forEach items="${list_categorie_attr}" var="categoria" >
 					<div class="field">
@@ -51,7 +60,7 @@
 				
 				
 				<div class="field" align="center">
-					<input class="button" type="submit" value="Cerca tra gli annunci">
+					<input class="button is-info" type="submit" value="Cerca tra gli annunci">
 				</div>
 				
 				

@@ -60,27 +60,19 @@
 				  			</div>
 	  						<div class="column">
 	  						
-	  						
-			  				<div class="dropdown is-active">
-								<div class="dropdown-trigger">
-									<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-										<span>Ruolo</span>
-										<span class="icon is-small">
-											<i class="fas fa-angle-down" aria-hidden="true"></i>
-							      		</span>
-							    	</button>
-							  	</div>
-								<div class="dropdown-menu" id="dropdown-menu" role="menu">
-							    	<div class="dropdown-content">
-							    		<a href="#" class="dropdown-item">
-							        		Admin
-							      		</a>
-							      		<a class="dropdown-item">
-							        		Classic User
-							      		</a>
-							    	</div>
-								</div>
+	  						<div class="field">
+								<label class="checkbox">
+									<input type="checkbox" value="ROLE_ADMIN" name="ruoli">
+									Admin
+								</label>
+								<label class="checkbox">
+									<input type="checkbox" value="ROLE_CLASSIC_USER" name="ruoli">
+									Classic User
+								</label>
 							</div>
+	  						
+	  						
+			  		
 								
 	  						</div>
 	  					</div>

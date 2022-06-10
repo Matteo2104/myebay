@@ -44,15 +44,6 @@
 				  	</div>
 				</div>
 				
-				<div class="columns">
-					<div class="column">
-				    	<h5 class="title is-5">Proprietario dell'annuncio:</h5>
-				  	</div>
-				  	<div class="column">
-				    	${show_acquisto_attr.utenteInserimento.username}
-				  	</div>
-				</div>
-				
 			</div>
 			
 			<div>

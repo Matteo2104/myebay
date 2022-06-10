@@ -43,9 +43,7 @@
 					    	</dl>
 					    
 					    <div class='card-footer'>
-					        <a href="ExecuteListAcquistiServlet" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
-					        </a>
+					        <a href="ExecuteListAcquistiServlet" class='btn btn-outline-secondary' style='width:100px'>Indietro</a>
 					    </div>
 					<!-- end card -->
 					</div>	

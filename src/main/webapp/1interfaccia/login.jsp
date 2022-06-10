@@ -26,16 +26,23 @@
 		  
 		    <img class="mb-4" src="1interfaccia/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 		    <h1 class="h3 mb-3 fw-normal">Inserire credenziali d'accesso</h1>
-		
-		    <div class="form-floating">
-		      <input type="text" name="inputUsername" class="form-control" id="inputUsername" placeholder="username">
-		      <label for="inputUsername">Nome utente</label>
-		    </div>
-		    <div class="form-floating">
-		      <input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password">
-		      <label for="inputPassword">Password</label>
-		    </div>
-		
+			
+			<div class="columns">
+				<div class="column">
+					<div class="form-floating">
+				    	<input type="text" name="inputUsername" class="form-control" id="inputUsername" placeholder="username">
+				    	<label for="inputUsername">Nome utente</label>
+				    </div>
+				</div>
+				
+				<div class="column">
+					<div class="form-floating">
+				    	<input type="password" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password">
+				    	<label for="inputPassword">Password</label>
+				    </div>
+				</div>
+			</div>
+				
 		    <div class="mb-3">
 		    	<c:if test="${idAnnuncio != null}">
 		      		<a href="${pageContext.request.contextPath}/PrepareRegisterUserByAnnuncioServlet?idAnnuncio=${idAnnuncio}">Registrati</a>

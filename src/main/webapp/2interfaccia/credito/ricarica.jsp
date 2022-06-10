@@ -15,20 +15,26 @@
 			</div>
 		</c:if>
 
-		<div class="notification has-text-centered">
+		<div class="notification has-text-centered is-primary">
 			<h2 class="title is-2">Effettua una ricarica</h2>
 			<h4 class="title is-4">Scegli l'importo che desideri ricaricare</h4>
 
 			<div align="center">
 				<form method="post" action="${pageContext.request.contextPath}/credito/ExecuteRicaricaServlet">
 				  
-					  <div class="field">
-						  <label for="credito" class="form-label">Credito</label>
-						  <input type="number" class="form-control w-25" name="credito" id="credito" min="1" value="1">
-					  </div>
+				  	<div class="columns">
+				  		<div class="column is-half is-offset-one-quarter">
+				  			<div class="field">
+								<label for="credito" class="label">Credito</label>
+								<input type="number" class="input" name="credito" id="credito" min="1" value="1">
+						  </div>
+				  		</div>
+				  	</div>
+					  
 					  
 					  <div>
-						  <button type="submit" name="submit" value="submit" id="submit" class="button">Conferma</button>
+					  		<a href="${pageContext.request.contextPath}/2interfaccia/areapersonale.jsp" class="button" style='width:100px'>Indietro</a>
+				      		<button type="submit" name="submit" value="submit" id="submit" class="button is-info">Conferma</button>
 					  </div>
 
 			  </form>

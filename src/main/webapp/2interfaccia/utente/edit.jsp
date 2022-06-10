@@ -27,55 +27,62 @@
 				
 				<div class="columns">
 					<div class="column">
-
 						<div class="field">
 							<label class="label has-text-centered">Nome</label>
 							<div class="control">
 						    	<input class="input" type="text" name="nome" placeholder="Nome" value="${edit_utente_attr.nome}">
 						  	</div>
 						</div>
-						
-						<div class="field">
-							<label class="label has-text-centered">Username</label>
-							<div class="control">
-						    	<input class="input" type="text" name="username" placeholder="Username" value="${edit_utente_attr.username}">
-						  	</div>
-						</div>
-						
 					</div>
 					
 					<div class="column">
-					
 						<div class="field">
 							<label class="label has-text-centered">Cognome</label>
 							<div class="control">
 						    	<input class="input" type="text" name="cognome" placeholder="Cognome" value="${edit_utente_attr.cognome}">
 						  	</div>
 						</div>
-						
+					</div>
+					
+					<div class="column">
+						<div class="field">
+							<label class="label has-text-centered">Username</label>
+							<div class="control">
+						    	<input class="input" type="text" name="username" placeholder="Username" value="${edit_utente_attr.username}">
+						  	</div>
+						</div>
 					</div>
 				</div>
 				
-				<div class="dropdown is-active">
-					<div class="dropdown-trigger">
-						<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-							<span>Ruolo</span>
-							<span class="icon is-small">
-								<i class="fas fa-angle-down" aria-hidden="true"></i>
-				      		</span>
-				    	</button>
-				  	</div>
-					<div class="dropdown-menu" id="dropdown-menu" role="menu">
-				    	<div class="dropdown-content">
-				    		<a href="#" class="dropdown-item">
-				        		Admin
-				      		</a>
-				      		<a class="dropdown-item">
-				        		Classic User
-				      		</a>
-				    	</div>
+				
+				
+				<div class="columns">
+					<div class="column">
+						<div class="field has-text-centered">
+							<div class="select">
+						    	<select id="stato" name="stato">
+								    <option ${edit_utente_attr.stato == 'CREATO'?'selected':''} value="CREATO">Creato</option>
+								    <option ${edit_utente_attr.stato == 'ATTIVO'?'selected':''} value="ATTIVO">Attivo</option>
+									<option ${edit_utente_attr.stato == 'DISABILITATO'?'selected':''} value="DISABILITATO">Disabilitato</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="column">
+						<div class="field has-text-centered">
+							<div class="select">
+						    	<select id="ruolo" name="ruolo">
+								    <option ${edit_utente_attr.ruolo == 'ROLE_ADMIN'?'selected':''} value="ROLE_ADMIN">Admin</option>
+								    <option ${edit_utente_attr.ruolo == 'ROLE_CLASSIC_USER'?'selected':''} value="ROLE_CLASSIC_USER">Classic User</option>
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
+				
+				
+				
 				
 				<div align="center">
 					
