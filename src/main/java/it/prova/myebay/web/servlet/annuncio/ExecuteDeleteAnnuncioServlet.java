@@ -11,6 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Path;
 
 
 @WebServlet("/annuncio/ExecuteDeleteAnnuncioServlet")
@@ -27,7 +28,7 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -37,13 +38,10 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		//System.out.println("elemento eliminato correttamente");
-
-		//request.getRequestDispatcher("list.jsp").forward(request, response);
 		response.sendRedirect("ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
 	}
 

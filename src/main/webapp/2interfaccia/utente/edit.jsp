@@ -3,84 +3,93 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-	 
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+<head>
+	<jsp:include page="../header.jsp" />
+	<title>Modifica Utente</title>
+</head>
+<body>
 	   
-	   <title>Modifica Utente</title>
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		<c:if test="${errorMessage != null}">
+			<div class="notification is-warning">
+				<button class="delete"></button>
+				${errorMessage}
+			</div>
+		</c:if>
+		
+		
+		<div class="notification is-primary has-text-centered">
+			<h2 class="title is-2">Modifica Utente</h2>
+			
+			<form method="post" action="ExecuteEditUserServlet">
+				
+				<div class="columns">
+					<div class="column">
+
+						<div class="field">
+							<label class="label has-text-centered">Nome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="nome" placeholder="Nome" value="${edit_utente_attr.nome}">
+						  	</div>
+						</div>
+						
+						<div class="field">
+							<label class="label has-text-centered">Username</label>
+							<div class="control">
+						    	<input class="input" type="text" name="username" placeholder="Username" value="${edit_utente_attr.username}">
+						  	</div>
+						</div>
+						
+					</div>
+					
+					<div class="column">
+					
+						<div class="field">
+							<label class="label has-text-centered">Cognome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="cognome" placeholder="Cognome" value="${edit_utente_attr.cognome}">
+						  	</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="dropdown is-active">
+					<div class="dropdown-trigger">
+						<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+							<span>Ruolo</span>
+							<span class="icon is-small">
+								<i class="fas fa-angle-down" aria-hidden="true"></i>
+				      		</span>
+				    	</button>
+				  	</div>
+					<div class="dropdown-menu" id="dropdown-menu" role="menu">
+				    	<div class="dropdown-content">
+				    		<a href="#" class="dropdown-item">
+				        		Admin
+				      		</a>
+				      		<a class="dropdown-item">
+				        		Classic User
+				      		</a>
+				    	</div>
+					</div>
+				</div>
+				
+				<div align="center">
+					
+					<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="button is-info">Modifica Utente</button>
+				</div>
+
+			</form>
+			
+			
+		</div>
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
 	    
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
-					  ${errorMessage}
-					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-			  
-			  <div class='card'>
-				    <div class='card-header'>
-				        <h5>Modifica Utente</h5> 
-				    </div>
-				    <div class='card-body'>
-		
-							<form method="post" action="ExecuteEditUserServlet" class="row g-3" >
-							
-							
-								<div class="col-md-6">
-									<label for="nome" class="form-label">Nome: </label>
-									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${edit_utente_attr.nome}" >
-								</div>
-								
-								<div class="col-md-6">
-									<label for="cognome" class="form-label">Cognome: </label>
-									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${edit_utente_attr.cognome}" >
-								</div>
-								
-								<div class="col-md-6">
-									<label for="username" class="form-label">Username: </label>
-									<input type="text" name="username" id="username" class="form-control" placeholder="Inserire lo username" value="${edit_utente_attr.username}" >
-								</div>
-								
-								<select class="form-select" aria-label="Default select example" name="stato" >
-  									<option ${edit_utente_attr.stato == 'CREATO'?'selected':''} value="CREATO">Creato</option>
-  									<option ${edit_utente_attr.stato == 'ATTIVO'?'selected':''} value="ATTIVO">Attivo</option>
-  									<option ${edit_utente_attr.stato == 'DISABILITATO'?'selected':''} value="DISABILITATO">Disabilitato</option>
-								</select>
-								
-								<select class="form-select" aria-label="Default select example" id="ruolo" name="ruolo">
-								  <option ${edit_utente_attr.ruolo == 'ROLE_ADMIN'?'selected':''} value="ROLE_ADMIN">ADMIN</option>
-								  <option ${edit_utente_attr.ruolo == 'ROLE_CLASSIC_USER'?'selected':''} value="ROLE_CLASSIC_USER">CLASSIC USER</option>
-								</select>
-								
-								<div class="col-12">
-									<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="btn btn-primary">Conferma</button>
-									<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Add new</a>
-									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-								</div>
-						</form>
-  
-				    
-				    
-					<!-- end card-body -->			   
-				    </div>
-				<!-- end card -->
-				</div>		
-					  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
-			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+</body>
 </html>

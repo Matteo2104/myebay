@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		// validazione dei campi
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
 			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
 			return;
 		}
 

@@ -13,7 +13,7 @@
 				<button class="delete"></button>
 				${errorMessage}
 			</div>
-		</c:if
+		</c:if>
 
 		<div class="notification has-text-centered">
 			<h2 class="title is-2">Effettua una ricarica</h2>

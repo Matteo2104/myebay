@@ -111,6 +111,17 @@
 	<c:if test="${empty userInfo}" >
     	<li><a href="${pageContext.request.contextPath}/PrepareLoginServlet">Accedi o Registrati</a></li>
 	</c:if>
+	
+	<c:if test="${not empty userInfo}" >
+		<span class="navbar-text">
+ 			Utente: ${userInfo.username} (${userInfo.nome } ${userInfo.cognome}) ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Credito:':''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?userInfo.creditoResiduo:''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Euro':''}
+ 		</span>
+
+		<li><a href="${pageContext.request.contextPath}/2interfaccia/areapersonale.jsp">Area Personale</a></li>
+		<li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+
+		
+	</c:if>
     	
   </ul>
 </div>

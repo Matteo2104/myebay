@@ -43,9 +43,13 @@
 					      	<td>${annuncio.aperto?'':'VENDUTO - '}${annuncio.titolo}</td>
 							<td>${annuncio.prezzo }</td>
 							<td><fmt:formatDate type = "date" value = "${annuncio.data}" /></td>
-							<td>							
-								<a class="btn  btn-sm btn-outline-secondary" style='width:100px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>				
+							<td>			
+								<c:if test="${not annuncio.aperto}">				
+									<a class="button is-light" style='width:300px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>				
+								</c:if>
+								
 								<c:if test="${annuncio.aperto}">
+									<a class="button is-light" style='width:100px' href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet?idAnnuncio=${annuncio.id}">Dettaglio</a>				
 									<a class="button is-warning" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareEditAnnuncioServlet?idAnnuncio=${annuncio.id}">Modifica</a>
 									<a class="button is-danger" style='width:100px' href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioServlet?idAnnuncio=${annuncio.id}">Rimuovi</a>
 								</c:if>

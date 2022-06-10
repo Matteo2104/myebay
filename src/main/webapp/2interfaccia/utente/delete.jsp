@@ -2,92 +2,96 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
+<head>
+	<jsp:include page="../header.jsp" />	
+	<title>Disabilita Utente</title>
+</head>
+<body>
+	
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	
+	<div class="container">
+		<div class="notification is-primary">
+			
+			<div class="box">
+				<h2 class="title is-2">Sei sicuro di voler l'utente con ID : ${delete_utente_attr.id}?</h2>
+				
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Nome:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_utente_attr.nome}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Cognome:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_utente_attr.cognome}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Username:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_utente_attr.username}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Data di Creazione:</h5>
+				  	</div>
+				  	<div class="column">
+				    	<fmt:formatDate type = "date" value = "${delete_utente_attr.dateCreated}" />
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Stato:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_utente_attr.stato}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Ruolo:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_utente_attr.ruolo}
+				  	</div>
+				</div>
 
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
-	 	
-	   <title>Disabilita Utente</title>
-	   
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
+			</div>
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class='card'>
-					    <div class='card-header'>
-					        <h5>Sei sicuro di voler disabilitare questo utente?</h5>
-					    </div>
-					    
+			<div>
+				         	            	        
+				
+				<form action="ExecuteDeleteUserServlet" method="post">
+					<a href="ExecuteListUserServlet" class="button" style='width:80px'>Indietro</a>  
 					
-					    <div class='card-body'>
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.id}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Nome:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.nome}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.cognome}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Username:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.username}</dd>
-					    	</dl>
-					    	
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data di Creazione:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.dateCreated}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Stato attuale:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.stato}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Ruolo:</dt>
-							  <dd class="col-sm-9">${delete_utente_attr.ruolo}</dd>
-					    	</dl>
-					    	
-					    </div>
-					    
-							
-							 
-					<!-- end card -->
-					</div>	
-					    
-					    <div class='card-footer'>
-					    	<form action="ExecuteDeleteUserServlet" method="post">
-					    		<input type="hidden" name="idUser" value="${delete_utente_attr.id}">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
-						        <a href="ExecuteListUserServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Back
-						        </a>
-					        </form>
-					    </div>
+					
+		    		<input type="hidden" name="idUser" value="${delete_utente_attr.id}">
+			    	<button type="submit" name="submit" id="submit" class="button is-danger">Disabilita</button>
+				
+				</form> 
+			</div>
+
+		</div>
+	</div>
+	
+	
+	<jsp:include page="../footer.jsp" />  
 						
-			  	
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
-			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+</body>
 </html>

@@ -7,8 +7,9 @@
 	<jsp:include page="../header.jsp" />
 	<title>Inserimento Annuncio</title>
 </head>
-<body class="d-flex flex-column h-100">
-
+<body>
+	<jsp:include page="../navbar.jsp" />
+	
 	<c:if test="${errorMessage != null}">
 		<div class="notification is-warning">
 			<button class="delete"></button>
@@ -19,10 +20,9 @@
 	
 	<div class="container">
 		<div class="notification is-primary has-text-centered">
-			<h1 class="title is-1">Inserisci Nuovo Annuncio</h1>
-		</div>
+			<h2 class="title is-2">Inserisci Nuovo Annuncio</h2>
 		
-		<div class="notification is-primary">
+		
 			<form method="post" action="ExecuteInsertAnnuncioServlet">
 				
 				<div class="columns">
@@ -65,7 +65,7 @@
 					</div>
 				</div>		
 				
-				<div align="center">
+				<div align="center">					
 					<input class="button is-info" type="submit" value="Inserisci Annuncio">
 				</div>
 
@@ -74,6 +74,6 @@
 		</div>
 	</div>
 			
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

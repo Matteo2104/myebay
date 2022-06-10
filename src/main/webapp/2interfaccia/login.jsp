@@ -8,6 +8,13 @@
 </head>
 <body>
 	<div class="container has-text-centered">
+		<c:if test="${errorMessage != null}">
+			<div class="notification is-warning">
+				<button class="delete"></button>
+				${errorMessage}
+			</div>
+		</c:if>
+		
 		<div class="notification is-primary">
 			<h1 class="title is-1">Login</h1>
 		</div>
@@ -17,14 +24,14 @@
 				<div class="field">
 			    	<label class="label">Nome Utente</label>
 			    	<div class="control">
-			      		<input class="input" type="text" placeholder="Username">
+			      		<input class="input" name="inputUsername" type="text" placeholder="Username">
 			    	</div>
 			  	</div>
 			
 			  	<div class="field">
 			    	<label class="label">Password</label>
 			    	<div class="control">
-			      		<input class="input" type="password" placeholder="Password">
+			      		<input class="input" name="inputPassword" type="password" placeholder="Password">
 			    	</div>
 			  	</div>
 			  

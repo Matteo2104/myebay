@@ -67,7 +67,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 			annuncioDAO.update(annuncioDaAcquistare);
 			
 			// creo una nuova istanza di acquisto e lo aggiungo al DB collegandolo all'utente 
-			Acquisto acquisto = new Acquisto(annuncioDaAcquistare.getTestoAnnuncio(), annuncioDaAcquistare.getPrezzo(), new Date(), utenteInSessione);
+			Acquisto acquisto = new Acquisto(annuncioDaAcquistare.getTitolo(), annuncioDaAcquistare.getPrezzo(), new Date(), utenteInSessione);
 			acquistoDAO.insert(acquisto);
 			
 			// se si è arrivati fin qui l'acquisto è andato a buon fine e posso eseguire il commit

@@ -2,96 +2,74 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
-	 	
-	   <title>Disabilita Utente</title>
-	   
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
-			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class='card'>
-					    <div class='card-header'>
-					        <h5>Sei sicuro di voler eliminare questo annuncio?</h5>
-					    </div>
-					    
-					
-					    <div class='card-body'>
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${delete_annuncio_attr.id}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Testo Annuncio:</dt>
-							  <dd class="col-sm-9">${delete_annuncio_attr.testoAnnuncio}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Prezzo:</dt>
-							  <dd class="col-sm-9">${delete_annuncio_attr.prezzo}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data di Creazione:</dt>
-							  <dd class="col-sm-9">${delete_annuncio_attr.data}</dd>
-					    	</dl>
-					    	
-					    	<p>
-							  <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-							    Categorie
-							  </a>
-							</p>
-					    	
-					    </div>
-					    
-							<!-- info ruoli -->
-							<div class="collapse" id="collapseExample">
-							<div class="card card-body">
-								<c:forEach items="${delete_annuncio_attr.categorie}" var="categoria" >
-									<dl class="row">
-								  	<dt class="col-sm-3 text-right">Codice:</dt>
-								  	<dd class="col-sm-9">${categoria.codice}</dd>
-							   		</dl>
-							   		<dl class="row">
-								 	 <dt class="col-sm-3 text-right">Descrizione:</dt>
-								  	<dd class="col-sm-9">${categoria.descrizione}</dd>
-							   		</dl>
-								</c:forEach>  
-							  </div>
-							 </div>
-							 
-					<!-- end card -->
-					</div>	
-					    
-					    <div class='card-footer'>
-					    	<form action="ExecuteDeleteAnnuncioServlet" method="post">
-					    		<input type="hidden" name="idAnnuncio" value="${delete_annuncio_attr.id}">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
-						        <a href="ExecuteListAnnunciPersonaliServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Indietro
-						        </a>
-					        </form>
-					    </div>
+<head>
+	<jsp:include page="../header.jsp" />	
+	<title>Elimina annuncio</title>
+</head>
+<body>
+	
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		<div class="notification is-primary">
+			<div class="box">
+				<h2 class="title is-2">Sei sicuro di voler eliminare questo annuncio?</h2>
+				
+				<div class="columns">
+					<div class="column">
+						<h5 class="title is-5">Testo Annuncio:</h5>
+					</div>
+				  	<div class="column">
+				    	${delete_annuncio_attr.testoAnnuncio}
+				  	</div>
+				</div>
 						
-			  	
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Prezzo:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${delete_annuncio_attr.prezzo}
+				  	</div>
+				</div>
+						
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Data Pubblicazione:</h5>
+				  	</div>
+				  	<div class="column">
+				    	<fmt:formatDate type = "date" value = "${delete_annuncio_attr.data}" />
+				  	</div>
+				</div>
 			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Categorie:</h5>
+				  	</div>
+				  	<div class="column">
+				  		<c:forEach items="${delete_annuncio_attr.categorie}" var="categoria">
+				    		${categoria.descrizione}; 
+				  		</c:forEach>
+				  	</div>
+				</div>
+						
+					
+	
+				<div>
+					
+					<form action="ExecuteDeleteAnnuncioServlet" method="post">
+			    		<a href="ExecuteListAnnunciPersonaliServlet" class="button" style='width:80px'>Indietro</a>           	            	        
+			    		
+			    		
+			    		<input type="hidden" name="idAnnuncio" value="${delete_annuncio_attr.id}">
+				    	<button type="submit" name="submit" id="submit" class="button is-danger">Elimina</button>
+					</form>           	            	        
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<jsp:include page="../footer.jsp" />  
+						
+</body>
 </html>

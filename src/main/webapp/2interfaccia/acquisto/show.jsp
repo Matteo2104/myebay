@@ -2,61 +2,67 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
-	 	
-	   <title>Visualizza Acquisto</title>
-	   
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
+<head>
+	<jsp:include page="../header.jsp" />		
+	<title>Dettaglio annuncio</title>   
+</head>
+<body>
+	
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		
+		<div class="notification is-primary">
+			<div class="box">
+				<h2 class="title is-2">Dettaglio Acquisto</h2>
+				
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Titolo Annuncio:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_acquisto_attr.descrizione}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Prezzo:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_acquisto_attr.prezzo}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Data Pubblicazione:</h5>
+				  	</div>
+				  	<div class="column">
+				    	<fmt:formatDate type = "date" value = "${show_acquisto_attr.data}" />
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Proprietario dell'annuncio:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${show_acquisto_attr.utenteInserimento.username}
+				  	</div>
+				</div>
+				
+			</div>
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class='card'>
-					    <div class='card-header'>
-					        <h5>Visualizza dettagli acquisto</h5>
-					    </div>
-					    
-					
-					    <div class='card-body'>
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Testo Annuncio:</dt>
-							  <dd class="col-sm-9">${show_acquisto_attr.descrizione}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Prezzo:</dt>
-							  <dd class="col-sm-9">${show_acquisto_attr.prezzo}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data Acquisto:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_acquisto_attr.data}" /></dd>
-					    	</dl>
-					    
-					    <div class='card-footer'>
-					        <a href="ExecuteListAcquistiServlet" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
-					        </a>
-					    </div>
-					<!-- end card -->
-					</div>	
-			  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
+			<div>
+				<a href="ExecuteListAcquistiServlet" class="button" style='width:100px'>Indietro</a>          	            	        
+			</div>
 			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+		</div>
+		
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
+</body>
 </html>

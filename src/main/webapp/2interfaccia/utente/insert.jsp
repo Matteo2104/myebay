@@ -3,94 +3,99 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-	 
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
-	   
-	   <title>Inserisci Nuovo Utente</title>
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
-			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
-					  ${errorMessage}
-					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-					<div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-					  Esempio di operazione fallita!
-					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-					<div class="alert alert-info alert-dismissible fade show d-none" role="alert">
-					  Aggiungere d-none nelle class per non far apparire
-					   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-			  
-			  <div class='card'>
-				    <div class='card-header'>
-				        <h5>Inserisci nuovo utente</h5> 
-				    </div>
-				    <div class='card-body'>
+<head>
+	<jsp:include page="../header.jsp" />
+	<title>Inserimento Nuovo Utente</title>
+</head>
+<body class="d-flex flex-column h-100">
+	<jsp:include page="../navbar.jsp" />
+
+	<c:if test="${errorMessage != null}">
+		<div class="notification is-warning">
+			<button class="delete"></button>
+			${errorMessage}
+		</div>
+	</c:if>
+	
+	
+	<div class="container">
+		<div class="notification is-primary has-text-centered">
+			<h1 class="title is-1">Inserimento Nuovo Utente</h1>
+		</div>
 		
-							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
-		
-		
-							<form method="post" action="ExecuteInsertUserServlet" class="row g-3" novalidate="novalidate">
-							
-							
-								<div class="col-md-6">
-									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
-									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${insert_utente_attr.nome }" required>
-								</div>
-								
-								<div class="col-md-6">
-									<label for="cognome" class="form-label">Cognome <span class="text-danger">*</span></label>
-									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${insert_utente_attr.cognome }" required>
-								</div>
-							
-								<div class="col-md-6">
-									<label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire lo username" value="${insert_utente_attr.username }" required>
-								</div>
+		<div class="notification is-primary">
+			<form method="post" action="${pageContext.request.contextPath}/utente/ExecuteInsertUserServlet">
+				
+				<div class="columns">
+					<div class="column">
+
+						<div class="field">
+							<label class="label has-text-centered">Nome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="nome" placeholder="Nome">
+						  	</div>
+						</div>
+						
+						<div class="field">
+							<label class="label has-text-centered">Username</label>
+							<div class="control">
+						    	<input class="input" type="text" name="username" placeholder="Username">
+						  	</div>
+						</div>
+						
+					</div>
 					
-								<div class="col-md-6">
-									<label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-									<input type="password" class="form-control" name="password" id=password placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
-								</div>
-								
-								<select class="form-select" aria-label="Default select example" id="ruolo" name="ruolo">
-								  <option selected value=""> - Ruolo - </option>
-								  <option value="ROLE_ADMIN">ADMIN</option>
-								  <option value="ROLE_CLASSIC_USER">CLASSIC USER</option>
-								</select>
-								
-							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-							</div>
-		
-						</form>
-  
-				    
-				    
-					<!-- end card-body -->			   
-				    </div>
-				<!-- end card -->
-				</div>		
-					  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
+					<div class="column">
+					
+						<div class="field">
+							<label class="label has-text-centered">Cognome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="cognome" placeholder="Cognome">
+						  	</div>
+						</div>
+					
+						
+						
+						<div class="field">
+							<label class="label has-text-centered">Password</label>
+							<div class="control">
+						    	<input class="input" type="password" name="password" placeholder="Password">
+						  	</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="dropdown is-active">
+					<div class="dropdown-trigger">
+						<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+							<span>Ruolo</span>
+							<span class="icon is-small">
+								<i class="fas fa-angle-down" aria-hidden="true"></i>
+				      		</span>
+				    	</button>
+				  	</div>
+					<div class="dropdown-menu" id="dropdown-menu" role="menu">
+				    	<div class="dropdown-content">
+				    		<a href="#" class="dropdown-item">
+				        		Admin
+				      		</a>
+				      		<a class="dropdown-item">
+				        		Classic User
+				      		</a>
+				    	</div>
+					</div>
+				</div>
+				
+				<div align="center">
+					<input class="button is-info" type="submit" value="Inserisci Nuovo Utente">
+				</div>
+
+			</form>
 			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+		</div>
+	</div>
+			
+	<jsp:include page="../footer.jsp" />
+</body>
 </html>

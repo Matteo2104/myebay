@@ -3,82 +3,86 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-	 
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+<head>
+	<jsp:include page="../header.jsp" />
+	<title>Modifica Annuncio</title>
+</head>
+<body>
 	   
-	   <title>Modifica Utente</title>
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		<c:if test="${errorMessage != null}">
+			<div class="notification is-warning">
+				<button class="delete"></button>
+				${errorMessage}
+			</div>
+		</c:if>
+		
+		
+		<div class="notification is-primary has-text-centered">
+			<h2 class="title is-2">Modifica annuncio</h2>
+			
+			<form method="post" action="ExecuteEditAnnuncioServlet">
+				
+				<div class="columns">
+					<div class="column">
+
+						<div class="field">
+							<label class="label has-text-centered">Titolo</label>
+							<div class="control">
+						    	<input class="input" type="text" name="titolo" placeholder="Titolo" value="${edit_annuncio_attr.titolo}">
+						  	</div>
+						</div>
+						
+						<div class="field">
+							<label class="label has-text-centered">Prezzo</label>
+							<div class="control">
+						    	<input class="input" type="number" name="prezzo" placeholder="Prezzo" value="${edit_annuncio_attr.prezzo}">
+						  	</div>
+						</div>
+						
+					</div>
+					
+					<div class="column">
+					
+						<div class="field">
+							<label class="label has-text-centered">Descrizione</label>
+							<div class="control">
+						    	<input class="textarea" type="text" name="testo" placeholder="Cognome" value="${edit_annuncio_attr.testoAnnuncio}">
+						  	</div>
+						</div>
+						
+
+						
+						
+					</div>
+					
+					
+				</div>	
+				
+				<c:forEach items="${mappa_categorie}" var="categoria" >
+						<div class="field">
+							<label class="checkbox">
+								<input type="checkbox" value="${categoria.key.id}" name="categorie" ${categoria.value?'checked':''}>
+								${categoria.key.descrizione}
+							</label>
+						</div>
+					</c:forEach>	
+				
+				<div align="center">
+					<a href="${pageContext.request.contextPath}/annuncio/ExecuteListAnnunciPersonaliServlet" class="button" style='width:100px'>Indietro</a>
+					<input class="button is-info" type="submit" value="Modifica Annuncio">
+				</div>
+
+			</form>
+			
+			
+		</div>
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
 	    
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
-					  ${errorMessage}
-					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-			  
-			  <div class='card'>
-				    <div class='card-header'>
-				        <h5>Modifica Annuncio</h5> 
-				    </div>
-				    <div class='card-body'>
-		
-							<form method="post" action="ExecuteEditAnnuncioServlet" class="row g-3" >
-								
-								<div class="col-md-6">
-									<label for="titolo" class="form-label">Titolo: </label>
-									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Modifica il titolo" value="${edit_annuncio_attr.titolo}" >
-								</div>
-							
-								<div class="col-md-6">
-									<label for="testo" class="form-label">Descrizione: </label>
-									<input type="text" name="testo" id="testo" class="form-control" placeholder="Modifica il nome" value="${edit_annuncio_attr.testoAnnuncio}" >
-								</div>
-								
-								<div class="col-md-6">
-									<label for="cognome" class="form-label">Prezzo: </label>
-									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Modifica il prezzo" value="${edit_annuncio_attr.prezzo}" >
-								</div>
-								
-								<c:forEach items="${mappa_categorie}" var="categoria" >
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="${categoria.key.id}"
-										id="flexCheckDefault" name="categorie" ${categoria.value?'checked':''}> <label class="form-check-label"
-										for="flexCheckDefault"> ${categoria.key.codice} </label>
-									</div>
-								</c:forEach>
-								
-								<div class="col-12">
-									<button type="submit" name="idAnnuncio" value="${edit_annuncio_attr.id}" class="btn btn-primary">Conferma</button>
-									<input class="btn btn-outline-warning" type="reset" value="Ripulisci"/>
-									<a href="${pageContext.request.contextPath}/annuncio/ExecuteListAnnunciPersonaliServlet" class='btn btn-outline-secondary' style='width:100px'>
-					            		<i class='fa fa-chevron-left'></i> Indietro
-					       			</a>
-								</div>
-						</form>
-  
-				    
-				    
-					<!-- end card-body -->			   
-				    </div>
-				<!-- end card -->
-				</div>		
-					  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
-			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+</body>
 </html>

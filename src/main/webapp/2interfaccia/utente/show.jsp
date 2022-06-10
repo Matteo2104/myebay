@@ -1,88 +1,86 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="it" class="h-100" >
 <head>
-	<jsp:include page="../header.jsp" />
-	<meta charset="ISO-8859-1">
-	<title>Dettagli Utente</title>
+	<jsp:include page="../header.jsp" />		
+	<title>Dettaglio utente</title>   
 </head>
 <body>
-<body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
+	
+	<jsp:include page="../navbar.jsp"></jsp:include>
+	
+	<div class="container">
+		
+		<div class="notification is-primary">
+			<div class="box">
+				<h2 class="title is-2">Dettaglio Utente con ID: ${visualizza_utente_attr.id}</h2>
+				
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Nome:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${visualizza_utente_attr.nome}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Cognome:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${visualizza_utente_attr.cognome}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Username:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${visualizza_utente_attr.username}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Data di Creazione:</h5>
+				  	</div>
+				  	<div class="column">
+				    	<fmt:formatDate type = "date" value = "${visualizza_utente_attr.dateCreated}" />
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Stato:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${visualizza_utente_attr.stato}
+				  	</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+				    	<h5 class="title is-5">Ruolo:</h5>
+				  	</div>
+				  	<div class="column">
+				    	${visualizza_utente_attr.ruolo}
+				  	</div>
+				</div>
+
+			</div>
 			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class='card'>
-					    <div class='card-header'>
-					        <h5>Dettagli Utente</h5>
-					    </div>
-					   
-					    <div class='card-body'>
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Id:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.id}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Nome:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.nome}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.cognome}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Username:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.username}</dd>
-					    	</dl>
-					    	
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data di Creazione:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${visualizza_utente_attr.dateCreated}" /></dd>
-							  
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Stato:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.stato}</dd>
-					    	</dl>
-					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Ruolo:</dt>
-							  <dd class="col-sm-9">${visualizza_utente_attr.ruolo}</dd>
-					    	</dl>
-					    	
-					    
-					    	
-					    </div>
-					    
-							
-							 
-					<!-- end card -->
-					</div>	
-			  
-			    	<div class='card-footer'>
-						<a href="${pageContext.request.contextPath}/utente/ExecuteListUserServlet" class='btn btn-outline-secondary' style='width:80px'>
-					    	<i class='fa fa-chevron-left'></i> Indietro
-					    </a>
-					</div>
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
-			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
+			<div>
+				<a href="${pageContext.request.contextPath}/utente/ExecuteListUserServlet" class="button" style='width:100px'>Indietro</a>
+			</div>
+
+		</div>
+		
+	</div>
+	
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

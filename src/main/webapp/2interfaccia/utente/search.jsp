@@ -3,98 +3,101 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
-	 <head>
-	 
-	 	<!-- Common imports in pages -->
-	 	<jsp:include page="../header.jsp" />
+<head>
+	<jsp:include page="../header.jsp" />
+	<title>Ricerca</title>
+</head>
+<body>
 	   
-	   <title>Ricerca</title>
-	 </head>
-	   <body class="d-flex flex-column h-100">
-	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 	    
-			
-			<!-- Begin page content -->
-			<main class="flex-shrink-0">
-			  <div class="container">
-			  
-			  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
-					  ${errorMessage}
-					  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-					</div>
-			  
-			  <div class='card'>
-				    <div class='card-header'>
-				        <h5>Ricerca utenti</h5> 
-				    </div>
-				    <div class='card-body'>
-		
-							<form method="post" action="ExecuteSearchUserServlet" class="row g-3" >
-							
-							
-								<div class="col-md-6">
-									<label for="nome" class="form-label">Nome </label>
-									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${search_utente_attr.nome}" >
+ 
+	<div class="container">
+		<div class="notification is-primary has-text-centered">
+			<h1 class="title is-1">Ricerca Utenti</h1>
+			<h4 class="title is-4">Inserisci i parametri di ricerca</h4>
+  		</div>
+  		
+  		<form method="post" action="${pageContext.request.contextPath}/utente/ExecuteSearchUserServlet">
+	  		<div class="notification is-primary has-text-centered">
+	  			
+	  			<div class="columns">
+	  			
+	  				<div class="column">
+	  					<div class="field">
+							<label class="label">Nome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="nome" placeholder="Nome" value="${search_utente_attr.nome}">
+						  	</div>
+						</div>
+						
+						<div class="field">
+							<label class="label">Username</label>
+							<div class="control">
+						    	<input class="input" type="text" name="username" placeholder="Username" value="${search_utente_attr.username}">
+						  	</div>
+						</div>
+	  				</div>
+	  				
+	  				<div class="column">
+	  					
+	  					<div class="field">
+							<label class="label">Cognome</label>
+							<div class="control">
+						    	<input class="input" type="text" name="cognome" placeholder="Cognome" value="${search_utente_attr.cognome}">
+						  	</div>
+						</div>
+						
+						<div class="columns">
+	  						<div class="column">
+	  							<div class="field">
+									<label class="label">Data di Creazione</label>
+									<fmt:formatDate pattern='yyyy-MM-dd' var="parsedDate" type='date' value="${search_utente_attr.dateCreated}" />
+									<div class="control">
+								    	<input type="date" placeholder="dd/MM/yy" name="dateCreated" value="${parsedDate}" placeholder="dd/MM/yy">
+								  	</div>
 								</div>
-								
-								<div class="col-md-6">
-									<label for="cognome" class="form-label">Cognome </label>
-									<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${search_utente_attr.nome}" >
+				  			</div>
+	  						<div class="column">
+	  						
+	  						
+			  				<div class="dropdown is-active">
+								<div class="dropdown-trigger">
+									<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+										<span>Ruolo</span>
+										<span class="icon is-small">
+											<i class="fas fa-angle-down" aria-hidden="true"></i>
+							      		</span>
+							    	</button>
+							  	</div>
+								<div class="dropdown-menu" id="dropdown-menu" role="menu">
+							    	<div class="dropdown-content">
+							    		<a href="#" class="dropdown-item">
+							        		Admin
+							      		</a>
+							      		<a class="dropdown-item">
+							        		Classic User
+							      		</a>
+							    	</div>
 								</div>
-							
-								<div class="col-md-6">
-									<label for="username" class="form-label">Username </label>
-									<input type="text" class="form-control" name="username" id="username" placeholder="Inserire lo username" value="${search_utente_attr.cognome}" >
-								</div>
-								
-								<fmt:formatDate pattern='yyyy-MM-dd' var="parsedDate" type='date' value="${search_utente_attr.dateCreated}" />
-								<div class="col-md-3">
-									<label for="dataCreazione" class="form-label">Data di Creazione </label>
-                        			<input class="form-control" id="dataCreazione" type="date" placeholder="dd/MM/yy"
-                            			title="formato : gg/mm/aaaa"  name="dateCreated" value="${parsedDate}"  >
-								</div>	
-								
-								
-								
-								
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="ROLE_ADMIN"
-										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
-										for="flexCheckDefault"> Admin </label>
-									</div>
-									
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="ROLE_CLASSIC_USER"
-										id="flexCheckDefault" name="ruoli"> <label class="form-check-label"
-										for="flexCheckDefault"> Classic User </label>
-									</div>
-								
-								
-								
-							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca</button>
-								<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Aggiungi nuovo utente</a>
-								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 							</div>
-		
-						</form>
-  
-				    
-				    
-					<!-- end card-body -->			   
-				    </div>
-				<!-- end card -->
-				</div>		
-					  
-			    
-			  <!-- end container -->  
-			  </div>
-			  
-			</main>
-			
-			<!-- Footer -->
-			<jsp:include page="../footer.jsp" />
-	  </body>
+								
+	  						</div>
+	  					</div>
+					
+	  			</div>
+				
+	  		</div>
+	  		
+	  		<div class="field" align="center">
+					<input class="button" type="submit" value="Cerca">
+			</div>
+			</div>
+  		</form>
+	</div>
+	
+	
+	<jsp:include page="../footer.jsp" />
+	
+</body>
 </html>
