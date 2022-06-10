@@ -49,22 +49,22 @@
 						<div class="field">
 							<label class="label has-text-centered">Descrizione</label>
 							<div class="control">
-						    	<input class="input" type="text" name="testo" placeholder="Cognome">
+						    	<input class="textarea" type="text" name="testo" placeholder="Descrizione">
 						  	</div>
 						</div>
-
-						<c:forEach items="${mappa_categorie}" var="categoria" >
-							<div class="field">
-								<label class="checkbox">
-									<input type="checkbox" value="${categoria.id}" name="categorie">
-									${categoria.descrizione}
-								</label>
-							</div>
-						</c:forEach>
 						
 					</div>
 				</div>		
 				
+				<c:forEach items="${mappa_categorie}" var="categoria" >
+					<div class="field">
+						<label class="checkbox">
+							<input type="checkbox" value="${categoria.key.id}" name="categorie">
+							${categoria.key.descrizione}
+						</label>
+					</div>
+				</c:forEach>
+						
 				<div align="center">					
 					<input class="button is-info" type="submit" value="Inserisci Annuncio">
 				</div>
