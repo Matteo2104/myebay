@@ -25,7 +25,7 @@ public class ExecuteAreaPersonaleServlet extends HttpServlet {
 		Utente utenteInSessione = (Utente) request.getSession().getAttribute("userInfo");
 		
 		try {
-			request.setAttribute("userInfo", MyServiceFactory.getUtenteServiceInstance().findById(utenteInSessione.getId()));
+			request.getSession().setAttribute("userInfo", MyServiceFactory.getUtenteServiceInstance().findById(utenteInSessione.getId()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");

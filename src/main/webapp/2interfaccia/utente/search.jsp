@@ -30,7 +30,9 @@
 						    	<input class="input" type="text" name="nome" placeholder="Nome" value="${search_utente_attr.nome}">
 						  	</div>
 						</div>
-						
+					</div>
+					
+					<div class="column">
 						<div class="field">
 							<label class="label">Username</label>
 							<div class="control">
@@ -40,50 +42,52 @@
 	  				</div>
 	  				
 	  				<div class="column">
-	  					
 	  					<div class="field">
 							<label class="label">Cognome</label>
 							<div class="control">
 						    	<input class="input" type="text" name="cognome" placeholder="Cognome" value="${search_utente_attr.cognome}">
 						  	</div>
 						</div>
-						
-						<div class="columns">
-	  						<div class="column">
-	  							<div class="field">
-									<label class="label">Data di Creazione</label>
-									<fmt:formatDate pattern='yyyy-MM-dd' var="parsedDate" type='date' value="${search_utente_attr.dateCreated}" />
-									<div class="control">
-								    	<input type="date" placeholder="dd/MM/yy" name="dateCreated" value="${parsedDate}" placeholder="dd/MM/yy">
-								  	</div>
-								</div>
-				  			</div>
-	  						<div class="column">
-	  						
-	  						<div class="field">
-								<label class="checkbox">
-									<input type="checkbox" value="ROLE_ADMIN" name="ruoli">
-									Admin
-								</label>
-								<label class="checkbox">
-									<input type="checkbox" value="ROLE_CLASSIC_USER" name="ruoli">
-									Classic User
-								</label>
-							</div>
+					</div>
+				</div>
+				
+				<div class="columns">
+					<div class="column">
+						<div class="field">
+							<label class="label">Data di Creazione</label>
+							<fmt:formatDate pattern='yyyy-MM-dd' var="parsedDate" type='date' value="${search_utente_attr.dateCreated}" />
+							<div class="control">
+						    	<input type="date" placeholder="dd/MM/yy" name="dateCreated" value="${parsedDate}" placeholder="dd/MM/yy">
+						  	</div>
+						</div>
+			  			
+  						
+  						<div class="field">
+							<label class="checkbox">
+								<input type="checkbox" value="ROLE_ADMIN" name="ruoli">
+								Admin
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" value="ROLE_CLASSIC_USER" name="ruoli">
+								Classic User
+							</label>
+						</div>
+					</div>
+				</div>
+  							
 	  						
 	  						
 			  		
 								
-	  						</div>
-	  					</div>
+	  					
 					
-	  			</div>
+	  			
 				
-	  		</div>
 	  		
-	  		<div class="field" align="center">
-					<input class="button" type="submit" value="Cerca">
-			</div>
+	  		
+		  		<div class="field" align="center">
+						<input class="button" type="submit" value="Cerca">
+				</div>
 			</div>
   		</form>
 	</div>

@@ -8,9 +8,11 @@ import javax.persistence.EntityManager;
 import it.prova.myebay.dao.AcquistoDAO;
 import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.dao.UtenteDAO;
+import it.prova.myebay.exception.AdminCannotBuyException;
 import it.prova.myebay.exception.InsufficientCreditException;
 import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
@@ -50,6 +52,10 @@ public class AcquistoServiceImpl implements AcquistoService {
 			if (annuncioDaAcquistare == null) {
 				throw new RuntimeException("Errore nel caricamento dell'annuncio");
 			}
+			
+			// verifico che l'utente sia abilitato all'acquisto
+			if (utenteInSessione.getRuolo() == Ruolo.ROLE_ADMIN) 
+				throw new AdminCannotBuyException("Non si hanno i permessi per effettuare l'acquisto");
 			
 			// verifico che il credito sia sufficiente all'acquisto
 			if (utenteInSessione.getCreditoResiduo() < annuncioDaAcquistare.getPrezzo()) {

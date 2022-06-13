@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import it.prova.myebay.exception.AdminCannotBuyException;
 import it.prova.myebay.exception.InsufficientCreditException;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
@@ -34,6 +36,10 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
 			MyServiceFactory.getAcquistoServiceInstance().acquista(Long.parseLong(idAnnuncio), utenteInSessione);			
 			
+		} catch (AdminCannotBuyException e) {
+			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e.getMessage());
+			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			return;
 		} catch (InsufficientCreditException e) {
 			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e.getMessage());
 			request.setAttribute("insufficientCredit", 1);
