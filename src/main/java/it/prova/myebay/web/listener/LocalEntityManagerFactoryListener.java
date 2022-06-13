@@ -34,7 +34,7 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			entityManagerFactory = Persistence.createEntityManagerFactory("myebay_unit");
 			// questa chiamata viene fatta qui per semplicità ma in genere è meglio trovare
 			// altri modi per fare init
-			initAdminUserAndRuoli();
+			//initAdminUserAndRuoli();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);

@@ -54,5 +54,4 @@ public class Categoria {
 		return "Categoria [id=" + id + ", descrizione=" + descrizione + ", codice=" + codice + "]";
 	}
 	
-	
 }

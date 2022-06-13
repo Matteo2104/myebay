@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.model.Annuncio;
-import it.prova.myebay.model.Categoria;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class AnnuncioServiceImpl implements AnnuncioService {

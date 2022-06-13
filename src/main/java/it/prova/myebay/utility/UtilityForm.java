@@ -29,11 +29,11 @@ public class UtilityForm {
 		if (categorie == null || categorie.length < 1) {
 			result.setCategorie(null);
 		} else {
-			for (int i=0;i<categorie.length;i++) {
+			for (int i = 0; i < categorie.length; i++) {
 				try {
 					result.getCategorie().add(new Categoria(Long.parseLong(categorie[i])));
 				} catch (Exception e) {
-					
+					throw new RuntimeException("categoria non valida.");
 				}
 			}
 		}
@@ -47,13 +47,9 @@ public class UtilityForm {
 		utenteDTO.setCognome(cognome);
 		utenteDTO.setUsername(username);
 
-		if (parseDateArrivoFromString(dateCreated) != null) {
-			// result.setPassword(campoVariabile);
-			utenteDTO.setDateCreated(parseDateArrivoFromString(dateCreated));
-		}
+		if (parseDateFromString(dateCreated) != null) 
+			utenteDTO.setDateCreated(parseDateFromString(dateCreated));
 		
-		
-		System.out.println(utenteDTO);
 		
 		if (ruoli == null || ruoli.length < 1) {
 			utenteDTO.setRuoli(null);
@@ -74,10 +70,7 @@ public class UtilityForm {
 		utenteDTO.setCognome(cognome);
 		utenteDTO.setUsername(username);
 		utenteDTO.setPassword(password);
-		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
-		
-		//System.out.println(utenteDTO);
-		
+		utenteDTO.setRuolo(Ruolo.fromString(ruolo));		
 		
 		return utenteDTO;
 	}
@@ -90,8 +83,6 @@ public class UtilityForm {
 		utenteDTO.setStato(StatoUtente.fromString(stato));
 		utenteDTO.setRuolo(Ruolo.fromString(ruolo));
 		
-		//System.out.println(utenteDTO);
-		
 		return utenteDTO;
 	}
 	
@@ -101,39 +92,7 @@ public class UtilityForm {
 		return result;
 	}
 	
-	/*
-	public static Utente createUtenteFromParamsWithStato(String nome, String cognome, String username, String stato, String[] ruoli) {
-		Utente result = new Utente(nome, cognome, username);
-		
-		if (stato != null) {
-			switch (stato) {
-			case "CREATO": 
-				result.setStato(StatoUtente.CREATO);
-				break;
-			case "ATTIVO": 
-				result.setStato(StatoUtente.ATTIVO);
-				break;
-			case "DISABILITATO": 
-				result.setStato(StatoUtente.DISABILITATO);
-				break;
-			}
-		}
-		
-		if (ruoli == null || ruoli.length < 1) {
-			result.setRuoli(null);
-		} else {
-			for (int i=0;i<ruoli.length;i++) {
-				try {
-					result.getRuoli().add(new Ruolo(Long.parseLong(ruoli[i])));
-				} catch (Exception e) {
-					
-				}
-			}
-		}
-		
-		return result;
-	}
-	*/
+	
 	public static boolean validateUtenteInsertBean(UtenteInsert utenteToBeValidated) {
 		if (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
@@ -164,12 +123,12 @@ public class UtilityForm {
 		return true;
 	}
 	
-	public static Date parseDateArrivoFromString(String dataDiNascitaStringParam) {
-		if (StringUtils.isBlank(dataDiNascitaStringParam))
+	public static Date parseDateFromString(String dateStringParam) {
+		if (StringUtils.isBlank(dateStringParam))
 			return null;
 
 		try {
-			return new SimpleDateFormat("yyyy-MM-dd").parse(dataDiNascitaStringParam);
+			return new SimpleDateFormat("yyyy-MM-dd").parse(dateStringParam);
 		} catch (ParseException e) {
 			return null;
 		}

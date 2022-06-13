@@ -7,6 +7,15 @@ import it.prova.myebay.model.Utente;
 public class UtenteEdit extends UtenteDTO {
 	private Ruolo ruolo;
 	private StatoUtente stato;
+	
+	public UtenteEdit() {}
+	public UtenteEdit(String nome, String cognome, String username, StatoUtente stato) {
+		super.nome = nome;
+		super.cognome = cognome;
+		super.username = username;
+		
+		this.stato = stato;
+	}
 
 	public Ruolo getRuolo() {
 		return ruolo;

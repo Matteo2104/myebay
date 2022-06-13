@@ -42,7 +42,7 @@ public class Annuncio {
 	// un annuncio ha più categorie, e una categoria è mappata da più annunci
 	@ManyToMany
 	@JoinTable(name = "annuncio_categoria", joinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
-	private Set<Categoria> categorie = new HashSet<>(0);
+	private Set<Categoria> categorie = new HashSet<>();
 
 	public Annuncio() {}
 	public Annuncio(String titolo, String testoAnnuncio) {
