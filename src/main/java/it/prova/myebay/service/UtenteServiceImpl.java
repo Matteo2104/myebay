@@ -3,14 +3,17 @@ package it.prova.myebay.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 import javax.persistence.EntityManager;
+
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.exception.UserRegisteredException;
-import it.prova.myebay.model.Utente;
-import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
+import it.prova.myebay.exception.service.UtenteServiceException;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
+import it.prova.myebay.model.Utente;
+import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class UtenteServiceImpl implements UtenteService {
 	private UtenteDAO utenteDAO;
@@ -21,7 +24,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public List<Utente> listAll() throws Exception {
+	public List<Utente> listAll() throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -41,7 +44,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public Utente findByUsernameAndPassword(String username, String password) throws Exception {
+	public Utente findByUsernameAndPassword(String username, String password) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -62,7 +65,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public Utente findById(long id) throws Exception {
+	public Utente findById(long id) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -83,7 +86,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void aggiorna(Utente utenteEdit, Utente utenteInstance) throws Exception {
+	public void aggiorna(Utente utenteEdit, Utente utenteInstance) throws UtenteServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -114,7 +117,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void inserisciNuovo(Utente utenteInstance) throws Exception {
+	public void inserisciNuovo(Utente utenteInstance) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -139,7 +142,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public Utente accedi(String username, String password) throws Exception {
+	public Utente accedi(String username, String password) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -161,7 +164,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void disabilita(Long id) throws Exception {
+	public void disabilita(Long id) throws UtenteServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -172,6 +175,10 @@ public class UtenteServiceImpl implements UtenteService {
 
 			// eseguo quello che realmente devo fare
 			Utente utente = utenteDAO.findOne(id).orElse(null);
+			
+			if (utente == null) {
+				throw new UtenteServiceException("Si è verificato un errore: utente non trovato");
+			}
 			
 			utente.setStato(StatoUtente.DISABILITATO);
 			
@@ -188,7 +195,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void abilita(Long id, String stato) throws Exception {
+	public void abilita(Long id, String stato) throws UtenteServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -199,6 +206,10 @@ public class UtenteServiceImpl implements UtenteService {
 
 			// eseguo quello che realmente devo fare
 			Utente utente = utenteDAO.findOne(id).orElse(null);
+			
+			if (utente == null) {
+				throw new UtenteServiceException("Si è verificato un errore: utente non trovato");
+			}
 			
 			utente.setStato(StatoUtente.fromString(stato));
 			
@@ -215,7 +226,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public List<Utente> findByExample(UtenteSearch example) throws Exception {
+	public List<Utente> findByExample(UtenteSearch example) throws UtenteServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -235,7 +246,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public Utente caricaSingoloElemento(Long id) throws Exception {
+	public Utente caricaSingoloElemento(Long id) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -244,7 +255,12 @@ public class UtenteServiceImpl implements UtenteService {
 			utenteDAO.setEntityManager(entityManager);
 
 			// eseguo quello che realmente devo fare
-			return utenteDAO.findOne(id).get();
+			Optional<Utente> utenteFound = utenteDAO.findOne(id);
+			
+			if (utenteFound.isEmpty())
+				throw new UtenteServiceException("Si è verificato un errore: utente non trovato");
+				
+			return utenteFound.get();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -254,7 +270,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public Utente caricaSingoloElementoEager(Long id) throws Exception {
+	public Utente caricaSingoloElementoEager(Long id) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -263,7 +279,12 @@ public class UtenteServiceImpl implements UtenteService {
 			utenteDAO.setEntityManager(entityManager);
 
 			// eseguo quello che realmente devo fare
-			return utenteDAO.findOneEager(id).get();
+			Optional<Utente> utenteFound = utenteDAO.findOneEager(id);
+			
+			if (utenteFound.isEmpty())
+				throw new UtenteServiceException("Si è verificato un errore: utente non trovato");
+				
+			return utenteFound.get();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -274,7 +295,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void registra(Utente utente) throws Exception {
+	public void registra(Utente utente) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -302,10 +323,7 @@ public class UtenteServiceImpl implements UtenteService {
 
 			entityManager.getTransaction().commit();
 			
-		} catch (UserRegisteredException e) {
-			entityManager.getTransaction().rollback();
-			e.printStackTrace();
-			throw e;
+		
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
@@ -316,7 +334,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 	
 	@Override
-	public void ricarica(long userId, int credito) throws Exception {
+	public void ricarica(long userId, int credito) throws UtenteServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -330,7 +348,7 @@ public class UtenteServiceImpl implements UtenteService {
 			// eseguo quello che realmente devo fare
 			Optional<Utente> utente = utenteDAO.findOne(userId);
 			if (!utente.isPresent())
-				throw new Exception("Utente non trovato!");
+				throw new UtenteServiceException("Utente non trovato!");
 
 			Utente utenteInstance = utente.get();
 			utenteInstance.setCreditoResiduo(utenteInstance.getCreditoResiduo() + credito);
