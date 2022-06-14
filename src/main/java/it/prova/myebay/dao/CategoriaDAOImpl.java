@@ -3,7 +3,8 @@ package it.prova.myebay.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import it.prova.myebay.exception.CategoriaDAOException;
+
+import it.prova.myebay.exception.DAO.CategoriaDAOException;
 import it.prova.myebay.model.Categoria;
 
 public class CategoriaDAOImpl implements CategoriaDAO {

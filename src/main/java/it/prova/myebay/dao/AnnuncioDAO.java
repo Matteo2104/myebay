@@ -2,7 +2,8 @@ package it.prova.myebay.dao;
 
 import java.util.List;
 import java.util.Optional;
-import it.prova.myebay.exception.AnnuncioDAOException;
+
+import it.prova.myebay.exception.DAO.AnnuncioDAOException;
 import it.prova.myebay.model.Annuncio;
 
 public interface AnnuncioDAO extends IBaseDAO<Annuncio> {

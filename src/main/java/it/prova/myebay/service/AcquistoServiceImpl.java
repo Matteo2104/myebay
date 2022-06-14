@@ -10,6 +10,7 @@ import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.exception.AdminCannotBuyException;
 import it.prova.myebay.exception.InsufficientCreditException;
+import it.prova.myebay.exception.service.AcquistoServiceException;
 import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Ruolo;
@@ -35,7 +36,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 	}
 	
 	@Override
-	public void acquista(Long id, Utente utenteInSessione) throws Exception {
+	public void acquista(Long id, Utente utenteInSessione) throws AcquistoServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -50,7 +51,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 			// comincio la sequenza di azioni per l'acquisto caricando l'annuncio 
 			Annuncio annuncioDaAcquistare = annuncioDAO.findOne(id).orElse(null);
 			if (annuncioDaAcquistare == null) {
-				throw new RuntimeException("Errore nel caricamento dell'annuncio");
+				throw new AcquistoServiceException("Errore nel caricamento dell'annuncio");
 			}
 			
 			// verifico che l'utente sia abilitato all'acquisto
@@ -88,7 +89,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 	}
 	
 	@Override
-	public List<Acquisto> listAll(Long id) throws Exception {
+	public List<Acquisto> listAll(Long id) throws AcquistoServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -109,7 +110,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 	}
 	
 	@Override
-	public Acquisto caricaSingoloElemento(Long id) throws Exception {
+	public Acquisto caricaSingoloElemento(Long id) throws AcquistoServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 

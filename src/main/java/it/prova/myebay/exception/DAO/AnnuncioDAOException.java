@@ -1,4 +1,4 @@
-package it.prova.myebay.exception;
+package it.prova.myebay.exception.DAO;
 
 public class AnnuncioDAOException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

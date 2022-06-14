@@ -1,7 +1,8 @@
 package it.prova.myebay.dao;
 
 import javax.persistence.EntityManager;
-import it.prova.myebay.exception.IBaseDAOException;
+
+import it.prova.myebay.exception.DAO.IBaseDAOException;
 
 public interface IBaseDAO<T> {
 

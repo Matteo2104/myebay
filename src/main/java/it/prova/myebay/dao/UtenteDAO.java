@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.exception.MissedLoginException;
-import it.prova.myebay.exception.UtenteDAOException;
+import it.prova.myebay.exception.DAO.UtenteDAOException;
 import it.prova.myebay.model.Utente;
 
 public interface UtenteDAO extends IBaseDAO<Utente> {

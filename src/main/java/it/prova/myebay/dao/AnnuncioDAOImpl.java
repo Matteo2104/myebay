@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.StringUtils;
 
-import it.prova.myebay.exception.AnnuncioDAOException;
+import it.prova.myebay.exception.DAO.AnnuncioDAOException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 

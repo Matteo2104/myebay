@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.exception.MissedLoginException;
-import it.prova.myebay.exception.UtenteDAOException;
+import it.prova.myebay.exception.DAO.UtenteDAOException;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
