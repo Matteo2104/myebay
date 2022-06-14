@@ -10,71 +10,73 @@ import it.prova.myebay.dao.UtenteDAO;
 import it.prova.myebay.dao.UtenteDAOImpl;
 
 public class MyServiceFactory {
-	private static AnnuncioService ANNUNCIO_SERVICE_INSTANCE;
-	private static AcquistoService ACQUISTO_SERVICE_INSTANCE;
-	private static CategoriaService CATEGORIA_SERVICE_INSTANCE;
-	private static UtenteService UTENTE_SERVICE_INSTANCE;
+	private static AnnuncioService annuncioServiceInstance;
+	private static AcquistoService acquistoServiceInstance;
+	private static CategoriaService categoriaServiceInstance;
+	private static UtenteService utenteServiceInstance;
 	
-	private static AnnuncioDAO ANNUNCIO_DAO_INSTANCE;
-	private static AcquistoDAO ACQUISTO_DAO_INSTANCE;
-	private static CategoriaDAO CATEGORIA_DAO_INSTANCE;
-	private static UtenteDAO UTENTE_DAO_INSTANCE;
+	private static AnnuncioDAO annuncioDaoInstance;
+	private static AcquistoDAO acquistoDaoInstance;
+	private static CategoriaDAO categoriaDaoInstance;
+	private static UtenteDAO utenteDaoInstance;
+	
+	private MyServiceFactory() {}
 
 	public static UtenteService getUtenteServiceInstance() {
-		if (UTENTE_SERVICE_INSTANCE == null)
-			UTENTE_SERVICE_INSTANCE = new UtenteServiceImpl();
+		if (utenteServiceInstance == null)
+			utenteServiceInstance = new UtenteServiceImpl();
 
-		if (UTENTE_DAO_INSTANCE == null)
-			UTENTE_DAO_INSTANCE = new UtenteDAOImpl();
+		if (utenteDaoInstance == null)
+			utenteDaoInstance = new UtenteDAOImpl();
 
-		UTENTE_SERVICE_INSTANCE.setUtenteDAO(UTENTE_DAO_INSTANCE);
-		return UTENTE_SERVICE_INSTANCE;
+		utenteServiceInstance.setUtenteDAO(utenteDaoInstance);
+		return utenteServiceInstance;
 	}
 
 
 
 	public static CategoriaService getCategoriaServiceInstance() {
-		if (CATEGORIA_SERVICE_INSTANCE == null)
-			CATEGORIA_SERVICE_INSTANCE = new CategoriaServiceImpl();
+		if (categoriaServiceInstance == null)
+			categoriaServiceInstance = new CategoriaServiceImpl();
 
-		if (CATEGORIA_DAO_INSTANCE == null)
-			CATEGORIA_DAO_INSTANCE = new CategoriaDAOImpl();
+		if (categoriaDaoInstance == null)
+			categoriaDaoInstance = new CategoriaDAOImpl();
 
-		CATEGORIA_SERVICE_INSTANCE.setCategoriaDAO(CATEGORIA_DAO_INSTANCE);
+		categoriaServiceInstance.setCategoriaDAO(categoriaDaoInstance);
 
-		return CATEGORIA_SERVICE_INSTANCE;
+		return categoriaServiceInstance;
 	}
 
 	public static AnnuncioService getAnnuncioServiceInstance() {
-		if (ANNUNCIO_SERVICE_INSTANCE == null)
-			ANNUNCIO_SERVICE_INSTANCE = new AnnuncioServiceImpl();
+		if (annuncioServiceInstance == null)
+			annuncioServiceInstance = new AnnuncioServiceImpl();
 
-		if (ANNUNCIO_DAO_INSTANCE == null)
-			ANNUNCIO_DAO_INSTANCE = new AnnuncioDAOImpl();
+		if (annuncioDaoInstance == null)
+			annuncioDaoInstance = new AnnuncioDAOImpl();
 
-		ANNUNCIO_SERVICE_INSTANCE.setAnnuncioDAO(ANNUNCIO_DAO_INSTANCE);
+		annuncioServiceInstance.setAnnuncioDAO(annuncioDaoInstance);
 
-		return ANNUNCIO_SERVICE_INSTANCE;
+		return annuncioServiceInstance;
 	}
 	
 	public static AcquistoService getAcquistoServiceInstance() {
-		if (ACQUISTO_SERVICE_INSTANCE == null)
-			ACQUISTO_SERVICE_INSTANCE = new AcquistoServiceImpl();
+		if (acquistoServiceInstance == null)
+			acquistoServiceInstance = new AcquistoServiceImpl();
 
-		if (ACQUISTO_DAO_INSTANCE == null)
-			ACQUISTO_DAO_INSTANCE = new AcquistoDAOImpl();
+		if (acquistoDaoInstance == null)
+			acquistoDaoInstance = new AcquistoDAOImpl();
 		
-		if (ANNUNCIO_DAO_INSTANCE == null)
-			ANNUNCIO_DAO_INSTANCE = new AnnuncioDAOImpl();
+		if (annuncioDaoInstance == null)
+			annuncioDaoInstance = new AnnuncioDAOImpl();
 		
-		if (UTENTE_DAO_INSTANCE == null)
-			UTENTE_DAO_INSTANCE = new UtenteDAOImpl();
+		if (utenteDaoInstance == null)
+			utenteDaoInstance = new UtenteDAOImpl();
 
-		ACQUISTO_SERVICE_INSTANCE.setAcquistoDAO(ACQUISTO_DAO_INSTANCE);
-		ACQUISTO_SERVICE_INSTANCE.setAnnuncioDAO(ANNUNCIO_DAO_INSTANCE);
-		ACQUISTO_SERVICE_INSTANCE.setUtenteDAO(UTENTE_DAO_INSTANCE);
+		acquistoServiceInstance.setAcquistoDAO(acquistoDaoInstance);
+		acquistoServiceInstance.setAnnuncioDAO(annuncioDaoInstance);
+		acquistoServiceInstance.setUtenteDAO(utenteDaoInstance);
 
-		return ACQUISTO_SERVICE_INSTANCE;
+		return acquistoServiceInstance;
 	}
 	
 }
