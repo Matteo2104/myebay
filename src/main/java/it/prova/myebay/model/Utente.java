@@ -3,7 +3,6 @@ package it.prova.myebay.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,22 +37,17 @@ public class Utente {
 	
 	@Enumerated(EnumType.STRING)
 	private StatoUtente stato = StatoUtente.CREATO;
-
-//	// un utente ha più ruoli
-//	@ManyToMany
-//	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
-//	private Set<Ruolo> ruoli = new HashSet<>(0);
 	
 	@Enumerated(EnumType.STRING)
 	private Ruolo ruolo;
 	
 	// un utente ha più annunci
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteInserimento")
-	private Set<Annuncio> annunci = new HashSet<Annuncio>(0);
+	private Set<Annuncio> annunci = new HashSet<>(0);
 	
 	// un utente può fare più acquisti
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteAcquirente")
-	private Set<Acquisto> acquisti = new HashSet<Acquisto>(0);
+	private Set<Acquisto> acquisti = new HashSet<>(0);
 	
 	public Utente() {
 	}
