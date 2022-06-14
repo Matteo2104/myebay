@@ -1,11 +1,9 @@
 package it.prova.myebay.service;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
-
 import it.prova.myebay.dao.CategoriaDAO;
+import it.prova.myebay.exception.service.CategoriaServiceException;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
@@ -18,7 +16,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 	
 	@Override
-	public List<Categoria> listAll() throws Exception {
+	public List<Categoria> listAll() throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -37,7 +35,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 	
 	@Override
-	public Categoria findByCodice(String codice) throws Exception {
+	public Categoria findByCodice(String codice) throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -56,7 +54,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 	
 	@Override
-	public void inserisciNuovo(Categoria categoria) throws Exception {
+	public void inserisciNuovo(Categoria categoria) throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
