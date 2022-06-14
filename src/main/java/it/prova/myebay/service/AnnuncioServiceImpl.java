@@ -1,12 +1,10 @@
 package it.prova.myebay.service;
 
-
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-
 import it.prova.myebay.dao.AnnuncioDAO;
+import it.prova.myebay.exception.service.AnnuncioServiceException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
@@ -19,7 +17,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public List<Annuncio> getAnnunciAttivi() throws Exception {
+	public List<Annuncio> getAnnunciAttivi() throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -39,7 +37,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public List<Annuncio> findByExample(Annuncio example) throws Exception {
+	public List<Annuncio> findByExample(Annuncio example) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -59,7 +57,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public List<Annuncio> findByExamplePersonale(Annuncio example, Long idUserInSession) throws Exception {
+	public List<Annuncio> findByExamplePersonale(Annuncio example, Long idUserInSession) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -79,7 +77,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public Annuncio caricaSingoloElemento(Long id) throws Exception {
+	public Annuncio caricaSingoloElemento(Long id) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -99,7 +97,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public void aggiungi(Annuncio annuncio) throws Exception {
+	public void aggiungi(Annuncio annuncio) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -124,7 +122,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public Annuncio caricaSingoloElementoEager(Long id) throws Exception {
+	public Annuncio caricaSingoloElementoEager(Long id) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
@@ -144,7 +142,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public List<Annuncio> listAll() throws Exception {
+	public List<Annuncio> listAll() throws AnnuncioServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -163,7 +161,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public List<Annuncio> listAll(Long id) throws Exception {
+	public List<Annuncio> listAll(Long id) throws AnnuncioServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -182,7 +180,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public void aggiorna(Annuncio annuncio) throws Exception {
+	public void aggiorna(Annuncio annuncio) throws AnnuncioServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
@@ -208,7 +206,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 	
 	@Override
-	public void rimuovi(Long id) throws Exception {
+	public void rimuovi(Long id) throws AnnuncioServiceException {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
