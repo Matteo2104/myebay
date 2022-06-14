@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.dto.UtenteSearch;
+import it.prova.myebay.exception.AnnuncioDAOException;
 import it.prova.myebay.model.Utente;
 
 public interface UtenteDAO extends IBaseDAO<Utente> {
@@ -20,6 +21,8 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	public Optional<Utente> login(String username, String password);
 
 	public Optional<Utente> findOneEager(Long id) throws Exception;
+	
+	public Optional<Utente> findOne(Long id) throws AnnuncioDAOException;
 	
 	public List<Utente> findByExample(Utente example) throws Exception;
 

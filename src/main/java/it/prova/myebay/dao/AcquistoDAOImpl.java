@@ -22,7 +22,7 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 	}
 
 	@Override
-	public Optional<Acquisto> findOne(Long id) throws Exception {
+	public Optional<Acquisto> findOne(Long id) throws AcquistoDAOException {
 		Acquisto result = entityManager.find(Acquisto.class, id);
 		return result != null ? Optional.of(result) : Optional.empty();
 	}

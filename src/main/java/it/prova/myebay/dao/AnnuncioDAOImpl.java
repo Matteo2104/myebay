@@ -40,7 +40,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 
 	@Override
-	public Optional<Annuncio> findOne(Long id) throws Exception {
+	public Optional<Annuncio> findOne(Long id) throws AnnuncioDAOException {
 		Annuncio result = entityManager.find(Annuncio.class, id);
 		return result != null ? Optional.of(result) : Optional.empty();
 	}
@@ -51,9 +51,9 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 
 	@Override
-	public void insert(Annuncio input) throws Exception {
+	public void insert(Annuncio input) throws AnnuncioDAOException {
 		if (input == null) {
-			throw new Exception("Problema valore in input");
+			throw new AnnuncioDAOException("Problema valore in input");
 		}
 		entityManager.persist(input);
 	}

@@ -1,9 +1,9 @@
 package it.prova.myebay.dao;
 
 import java.util.List;
-import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import it.prova.myebay.exception.CategoriaDAOException;
 import it.prova.myebay.model.Categoria;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
@@ -15,52 +15,27 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	}
 	
 	@Override
-	public List<Categoria> list() throws Exception {
+	public List<Categoria> list() throws CategoriaDAOException {
 		return entityManager.createQuery("from Categoria", Categoria.class).getResultList();
 	}
 
-	@Override
-	public Optional<Categoria> findOne(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
-	public void update(Categoria input) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insert(Categoria input) throws Exception {
+	public void insert(Categoria input) throws CategoriaDAOException {
 		if (input == null) {
-			throw new Exception("Problema valore in input");
+			throw new CategoriaDAOException("Problema valore in input");
 		}
 
 		entityManager.persist(input);
 	}
-
-	@Override
-	public void delete(Categoria input) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Categoria> findByExample(Categoria example) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 	
 	@Override
-	public Categoria findByCodice(String codice) throws Exception {
+	public Categoria findByCodice(String codice) throws CategoriaDAOException {
 		TypedQuery<Categoria> query = entityManager.createQuery("from Categoria c where c.codice = :codice", Categoria.class);
 		query.setParameter("codice", codice);
 		return query.getResultStream().findFirst().orElse(null);
 	}
-
 	
 
 }
