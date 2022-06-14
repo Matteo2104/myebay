@@ -1,9 +1,9 @@
 package it.prova.myebay.exception;
 
-public class AcquistoDAOException extends RuntimeException {
+public class IBaseDAOException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
-	public AcquistoDAOException(String message) {
+	public IBaseDAOException(String message) {
 		super(message);
 	}
 }
