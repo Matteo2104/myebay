@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
 import org.apache.commons.lang3.StringUtils;
+
+import it.prova.myebay.exception.AnnuncioDAOException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 
@@ -21,17 +25,17 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 	
 	@Override
-	public List<Annuncio> list(long userId) throws Exception {
+	public List<Annuncio> list(long userId) throws AnnuncioDAOException {
 		return entityManager.createQuery("from Annuncio a join fetch a.utenteInserimento u where u.id = :id", Annuncio.class).setParameter("id", userId).getResultList();
 	}
 	
 	@Override
-	public List<Annuncio> listOnlyActive() throws Exception {
+	public List<Annuncio> listOnlyActive() throws AnnuncioDAOException {
 		return entityManager.createQuery("from Annuncio a where a.aperto = 1", Annuncio.class).getResultList();
 	}
 	
 	@Override
-	public List<Annuncio> list() throws Exception {
+	public List<Annuncio> list() throws AnnuncioDAOException {
 		return entityManager.createQuery("from Annuncio", Annuncio.class).getResultList();
 	}
 
@@ -42,8 +46,8 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 
 	@Override
-	public void update(Annuncio input) throws Exception {
-		input = entityManager.merge(input);
+	public void update(Annuncio input) throws AnnuncioDAOException {
+		entityManager.merge(input);
 	}
 
 	@Override
@@ -55,17 +59,18 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	}
 
 	@Override
-	public void delete(Annuncio input) throws Exception {
+	public void delete(Annuncio input) throws AnnuncioDAOException {
 		if (input == null) {
-			throw new Exception("Problema valore in input");
+			throw new AnnuncioDAOException("Problema valore in input");
 		}
 		entityManager.remove(entityManager.merge(input));
 	}
 
 	@Override
-	public List<Annuncio> findByExample(Annuncio example) throws Exception {
-		Map<String, Object> paramaterMap = new HashMap<String, Object>();
-		List<String> whereClauses = new ArrayList<String>();
+	public List<Annuncio> findByExample(Annuncio example) throws AnnuncioDAOException {
+		String and = " and ";
+		Map<String, Object> paramaterMap = new HashMap<>();
+		List<String> whereClauses = new ArrayList<>();
 
 		StringBuilder queryBuilder = new StringBuilder("select distinct a from Annuncio a left join fetch a.categorie c where a.id = a.id and a.aperto = 1 ");
 
@@ -86,21 +91,26 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 			paramaterMap.put("listCategorieId", listCategorieId);
 		}
 		
-		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
-		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		queryBuilder.append(!whereClauses.isEmpty()?and:"");
+		queryBuilder.append(StringUtils.join(whereClauses, and));
 		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
 
+		for (Map.Entry<String, Object> entry : paramaterMap.entrySet()) {
+			typedQuery.setParameter(entry.getKey(), paramaterMap.get(entry.getKey()));
+		}
+		/*
 		for (String key : paramaterMap.keySet()) {
 			typedQuery.setParameter(key, paramaterMap.get(key));
 		}
-
+		*/
 		return typedQuery.getResultList();
 	}
 	
 	@Override
-	public List<Annuncio> personalFindByExample(Annuncio example, Long id) throws Exception {
-		Map<String, Object> paramaterMap = new HashMap<String, Object>();
-		List<String> whereClauses = new ArrayList<String>();
+	public List<Annuncio> personalFindByExample(Annuncio example, Long id) throws AnnuncioDAOException {
+		String and = " and ";
+		Map<String, Object> paramaterMap = new HashMap<>();
+		List<String> whereClauses = new ArrayList<>();
 
 		StringBuilder queryBuilder = new StringBuilder("select distinct a from Annuncio a left join fetch a.categorie c where a.id = a.id ");
 
@@ -125,19 +135,23 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 			paramaterMap.put("listCategorieId", listCategorieId);
 		}
 		
-		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
-		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		queryBuilder.append(!whereClauses.isEmpty()?and:"");
+		queryBuilder.append(StringUtils.join(whereClauses, and));
 		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
 
+		for (Map.Entry<String, Object> entry : paramaterMap.entrySet()) {
+			typedQuery.setParameter(entry.getKey(), paramaterMap.get(entry.getKey()));
+		}
+		/*
 		for (String key : paramaterMap.keySet()) {
 			typedQuery.setParameter(key, paramaterMap.get(key));
 		}
-
+		*/
 		return typedQuery.getResultList();
 	}
 
 	@Override
-	public Optional<Annuncio> findOneEager(Long id) throws Exception {
+	public Optional<Annuncio> findOneEager(Long id) throws AnnuncioDAOException {
 		return entityManager.createQuery("from Annuncio a left join fetch a.categorie join fetch a.utenteInserimento where a.id=:idAnnuncio", Annuncio.class)
 				.setParameter("idAnnuncio", id).getResultList().stream().findFirst();
 	}
