@@ -7,13 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestSeleniumServlet {
+class TestSeleniumServlet {
 	
 	private static String DRIVER_NAME = "webdriver.chrome.driver";
 	private static String DRIVER_PATH = "C:\\corso\\ws_eclipse\\myebay\\src\\test\\java\\chromedriver.exe";
 	
 	@Test
-	public void testExecuteSearchAnnunciServlet() {
+	void testExecuteSearchAnnunciServlet() {
 		System.setProperty(DRIVER_NAME, DRIVER_PATH);
 		
 		WebDriver driver = new ChromeDriver();

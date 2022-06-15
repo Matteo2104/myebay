@@ -102,10 +102,10 @@ public class UtilityForm {
 	}
 	
 	public static boolean validateUtenteBeanForEdit(UtenteEdit utenteToBeValidated) {
-		return (StringUtils.isBlank(utenteToBeValidated.getNome())
-				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
-				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
-				|| utenteToBeValidated.getStato() == null);
+		return !StringUtils.isBlank(utenteToBeValidated.getNome())
+				&& !StringUtils.isBlank(utenteToBeValidated.getCognome())
+				&& !StringUtils.isBlank(utenteToBeValidated.getUsername()) 
+				&& !(utenteToBeValidated.getStato() == null);
 	}
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {

@@ -18,10 +18,10 @@ import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 
-public class TestUtilityForm {
+class TestUtilityForm {
 	
 	@Test
-	public void TestCreateAnnuncioFromParams() throws Exception {
+	void TestCreateAnnuncioFromParams() throws Exception {
 		String titolo = "titolo";
 		String testoAnnuncio = "testo";
 		String prezzo = "48";
@@ -52,7 +52,7 @@ public class TestUtilityForm {
 	}
 	
 	@Test
-	public void TestCreateUtenteSearchFromParams() throws Exception {
+	void TestCreateUtenteSearchFromParams() throws Exception {
 		String nome = "nome";
 		String cognome = "cognome";
 		String username = "username";
@@ -77,14 +77,14 @@ public class TestUtilityForm {
 	}
 	
 	@Test
-	public void TestValidateUtenteBeanForEdit() {
+	void TestValidateUtenteBeanForEdit() {
 		UtenteEdit utenteParam = new UtenteEdit("nome", "cognome", "username", StatoUtente.ATTIVO);
 		
 		assertTrue(UtilityForm.validateUtenteBeanForEdit(utenteParam));
 	}
 	
 	@Test
-	public void TestValidateUtenteBeanForEdit_failure() {
+	void TestValidateUtenteBeanForEdit_failure() {
 		UtenteEdit utenteParam = new UtenteEdit("", "cognome", "username", null);
 		
 		assertFalse(UtilityForm.validateUtenteBeanForEdit(utenteParam));
