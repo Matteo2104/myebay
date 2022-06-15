@@ -25,10 +25,10 @@ public class PrepareSearchUserServlet extends HttpServlet {
 			request.setAttribute("search_utente_attr", new Utente());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/search.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/search.jsp").forward(request, response);
 	}
 
 }

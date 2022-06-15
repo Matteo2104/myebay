@@ -25,9 +25,9 @@ public class PrepareSearchAnnunciPersonaliServlet extends HttpServlet {
 			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Errore nell'esecuzione della ricerca");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/search.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/annuncio/search.jsp").forward(request, response);
 	}
 
 	

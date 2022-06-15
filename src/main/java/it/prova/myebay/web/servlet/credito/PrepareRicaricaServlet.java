@@ -21,7 +21,7 @@ public class PrepareRicaricaServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/credito/ricarica.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/credito/ricarica.jsp").forward(request, response);
 	}
 
 	

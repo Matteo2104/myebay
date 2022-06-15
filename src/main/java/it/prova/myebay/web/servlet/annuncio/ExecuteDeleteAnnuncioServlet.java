@@ -28,7 +28,7 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -37,7 +37,7 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		

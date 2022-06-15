@@ -31,11 +31,11 @@ public class ExecuteListUserServlet extends HttpServlet {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/list.jsp").forward(request, response);
 	}
 
 }

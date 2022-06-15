@@ -17,7 +17,7 @@ import it.prova.myebay.utility.UtilityForm;
 @WebServlet("/utente/ExecuteEditUserServlet")
 public class ExecuteEditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String errorMessage = "errorMessage";
+	private static final String ERRORMESSAGE = "errorMessage";
        
     
     public ExecuteEditUserServlet() {
@@ -30,8 +30,8 @@ public class ExecuteEditUserServlet extends HttpServlet {
 
 		
 		if (!NumberUtils.isCreatable(idUser)) {
-			request.setAttribute(errorMessage, "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -53,8 +53,8 @@ public class ExecuteEditUserServlet extends HttpServlet {
 								
 				request.setAttribute("edit_utente_attr", utenteInstance);
 				
-				request.setAttribute(errorMessage, "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/edit.jsp").forward(request, response);
+				request.setAttribute(ERRORMESSAGE, "Attenzione sono presenti errori di validazione");
+				request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/edit.jsp").forward(request, response);
 				return;
 			}
 			
@@ -67,8 +67,8 @@ public class ExecuteEditUserServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute(errorMessage, "Attenzione si è verificato un errore: " + e);
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore: " + e);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		

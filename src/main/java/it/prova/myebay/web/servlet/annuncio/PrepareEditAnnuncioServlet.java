@@ -35,7 +35,7 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -69,11 +69,11 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/annuncio/edit.jsp").forward(request, response);
 	}
 
 	

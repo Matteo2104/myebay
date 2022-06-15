@@ -29,7 +29,7 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 		// controllo se il credito non è stato inserito
 		if (credito.isEmpty()) {
 			request.setAttribute("errorMessage", "Inserire un valore!");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/credito/ricarica.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/credito/ricarica.jsp").forward(request, response);
 			return;
 		}
 			
@@ -49,7 +49,7 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		

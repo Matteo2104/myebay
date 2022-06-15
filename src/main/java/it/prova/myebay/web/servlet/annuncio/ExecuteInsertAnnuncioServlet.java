@@ -74,7 +74,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 				request.setAttribute("mappa_categorie", mappa);
 				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/annuncio/insert.jsp").forward(request, response);
 				return;
 			}
 			
@@ -89,7 +89,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nell'inserimento");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		

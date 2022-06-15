@@ -42,7 +42,7 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 				request.setAttribute("insert_utente_attr", utenteDTO);
 				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/insert.jsp").forward(request, response);
 				return;
 			}
 	
@@ -58,7 +58,7 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/insert.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/insert.jsp").forward(request, response);
 			return;
 		}
 
