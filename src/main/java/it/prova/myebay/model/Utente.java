@@ -1,8 +1,10 @@
 package it.prova.myebay.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,7 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "utente")
-public class Utente {
+public class Utente implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
