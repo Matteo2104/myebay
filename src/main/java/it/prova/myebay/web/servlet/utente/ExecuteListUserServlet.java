@@ -20,22 +20,22 @@ public class ExecuteListUserServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().listAll());
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/list.jsp").forward(request, response);
 	}
 
 }

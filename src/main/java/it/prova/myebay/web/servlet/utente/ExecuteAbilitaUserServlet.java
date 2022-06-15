@@ -22,14 +22,14 @@ public class ExecuteAbilitaUserServlet extends HttpServlet {
         super();
     }
 
-
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idUser = request.getParameter("idUser");
 		String stato = request.getParameter("stato");
 		
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -40,7 +40,7 @@ public class ExecuteAbilitaUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 

@@ -1,17 +1,12 @@
 package it.prova.myebay.web.servlet.utente;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.dto.UtenteSearch;
-import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
@@ -26,7 +21,7 @@ public class ExecuteSearchUserServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomeParam = request.getParameter("nome");
 		String cognomeParam = request.getParameter("cognome");
@@ -42,10 +37,10 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/utente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/utente/list.jsp").forward(request, response);
 	}
 
 }

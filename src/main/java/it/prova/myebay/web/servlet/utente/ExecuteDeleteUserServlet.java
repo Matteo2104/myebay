@@ -6,12 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang3.math.NumberUtils;
-
-
-import it.prova.myebay.model.StatoUtente;
-import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
 
@@ -26,13 +21,13 @@ public class ExecuteDeleteUserServlet extends HttpServlet {
     }
 
 	
-
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idUser = request.getParameter("idUser");
 
 		if (!NumberUtils.isCreatable(idUser)) {
 			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -45,7 +40,7 @@ public class ExecuteDeleteUserServlet extends HttpServlet {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 

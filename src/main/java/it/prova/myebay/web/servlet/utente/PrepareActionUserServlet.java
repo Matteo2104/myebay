@@ -18,20 +18,20 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/utente/PrepareActionUserServlet")
 public class PrepareActionUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String errorMessage = "errorMessage";
     
     public PrepareActionUserServlet() {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idUser = request.getParameter("idUser");
 		String path = "";
 		
 		if (!NumberUtils.isCreatable(idUser)) {
-			request.setAttribute("errorMessage", "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -40,7 +40,7 @@ public class PrepareActionUserServlet extends HttpServlet {
 
 			// da testare
 			if (utenteInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
+				request.setAttribute(errorMessage, "Elemento non trovato.");
 				request.getRequestDispatcher("ExecuteListUserServlet?operationResult=NOT_FOUND").forward(request,
 						response);
 				return;
@@ -48,19 +48,19 @@ public class PrepareActionUserServlet extends HttpServlet {
 			
 			// se l'utente è disabilitato lo abilito 
 			if (utenteInstance.getStato() == StatoUtente.DISABILITATO)
-				path += "/" + Path.PATH_INTERFACCIA + "/utente/abilita.jsp";
+				path += "/" + Path.pathInterfaccia + "/utente/abilita.jsp";
 				
 			// se l'utente è già abilitato lo disabilito
 			if (utenteInstance.getStato() != StatoUtente.DISABILITATO)
-				path += "/" + Path.PATH_INTERFACCIA + "/utente/delete.jsp";
+				path += "/" + Path.pathInterfaccia + "/utente/delete.jsp";
 			
 			request.setAttribute("delete_utente_attr", utenteInstance);
 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
