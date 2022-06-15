@@ -27,11 +27,11 @@ public class PrepareRegisterUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher(Path.pathInterfaccia + "/register.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/register.jsp").forward(request, response);
 	}
 
 	
