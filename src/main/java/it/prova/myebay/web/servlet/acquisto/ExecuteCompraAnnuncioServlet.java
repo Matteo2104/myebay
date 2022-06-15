@@ -16,40 +16,44 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/acquisto/ExecuteCompraAnnuncioServlet")
 public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String errorMessage = "errorMessage";
+	private static final String acquistoNonRiuscito = "Non è stato possibile effettuare l'acquisto: ";
+	private static final String errorJsp = "/error.jsp";
 	
     
     public ExecuteCompraAnnuncioServlet() {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletRequest httpRequest = request;
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		try {
 			// esegue l'acquisto
-			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
+			Utente utenteInSessione = (Utente) httpRequest.getSession().getAttribute("userInfo");
 			MyServiceFactory.getAcquistoServiceInstance().acquista(Long.parseLong(idAnnuncio), utenteInSessione);			
 			
 		} catch (AdminCannotBuyException e) {
-			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e.getMessage());
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, acquistoNonRiuscito + e.getMessage());
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
 			return;
 		} catch (InsufficientCreditException e) {
-			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e.getMessage());
+			request.setAttribute(errorMessage, acquistoNonRiuscito + e.getMessage());
 			request.setAttribute("insufficientCredit", 1);
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
 			return;
 		} catch (Exception e) {
-			request.setAttribute("errorMessage", "Non è stato possibile effettuare l'acquisto: " + e);
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, acquistoNonRiuscito + e);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
 			return;
-		} // mettere altre eccezioni che possono avvenire durante la transazione
+		} 
 
 		response.sendRedirect(request.getContextPath() + "/acquisto/ExecuteListAcquistiServlet?operationResult=SUCCESS");
 	}

@@ -21,17 +21,22 @@ public class ExecuteListAcquistiServlet extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletRequest httpRequest = request;
 
-		Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
+		Utente utenteInSessione = (Utente) httpRequest.getSession().getAttribute("userInfo");
+		
 		try {
 			request.setAttribute("list_acquisti_attr", MyServiceFactory.getAcquistoServiceInstance().listAll(utenteInSessione.getId()));
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Si è verificato un errore.");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			return;
 		} 
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/acquisto/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/acquisto/list.jsp").forward(request, response);
 	}
     
     
