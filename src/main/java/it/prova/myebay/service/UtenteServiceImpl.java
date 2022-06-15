@@ -17,7 +17,7 @@ import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class UtenteServiceImpl implements UtenteService {
 	private UtenteDAO utenteDAO;
-	private static final String utenteNotFound = "Si è verificato un errore: utente non trovato";
+	private static final String UTENTENOTFOUND = "Si è verificato un errore: utente non trovato";
 	
 	@Override
 	public void setUtenteDAO(UtenteDAO utenteDAO) {
@@ -178,7 +178,7 @@ public class UtenteServiceImpl implements UtenteService {
 			Utente utente = utenteDAO.findOne(id).orElse(null);
 			
 			if (utente == null) {
-				throw new UtenteServiceException(utenteNotFound);
+				throw new UtenteServiceException(UTENTENOTFOUND);
 			}
 			
 			utente.setStato(StatoUtente.DISABILITATO);
@@ -209,7 +209,7 @@ public class UtenteServiceImpl implements UtenteService {
 			Utente utente = utenteDAO.findOne(id).orElse(null);
 			
 			if (utente == null) {
-				throw new UtenteServiceException(utenteNotFound);
+				throw new UtenteServiceException(UTENTENOTFOUND);
 			}
 			
 			utente.setStato(StatoUtente.fromString(stato));
@@ -259,7 +259,7 @@ public class UtenteServiceImpl implements UtenteService {
 			Optional<Utente> utenteFound = utenteDAO.findOne(id);
 			
 			if (utenteFound.isEmpty())
-				throw new UtenteServiceException(utenteNotFound);
+				throw new UtenteServiceException(UTENTENOTFOUND);
 				
 			return utenteFound.get();
 		} catch (Exception e) {
@@ -283,7 +283,7 @@ public class UtenteServiceImpl implements UtenteService {
 			Optional<Utente> utenteFound = utenteDAO.findOneEager(id);
 			
 			if (utenteFound.isEmpty())
-				throw new UtenteServiceException(utenteNotFound);
+				throw new UtenteServiceException(UTENTENOTFOUND);
 				
 			return utenteFound.get();
 

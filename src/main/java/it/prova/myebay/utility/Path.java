@@ -26,7 +26,7 @@ public class Path {
 		if (Interfaccia.getType() == 1) {
 			Interfaccia.setType(2);
 		} else {
-			Interfaccia.setType(1);;
+			Interfaccia.setType(1);
 		}
 		
 		pathInterfaccia = Interfaccia.getType() + "interfaccia";

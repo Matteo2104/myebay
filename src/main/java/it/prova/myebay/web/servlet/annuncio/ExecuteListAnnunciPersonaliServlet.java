@@ -30,9 +30,7 @@ public class ExecuteListAnnunciPersonaliServlet extends HttpServlet {
 		Utente utenteInSessione = (Utente) httpRequest.getSession().getAttribute("userInfo");
 
 		try {
-			
-			System.out.println(Example.getAnnuncioExample());
-			
+						
 			Annuncio example = Example.getAnnuncioExample();
 			if (example != null) {
 				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExamplePersonale(example, utenteInSessione.getId()));
