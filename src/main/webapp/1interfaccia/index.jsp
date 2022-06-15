@@ -73,7 +73,7 @@
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo" min="1" >
 								</div>
 								
-								<div class='card-body' style="text-align:center">
+								<div class='card-body'>
 									<c:forEach items="${list_categorie_attr}" var="categoria" >
 										<div class="form-check col-md-2">
 											<input class="form-check-input" type="checkbox" value="${categoria.id}"
