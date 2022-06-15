@@ -75,7 +75,7 @@
 					    		<input type="hidden" name="idUser" value="${delete_utente_attr.id}">
 						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
 						        <a href="ExecuteListUserServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Back
+						            <em class='fa fa-chevron-left'></em> Back
 						        </a>
 					        </form>
 					    </div>

@@ -14,13 +14,14 @@
 	<div class="container has-text-centered">
 		<div class="notification is-primary">
 			<table class="table is-fullwidth">
+				<caption style="text-align:center">${users_list_attr.size()} elementi trovati</caption>
 	  			<thead> 
 	    			<tr>
-	      				<th align="center">Nome</th>
-	      				<th align="center">Cognome</th>
-	      				<th align="center">Username</th>
-	      				<th align="center">Data Creazione</th>
-	      				<th align="center"></th>
+	      				<th style="text-align:center">Nome</th>
+	      				<th style="text-align:center">Cognome</th>
+	      				<th style="text-align:center">Username</th>
+	      				<th style="text-align:center">Data Creazione</th>
+	      				<th style="text-align:center"></th>
 	    			</tr>
 	  			</thead>
 	  			

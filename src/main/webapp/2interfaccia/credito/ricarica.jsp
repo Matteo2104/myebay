@@ -19,7 +19,7 @@
 			<h2 class="title is-2">Effettua una ricarica</h2>
 			<h4 class="title is-4">Scegli l'importo che desideri ricaricare</h4>
 
-			<div align="center">
+			<div style="text-align:center">
 				<form method="post" action="${pageContext.request.contextPath}/credito/ExecuteRicaricaServlet">
 				  
 				  	<div class="columns">

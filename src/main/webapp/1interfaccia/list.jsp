@@ -41,6 +41,7 @@
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
+				            	<caption style="text-align:center">${annunci_list_attribute.size()} elementi trovati</caption>
 				                <thead>
 				                    <tr>
 			                         	<th style="width:400px">Titolo Annuncio</th>
@@ -66,7 +67,7 @@
 				   
 					<!-- end card-body -->	
 					<a href="${pageContext.request.contextPath}" class='btn btn-outline-secondary' style='width:100px'>
-						<i class='fa fa-chevron-left'></i> Indietro
+						<em class='fa fa-chevron-left'></em> Indietro
 					</a>		   
 			    </div>
 			<!-- end card -->

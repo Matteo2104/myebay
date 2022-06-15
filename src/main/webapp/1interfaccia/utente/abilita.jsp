@@ -78,7 +78,7 @@
 						    	<button type="submit" name="stato" value="ATTIVO" id="stato" class="btn btn-success">Abilita con stato Attivo</button>
 						        
 						        <a href="ExecuteListUserServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Indietro
+						            <em class='fa fa-chevron-left'></em> Indietro
 						        </a>
 					        </form>
 					    </div>

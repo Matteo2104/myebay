@@ -49,7 +49,7 @@
 				</c:forEach>
 				
 				
-				<div class="field" align="center">
+				<div class="field" style="text-align:center">
 					<input class="button" type="submit" value="Cerca">
 				</div>
 				

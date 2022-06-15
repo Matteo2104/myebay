@@ -74,10 +74,8 @@
 					    
 					    <div class='card-footer'>
 					        <a href="ExecuteListAnnunciServlet" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
+					            <em class='fa fa-chevron-left'></em> Indietro
 					        </a>
-					        <!-- <a href="${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&pathRitorno=/acquisto/ExecuteCompraAnnuncioServlet" class='btn btn-primary' style='width:200px'>  -->
-					         <!-- <a href="${userInfo==null?'${pageContext.request.contextPath}/PrepareLoginByAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}':'${pageContext.request.contextPath}/acquisto/ExecuteCompraAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}'}" class='btn btn-primary' style='width:200px'> -->
 					         
 					        <c:if test="${userInfo==null }">
 					        	<a href="${pageContext.request.contextPath}/PrepareLoginByAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-primary' style='width:200px'>Compra</a>

@@ -59,7 +59,7 @@
 				        <p class="fs-4 text-center" >Scegli l'importo che desideri ricaricare</p>
 				      </div>
 				      
-				      <div class='card-body' align="center">
+				      <div class='card-body' style="text-align:center">
 				      	<form method="post" action="${pageContext.request.contextPath}/credito/ExecuteRicaricaServlet" class="row g-3" >
 							
 								<div class="row justify-content-center" >

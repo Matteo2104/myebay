@@ -84,7 +84,7 @@
 				
 				
 				
-				<div align="center">
+				<div style="text-align:center">
 					
 					<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="button is-info">Modifica Utente</button>
 				</div>

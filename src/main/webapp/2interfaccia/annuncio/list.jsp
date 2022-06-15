@@ -28,12 +28,13 @@
 
 		<div class="notification is-primary">
 			<table class="table is-fullwidth">
+				<caption style="text-align:center">${annunci_list_attribute.size()} elementi trovati</caption>
 	  			<thead> 
 	    			<tr>
-	      				<th align="center">Titolo Annuncio</th>
-	      				<th align="center">Prezzo</th>
-	      				<th align="center">Data Pubblicazione</th>
-	      				<th align="center"></th>
+	      				<th style="text-align:center">Titolo Annuncio</th>
+	      				<th style="text-align:center">Prezzo</th>
+	      				<th style="text-align:center">Data Pubblicazione</th>
+	      				<th style="text-align:center"></th>
 	    			</tr>
 	  			</thead>
 	  			

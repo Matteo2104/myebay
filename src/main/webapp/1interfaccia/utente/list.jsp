@@ -49,6 +49,7 @@
 				    	<a class="btn btn-primary " href="PrepareSearchUserServlet">Indietro</a>
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
+				            	<caption style="text-align:center">${users_list_attr.size()} elementi trovati</caption>  
 				                <thead>
 				                    <tr>
 			                         	<th>Nome</th>

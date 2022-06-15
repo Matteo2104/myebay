@@ -76,7 +76,7 @@
 				</div>
 				
 				
-				<div align="center">
+				<div style="text-align:center">
 					<input class="button is-info" type="submit" value="Inserisci Nuovo Utente">
 				</div>
 

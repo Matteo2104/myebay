@@ -3,7 +3,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 	<jsp:include page="../header.jsp" />
 	<meta charset="ISO-8859-1">
@@ -74,7 +74,7 @@
 			  
 			    	<div class='card-footer'>
 						<a href="${pageContext.request.contextPath}/utente/ExecuteListUserServlet" class='btn btn-outline-secondary' style='width:80px'>
-					    	<i class='fa fa-chevron-left'></i> Indietro
+					    	<em class='fa fa-chevron-left'></em> Indietro
 					    </a>
 					</div>
 			  <!-- end container -->  

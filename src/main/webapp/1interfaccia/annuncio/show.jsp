@@ -77,7 +77,7 @@
 					    
 					    <div class='card-footer'>
 					        <a href="ExecuteListAnnunciPersonaliServlet?idAnnuncio=${show_annuncio_attr.id}" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
+					            <em class='fa fa-chevron-left'></em> Indietro
 					        </a>
 					    </div>
 					<!-- end card -->

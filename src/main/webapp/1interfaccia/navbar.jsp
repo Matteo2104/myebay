@@ -49,24 +49,7 @@
 				</c:if>
          
        </div> 
-          <!--
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
         
-          
-           
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdown07">
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
-            --> 
-
-				
-
-         
-          
-
       <div class="form-inline mr-sm-2">
       		
       </div>

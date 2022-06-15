@@ -79,7 +79,7 @@
 					    		<input type="hidden" name="idAnnuncio" value="${delete_annuncio_attr.id}">
 						    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
 						        <a href="ExecuteListAnnunciPersonaliServlet" class='btn btn-outline-secondary' style='width:80px'>
-						            <i class='fa fa-chevron-left'></i> Indietro
+						            <em class='fa fa-chevron-left'></em> Indietro
 						        </a>
 					        </form>
 					    </div>

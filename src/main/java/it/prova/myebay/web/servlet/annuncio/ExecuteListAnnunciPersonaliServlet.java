@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Example;
@@ -31,8 +31,11 @@ public class ExecuteListAnnunciPersonaliServlet extends HttpServlet {
 
 		try {
 			
-			if (Example.annuncioExample != null) {
-				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(Example.annuncioExample));
+			System.out.println(Example.getAnnuncioExample());
+			
+			Annuncio example = Example.getAnnuncioExample();
+			if (example != null) {
+				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
 			} else {
 				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().listAll(utenteInSessione.getId()));
 			}

@@ -43,7 +43,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 			return;
 		}
 		
-		Example.annuncioExample = example;
+		Example.setAnnuncioExample(example);
 		request.getRequestDispatcher(Path.pathInterfaccia + "/list.jsp").forward(request, response);
 	}
 

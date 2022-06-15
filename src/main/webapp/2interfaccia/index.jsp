@@ -59,7 +59,7 @@
 				</c:forEach>
 				
 				
-				<div class="field" align="center">
+				<div class="field" style="text-align:center">
 					<input class="button is-info" type="submit" value="Cerca tra gli annunci">
 				</div>
 				

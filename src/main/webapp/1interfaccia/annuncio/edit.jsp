@@ -60,7 +60,7 @@
 									<button type="submit" name="idAnnuncio" value="${edit_annuncio_attr.id}" class="btn btn-primary">Conferma</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci"/>
 									<a href="${pageContext.request.contextPath}/annuncio/ExecuteListAnnunciPersonaliServlet" class='btn btn-outline-secondary' style='width:100px'>
-					            		<i class='fa fa-chevron-left'></i> Indietro
+					            		<em class='fa fa-chevron-left'></em> Indietro
 					       			</a>
 								</div>
 						</form>

@@ -40,7 +40,8 @@
 				    	
 				    
 				        <div class='table-responsive'>
-				            <table class='table table-striped ' >
+				            <table class='table table-striped'>
+				            	<caption style="text-align:center">${list_acquisti_attr.size()} elementi trovati</caption>
 				                <thead>
 				                    <tr>
 			                         	<th style="width:400px">Testo Annuncio</th>
@@ -66,7 +67,7 @@
 				   
 				   		<div class='card-footer'>
 					        <a href="${pageContext.request.contextPath}/1interfaccia/areapersonale.jsp" class='btn btn-outline-secondary' style='width:100px'>
-					            <i class='fa fa-chevron-left'></i> Indietro
+					            <em class='fa fa-chevron-left'></em> Indietro
 					        </a>
 					    </div>
 					<!-- end card-body -->			   
