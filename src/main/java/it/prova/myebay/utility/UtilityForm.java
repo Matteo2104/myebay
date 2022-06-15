@@ -94,11 +94,11 @@ public class UtilityForm {
 	
 	
 	public static boolean validateUtenteInsertBean(UtenteInsert utenteToBeValidated) {
-		return (StringUtils.isBlank(utenteToBeValidated.getNome())
-				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
-				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
-				|| StringUtils.isBlank(utenteToBeValidated.getPassword())
-				|| utenteToBeValidated.getRuolo() == null);
+		return !StringUtils.isBlank(utenteToBeValidated.getNome())
+				&& !StringUtils.isBlank(utenteToBeValidated.getCognome())
+				&& !StringUtils.isBlank(utenteToBeValidated.getUsername()) 
+				&& !StringUtils.isBlank(utenteToBeValidated.getPassword())
+				&& !(utenteToBeValidated.getRuolo() == null);
 	}
 	
 	public static boolean validateUtenteBeanForEdit(UtenteEdit utenteToBeValidated) {
@@ -109,8 +109,8 @@ public class UtilityForm {
 	}
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {
-		return (StringUtils.isBlank(annuncio.getTestoAnnuncio())
-				|| annuncio.getPrezzo() < 1);
+		return !StringUtils.isBlank(annuncio.getTestoAnnuncio())
+				&& !(annuncio.getPrezzo() < 1);
 	}
 	
 	public static Date parseDateFromString(String dateStringParam) {

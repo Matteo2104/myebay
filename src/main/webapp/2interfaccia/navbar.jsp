@@ -23,7 +23,7 @@
  			Utente: ${userInfo.username} (${userInfo.nome } ${userInfo.cognome}) ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Credito:':''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?userInfo.creditoResiduo:''} ${userInfo.ruolo=='ROLE_CLASSIC_USER'?'Euro':''}
  		</span>
 
-		<li><a href="${pageContext.request.contextPath}/2interfaccia/areapersonale.jsp">Area Personale</a></li>
+		<li><a href="${pageContext.request.contextPath}/2interfaccia/areapersonale.jsp" id="change-interface">Area Personale</a></li>
 		<li><a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
 
 		
