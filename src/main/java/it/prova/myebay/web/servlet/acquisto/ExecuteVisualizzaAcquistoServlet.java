@@ -15,8 +15,8 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/acquisto/ExecuteVisualizzaAcquistoServlet")
 public class ExecuteVisualizzaAcquistoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String errorMessage = "errorMessage";
-	private static final String errorJsp = "/error.jsp";
+	private static final String ERRORMESSAGE = "errorMessage";
+	private static final String ERRORJSP = "/error.jsp";
     
     public ExecuteVisualizzaAcquistoServlet() {
         super();
@@ -27,8 +27,8 @@ public class ExecuteVisualizzaAcquistoServlet extends HttpServlet {
 		String idAcquisto = request.getParameter("idAcquisto");
 
 		if (!NumberUtils.isCreatable(idAcquisto)) {
-			request.setAttribute(errorMessage, "Si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;
 		}
 
@@ -36,20 +36,20 @@ public class ExecuteVisualizzaAcquistoServlet extends HttpServlet {
 			Acquisto acquistoInstance = MyServiceFactory.getAcquistoServiceInstance().caricaSingoloElemento(Long.parseLong(idAcquisto));
 
 			if (acquistoInstance == null) {
-				request.setAttribute(errorMessage, "Elemento non trovato.");
-				request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+				request.setAttribute(ERRORMESSAGE, "Elemento non trovato.");
+				request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 				return;
 			}
 
 			request.setAttribute("show_acquisto_attr", acquistoInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute(errorMessage, "Si è verificato un errore nella visualizzazione dettagli");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore nella visualizzazione dettagli");
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/acquisto/show.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/acquisto/show.jsp").forward(request, response);
 	}
 
 }

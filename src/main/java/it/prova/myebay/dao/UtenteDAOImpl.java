@@ -112,11 +112,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 		for (Map.Entry<String, Object> entry : paramaterMap.entrySet()) {
 			typedQuery.setParameter(entry.getKey(), paramaterMap.get(entry.getKey()));
 		}
-		/*
-		for (String key : paramaterMap.keySet()) {
-			typedQuery.setParameter(key, paramaterMap.get(key));
-		}
-		*/
+		
 		return typedQuery.getResultList();
 	}
 

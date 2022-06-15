@@ -16,9 +16,9 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/acquisto/ExecuteCompraAnnuncioServlet")
 public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String errorMessage = "errorMessage";
-	private static final String acquistoNonRiuscito = "Non è stato possibile effettuare l'acquisto: ";
-	private static final String errorJsp = "/error.jsp";
+	private static final String ERRORMESSAGE = "errorMessage";
+	private static final String ACQUISTONONRIUSCITO = "Non è stato possibile effettuare l'acquisto: ";
+	private static final String ERRORJSP = "/error.jsp";
 	
     
     public ExecuteCompraAnnuncioServlet() {
@@ -41,17 +41,17 @@ public class ExecuteCompraAnnuncioServlet extends HttpServlet {
 			MyServiceFactory.getAcquistoServiceInstance().acquista(Long.parseLong(idAnnuncio), utenteInSessione);			
 			
 		} catch (AdminCannotBuyException e) {
-			request.setAttribute(errorMessage, acquistoNonRiuscito + e.getMessage());
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+			request.setAttribute(ERRORMESSAGE, ACQUISTONONRIUSCITO + e.getMessage());
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;
 		} catch (InsufficientCreditException e) {
-			request.setAttribute(errorMessage, acquistoNonRiuscito + e.getMessage());
+			request.setAttribute(ERRORMESSAGE, ACQUISTONONRIUSCITO + e.getMessage());
 			request.setAttribute("insufficientCredit", 1);
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;
 		} catch (Exception e) {
-			request.setAttribute(errorMessage, acquistoNonRiuscito + e);
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + errorJsp).forward(request, response);
+			request.setAttribute(ERRORMESSAGE, ACQUISTONONRIUSCITO + e);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;
 		} 
 

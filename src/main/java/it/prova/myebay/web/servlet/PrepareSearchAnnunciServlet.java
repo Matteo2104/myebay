@@ -14,8 +14,8 @@ import it.prova.myebay.utility.Path;
 @WebServlet("")
 public class PrepareSearchAnnunciServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String errorMessage = "errorMessage";
-	private static final String successMessage = "successMessage";
+	private static final String ERRORMESSAGE = "errorMessage";
+	private static final String SUCCESSMESSAGE = "successMessage";
        
  
     public PrepareSearchAnnunciServlet() {
@@ -27,20 +27,20 @@ public class PrepareSearchAnnunciServlet extends HttpServlet {
 		try {
 			request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
-			request.setAttribute(errorMessage, "Errore nell'esecuzione della ricerca");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Errore nella visualizzazione delle categorie");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 		}
 		
 		// se vengo da una sessione scaduta
-		if (request.getParameter(errorMessage) != null && request.getParameter(errorMessage).equals("ERROR"))
-			request.setAttribute(errorMessage, "Sessione Scaduta");
+		if (request.getParameter(ERRORMESSAGE) != null && request.getParameter(ERRORMESSAGE).equals("ERROR"))
+			request.setAttribute(ERRORMESSAGE, "Sessione Scaduta");
 		
 		// se vengo da un logout
-		if (request.getParameter(successMessage) != null && request.getParameter(successMessage).equals("LOGOUT"))
-			request.setAttribute(successMessage, "Logout effettuato con successo");
+		if (request.getParameter(SUCCESSMESSAGE) != null && request.getParameter(SUCCESSMESSAGE).equals("LOGOUT"))
+			request.setAttribute(SUCCESSMESSAGE, "Logout effettuato con successo");
 		
 		// la funzione di ricerca si trova nella home-page
-		request.getRequestDispatcher(Path.pathInterfaccia + "/index.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/index.jsp").forward(request, response);
 	}
 
 }

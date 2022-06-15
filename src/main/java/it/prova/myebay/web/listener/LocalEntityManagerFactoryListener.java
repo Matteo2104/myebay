@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class LocalEntityManagerFactoryListener implements ServletContextListener {
-	
+	// prima era static
 	private static EntityManagerFactory entityManagerFactory;
 
 	@Override
@@ -19,12 +19,15 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			entityManagerFactory.close();
 		}
 	}
+	
+	private static void setEntityManagerFactory(EntityManagerFactory emf) {
+		entityManagerFactory = emf;
+	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
-			
-			entityManagerFactory = Persistence.createEntityManagerFactory("myebay_unit");
+			setEntityManagerFactory(Persistence.createEntityManagerFactory("myebay_unit"));
 			
 		} catch (Exception ex) {
 			
@@ -38,7 +41,6 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 			throw new IllegalStateException("Context is not initialized yet.");
 		}
 		return entityManagerFactory.createEntityManager();
-
 	}
 
 	public static void closeEntityManager(EntityManager em) {
@@ -49,10 +51,8 @@ public class LocalEntityManagerFactoryListener implements ServletContextListener
 				}
 			} catch (PersistenceException ex) {
 				// do nothing
-				return;
 			} catch (Exception ex) {
 				// do nothing
-				return;
 			}
 		}
 	}

@@ -26,12 +26,12 @@ public class PrepareLoginByAnnuncioServlet extends HttpServlet {
 		
 		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		request.setAttribute("idAnnuncio", idAnnuncio);
-		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 	}
 
 }

@@ -16,7 +16,7 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/ExecuteLoginByAnnuncioServlet")
 public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String errorMessage = "errorMessage";
+    private static final String ERRORMESSAGE = "errorMessage";
     
     public ExecuteLoginByAnnuncioServlet() {
         super();
@@ -34,34 +34,34 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
-			request.setAttribute(errorMessage, "Errore: id non è numerico: pagina execute");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Errore: id non è numerico: pagina execute");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 
 		// validazione dei campi
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
-			request.setAttribute(errorMessage, "E' necessario riempire tutti i campi.");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/login.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "E' necessario riempire tutti i campi.");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			return;
 		}
 
 		try {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
-				request.setAttribute(errorMessage, "Utente non trovato.");
-				request.getRequestDispatcher(Path.pathInterfaccia + "/login.jsp").forward(request, response);
+				request.setAttribute(ERRORMESSAGE, "Utente non trovato.");
+				request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
 				request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute(errorMessage, "Si è verificato un errore");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 		}
 
-		request.getRequestDispatcher(Path.pathInterfaccia + "/show.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/show.jsp").forward(request, response);
 	}
 
 }

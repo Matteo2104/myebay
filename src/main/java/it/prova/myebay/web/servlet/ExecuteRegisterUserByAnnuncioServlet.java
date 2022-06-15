@@ -18,7 +18,7 @@ import it.prova.myebay.utility.UtilityForm;
 @WebServlet("/ExecuteRegisterUserByAnnuncioServlet")
 public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String errorMessage = "errorMessage";
+	private static final String ERRORMESSAGE = "errorMessage";
        
     
     public ExecuteRegisterUserByAnnuncioServlet() {
@@ -35,8 +35,8 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		if (idAnnuncio.isEmpty()) {
-			request.setAttribute(errorMessage, "Attenzione si è verificato un errore");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -51,8 +51,8 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 			// se la validazione non risulta ok
 			if (!UtilityForm.validateUtenteInsertBean(utenteInstance)) {
 				request.setAttribute("insert_utente_attr", utenteInstance);
-				request.setAttribute(errorMessage, "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher(Path.pathInterfaccia + "/register.jsp").forward(request, response);
+				request.setAttribute(ERRORMESSAGE, "Attenzione sono presenti errori di validazione");
+				request.getRequestDispatcher(Path.getPathInterfaccia() + "/register.jsp").forward(request, response);
 				return;
 			}
 	
@@ -65,8 +65,8 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 			utenteInSession = MyServiceFactory.getUtenteServiceInstance().accedi(usernameParam, passwordParam);
 			
 			if (utenteInSession == null) {
-				request.setAttribute(errorMessage, "Si è verificato un errore in fase di login");
-				request.getRequestDispatcher(Path.pathInterfaccia + "/login.jsp").forward(request, response);
+				request.setAttribute(ERRORMESSAGE, "Si è verificato un errore in fase di login");
+				request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			}
 			
 			request.getSession().setAttribute("userInfo", utenteInSession);
@@ -74,17 +74,17 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 			request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
 			
 		} catch (UserRegisteredException e) {
-			request.setAttribute(errorMessage, "L'utente inserito è già esistente");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/login.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "L'utente inserito è già esistente");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute(errorMessage, "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher(Path.pathInterfaccia + "/show.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/show.jsp").forward(request, response);
 	}
 
 }

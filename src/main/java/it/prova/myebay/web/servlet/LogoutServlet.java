@@ -31,8 +31,7 @@ public class LogoutServlet extends HttpServlet {
 		try {
 			throw new UnsupportedOperationException("Invocation of doGet not allowed for this Servlet");
 		} catch (UnsupportedOperationException e) {
-			// do nothig
-			return;
+			// do nothing
 		}
 	}
 

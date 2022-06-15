@@ -1,7 +1,9 @@
 package it.prova.myebay.service;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
+
 import it.prova.myebay.dao.CategoriaDAO;
 import it.prova.myebay.exception.service.CategoriaServiceException;
 import it.prova.myebay.model.Categoria;

@@ -54,7 +54,7 @@ public class CheckAuthFilter implements Filter {
 			
 			if (isPathForOnlyAdministrators(pathAttuale) && !utenteInSession.isAdmin()) {
 				httpRequest.setAttribute("errorMessage", "Non si è autorizzati a proseguire in questa pagina");
-				httpRequest.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(httpRequest, httpResponse);	
+				httpRequest.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(httpRequest, httpResponse);	
 				return;
 			}
 			

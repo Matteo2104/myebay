@@ -39,12 +39,12 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
-			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		Example.setAnnuncioExample(example);
-		request.getRequestDispatcher(Path.pathInterfaccia + "/list.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/list.jsp").forward(request, response);
 	}
 
 }

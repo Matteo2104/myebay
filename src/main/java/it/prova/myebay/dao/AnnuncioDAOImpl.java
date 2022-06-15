@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import org.apache.commons.lang3.StringUtils;
-
 import it.prova.myebay.exception.DAO.AnnuncioDAOException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
@@ -98,11 +95,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		for (Map.Entry<String, Object> entry : paramaterMap.entrySet()) {
 			typedQuery.setParameter(entry.getKey(), paramaterMap.get(entry.getKey()));
 		}
-		/*
-		for (String key : paramaterMap.keySet()) {
-			typedQuery.setParameter(key, paramaterMap.get(key));
-		}
-		*/
+		
 		return typedQuery.getResultList();
 	}
 	
@@ -142,11 +135,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		for (Map.Entry<String, Object> entry : paramaterMap.entrySet()) {
 			typedQuery.setParameter(entry.getKey(), paramaterMap.get(entry.getKey()));
 		}
-		/*
-		for (String key : paramaterMap.keySet()) {
-			typedQuery.setParameter(key, paramaterMap.get(key));
-		}
-		*/
+		
 		return typedQuery.getResultList();
 	}
 
