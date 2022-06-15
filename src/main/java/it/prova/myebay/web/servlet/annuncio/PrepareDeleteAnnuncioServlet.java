@@ -2,7 +2,6 @@ package it.prova.myebay.web.servlet.annuncio;
 
 import java.io.IOException;
 
-import javax.management.RuntimeErrorException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import it.prova.myebay.exception.AnnuncioChiusoException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.Path;
@@ -25,13 +25,13 @@ public class PrepareDeleteAnnuncioServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -39,7 +39,7 @@ public class PrepareDeleteAnnuncioServlet extends HttpServlet {
 			Annuncio annuncio = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
 			
 			if (!annuncio.isAperto()) {
-				throw new RuntimeException("Annuncio chiuso");
+				throw new AnnuncioChiusoException("Annuncio chiuso");
 			}
 			
 			request.setAttribute("delete_annuncio_attr", annuncio);
@@ -47,11 +47,11 @@ public class PrepareDeleteAnnuncioServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: " + e);
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/delete.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/delete.jsp").forward(request, response);
 	}
 
 	

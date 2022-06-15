@@ -19,33 +19,31 @@ import it.prova.myebay.utility.UtilityForm;
 @WebServlet("/annuncio/ExecuteEditAnnuncioServlet")
 public class ExecuteEditAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String errorMessage = "errorMessage";
 
-   
+	
     public ExecuteEditAnnuncioServlet() {
         super();
     }
 
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idAnnuncio = request.getParameter("idAnnuncio");
-
+    	HttpServletRequest httpRequest = request;
+    	
+    	String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		// se non ricevo correttamente l'id vado in errore 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Attenzione si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		
-		// estraggo input
+		// estraggo gli altri input
 		String titoloInput = request.getParameter("titolo");
 		String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieInput = request.getParameterValues("categorie");
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		
-
 		
 		
 		// preparo un bean (che mi serve sia per tornare in pagina
@@ -56,8 +54,8 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 		// se la validazione non risulta ok
 		if (!UtilityForm.validateAnnuncioBean(annuncio)) {
 			request.setAttribute("edit_annuncio_attr", annuncio);
-			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/edit.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Attenzione sono presenti errori di validazione");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/edit.jsp").forward(request, response);
 			return;
 		}
 		
@@ -68,9 +66,9 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 			// assegno l'id, la data e l'apertura a true, e anche l'utente in sessione
 			annuncio.setId(Long.parseLong(idAnnuncio));
 			annuncio.setData(annuncioOriginale.getData());
-			Utente utenteInSessione = (Utente)httpRequest.getSession().getAttribute("userInfo");
+			Utente utenteInSessione = (Utente) httpRequest.getSession().getAttribute("userInfo");
 			
-			if (utenteInSessione.getId() == annuncioOriginale.getUtenteInserimento().getId())
+			if (utenteInSessione.getId().equals(annuncioOriginale.getUtenteInserimento().getId()))
 				annuncio.setUtenteInserimento(utenteInSessione); 
 			
 			
@@ -78,8 +76,8 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 			MyServiceFactory.getAnnuncioServiceInstance().aggiorna(annuncio);
 			
 		} catch (Exception e) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		

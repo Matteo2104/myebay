@@ -18,17 +18,19 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/annuncio/ExecuteVisualizzaAnnunciPersonaliServlet")
 public class ExecuteVisualizzaAnnunciPersonaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String errorMessage = "errorMessage";
        
    
     public ExecuteVisualizzaAnnunciPersonaliServlet() {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
+			request.setAttribute(errorMessage, "Attenzione si è verificato un errore: id non è numerico");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
 		}
@@ -38,20 +40,20 @@ public class ExecuteVisualizzaAnnunciPersonaliServlet extends HttpServlet {
 					.caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
 
 			if (annuncioInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+				request.setAttribute(errorMessage, "Elemento non trovato.");
+				request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 				return;
 			}
 
 			request.setAttribute("show_annuncio_attr", annuncioInstance);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Si è verificato un errore nella visualizzazione dettagli");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Si è verificato un errore nella visualizzazione dettagli");
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/show.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/show.jsp").forward(request, response);
 	}
 
 }

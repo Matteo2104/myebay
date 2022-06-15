@@ -26,14 +26,15 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpServletRequest httpRequest = request;
+		
+		// estraggo gli input
 		String titoloInput = request.getParameter("titolo");
 		String testoInput = request.getParameter("testo");
 		String prezzoInput = request.getParameter("prezzo");
 		String[] categorieIdInput = request.getParameterValues("categorie");
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		
 		// creo un bean
@@ -41,7 +42,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		
 		try {
 		
-			// se la validazione non risulta ok
+			// se la validazione non risulta ok preparo una mappa
 			if (!UtilityForm.validateAnnuncioBean(example)) {
 				request.setAttribute("insert_annuncio_attr", example);
 				
@@ -54,10 +55,10 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 					// se sono state selezionate categorie valorizzo la mappa, altrimenti la riempi con tutti valori settati a false
 					if (categorieIdInput != null) {
 						check = false;
-						for (int i=0;i<categorieIdInput.length;i++) {
+						for (int i = 0; i < categorieIdInput.length; i++) {
 							if (categoria.getId().toString().equals(categorieIdInput[i])) {
 								mappa.put(categoria, true);
-								check=true;
+								check = true;
 							}
 						}
 						if (!check) {
@@ -73,7 +74,7 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 				request.setAttribute("mappa_categorie", mappa);
 				
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-				request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/insert.jsp").forward(request, response);
+				request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/insert.jsp").forward(request, response);
 				return;
 			}
 			
@@ -83,18 +84,16 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 			example.setUtenteInserimento(utenteInSessione);
 
 		
-			System.out.println(example);
 			MyServiceFactory.getAnnuncioServiceInstance().aggiungi(example);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nell'inserimento");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/annuncio/ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
-		//response.getWriter().append("fin qui tutto ok");
 	}
 
 }

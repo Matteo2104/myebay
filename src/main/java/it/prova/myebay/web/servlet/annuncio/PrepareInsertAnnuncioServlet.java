@@ -26,6 +26,7 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setAttribute("insert_annuncio_attr", new Annuncio());
@@ -37,14 +38,13 @@ public class PrepareInsertAnnuncioServlet extends HttpServlet {
 			}
 			request.setAttribute("mappa_categorie", mappa);
 			
-			//request.setAttribute("list_categorie_attr", MyServiceFactory.getCategoriaServiceInstance().listAll());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/insert.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/insert.jsp").forward(request, response);
 	}
 
 

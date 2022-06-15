@@ -22,14 +22,14 @@ public class ExecuteRicaricaServlet extends HttpServlet {
     }
 
 	
-
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String credito = request.getParameter("credito");
 		
 		// controllo se il credito non è stato inserito
 		if (credito.isEmpty()) {
 			request.setAttribute("errorMessage", "Inserire un valore!");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/credito/ricarica.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/credito/ricarica.jsp").forward(request, response);
 			return;
 		}
 			
@@ -49,7 +49,7 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		

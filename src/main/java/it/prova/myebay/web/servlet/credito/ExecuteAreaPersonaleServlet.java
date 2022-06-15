@@ -20,6 +20,7 @@ public class ExecuteAreaPersonaleServlet extends HttpServlet {
         super();
     }
 	
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("operationResult", "Operazione effettuata con successo");
 		Utente utenteInSessione = (Utente) request.getSession().getAttribute("userInfo");
@@ -29,10 +30,10 @@ public class ExecuteAreaPersonaleServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/areapersonale.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/areapersonale.jsp").forward(request, response);
 	}
 }

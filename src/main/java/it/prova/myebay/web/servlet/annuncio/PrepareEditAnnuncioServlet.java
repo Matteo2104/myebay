@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import it.prova.myebay.exception.AnnuncioChiusoException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.service.MyServiceFactory;
@@ -22,19 +23,19 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/annuncio/PrepareEditAnnuncioServlet")
 public class PrepareEditAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
     
     public PrepareEditAnnuncioServlet() {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
@@ -42,7 +43,7 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 			Annuncio annuncio = MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
 			
 			if (!annuncio.isAperto()) {
-				throw new RuntimeException("Annuncio chiuso");
+				throw new AnnuncioChiusoException("Annuncio chiuso");
 			}
 			
 			request.setAttribute("edit_annuncio_attr", annuncio);
@@ -54,7 +55,7 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 			for (Categoria categoria : listaCategorie) {
 				check = false;
 				for (Categoria categoriaAnnuncio : annuncio.getCategorie()) {
-					if (categoria.getId() == categoriaAnnuncio.getId()) {
+					if (categoria.getId().equals(categoriaAnnuncio.getId())) {
 						mappa.put(categoria, true);
 						check=true;
 					}
@@ -68,11 +69,11 @@ public class PrepareEditAnnuncioServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/annuncio/edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/annuncio/edit.jsp").forward(request, response);
 	}
 
 	
