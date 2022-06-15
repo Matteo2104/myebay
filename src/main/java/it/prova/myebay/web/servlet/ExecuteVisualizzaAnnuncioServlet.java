@@ -15,19 +15,22 @@ import it.prova.myebay.utility.Path;
 @WebServlet("/ExecuteVisualizzaAnnuncioServlet")
 public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String errorMessage = "errorMessage";
+	private static final String errorJsp = "/error.jsp";
        
    
     public ExecuteVisualizzaAnnuncioServlet() {
         super();
     }
 
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncio)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
-			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Attenzione si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 
@@ -36,8 +39,8 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 					.caricaSingoloElementoEager(Long.parseLong(idAnnuncio));
 
 			if (annuncioInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+				request.setAttribute(errorMessage, "Elemento non trovato.");
+				request.getRequestDispatcher(Path.pathInterfaccia + errorJsp).forward(request, response);
 				return;
 			}
 
@@ -45,12 +48,12 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Si è verificato un errore nella visualizzazione dettagli");
-			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.setAttribute(errorMessage, "Si è verificato un errore nella visualizzazione dettagli");
+			request.getRequestDispatcher(Path.pathInterfaccia + errorJsp).forward(request, response);
 			return;
 		}
 
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/show.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.pathInterfaccia + "/show.jsp").forward(request, response);
 	}
 
 }

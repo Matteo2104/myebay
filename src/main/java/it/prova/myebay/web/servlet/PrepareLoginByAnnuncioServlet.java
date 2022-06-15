@@ -19,19 +19,19 @@ public class PrepareLoginByAnnuncioServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// propago l'id
 		String idAnnuncio = request.getParameter("idAnnuncio");
 		
 		if (idAnnuncio==null || !NumberUtils.isCreatable(idAnnuncio)) {
 			request.setAttribute("errorMessage", "Errore: id non è numerico");
-			request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher("/" + Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		request.setAttribute("idAnnuncio", idAnnuncio);
-		request.getRequestDispatcher("/" + Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/" + Path.pathInterfaccia + "/login.jsp").forward(request, response);
 	}
 
 }

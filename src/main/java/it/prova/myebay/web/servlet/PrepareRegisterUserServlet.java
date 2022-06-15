@@ -19,7 +19,7 @@ public class PrepareRegisterUserServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		try {
@@ -27,11 +27,11 @@ public class PrepareRegisterUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
-			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/register.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.pathInterfaccia + "/register.jsp").forward(request, response);
 	}
 
 	

@@ -17,16 +17,23 @@ public class LogoutServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getSession().invalidate();
 		response.sendRedirect(request.getContextPath() + "?successMessage=LOGOUT");
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		throw new UnsupportedOperationException("Invocation of doGet not allowed for this Servlet");
+		
+		try {
+			throw new UnsupportedOperationException("Invocation of doGet not allowed for this Servlet");
+		} catch (UnsupportedOperationException e) {
+			// do nothig
+			return;
+		}
 	}
 
 }

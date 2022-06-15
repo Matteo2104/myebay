@@ -21,21 +21,23 @@ public class ExecuteListAnnunciServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
 			if (Example.annuncioExample != null) {
 				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(Example.annuncioExample));
 			} else {
 				request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().getAnnunciAttivi());
 			}
+			
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore!");
-			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
 		}
 		
 		
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.pathInterfaccia + "/list.jsp").forward(request, response);
 	}
 
 }

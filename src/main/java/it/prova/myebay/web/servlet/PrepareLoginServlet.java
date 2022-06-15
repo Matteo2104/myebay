@@ -16,12 +16,11 @@ public class PrepareLoginServlet extends HttpServlet {
    
     public PrepareLoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/login.jsp").forward(request, response);
+		request.getRequestDispatcher(Path.pathInterfaccia + "/login.jsp").forward(request, response);
 	}
 
 	

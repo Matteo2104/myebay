@@ -24,7 +24,7 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
         super();
     }
 
-	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String titoloInput = request.getParameter("titolo");
 		String prezzoInput = request.getParameter("prezzo");
@@ -39,13 +39,12 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
-			request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/error.jsp").forward(request, response);
+			request.getRequestDispatcher(Path.pathInterfaccia + "/error.jsp").forward(request, response);
 			return;
 		}
 		
 		Example.annuncioExample = example;
-		request.getRequestDispatcher(Path.PATH_INTERFACCIA + "/list.jsp").forward(request, response);
-		//response.getWriter().append("fin qui tutto ok");
+		request.getRequestDispatcher(Path.pathInterfaccia + "/list.jsp").forward(request, response);
 	}
 
 }
