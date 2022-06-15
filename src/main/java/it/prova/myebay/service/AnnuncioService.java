@@ -29,5 +29,4 @@ public interface AnnuncioService {
 	public void aggiungi(Annuncio annuncio) throws AnnuncioServiceException;
 
 	public List<Annuncio> getAnnunciAttivi() throws AnnuncioServiceException;
-
 }

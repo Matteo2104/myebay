@@ -74,7 +74,7 @@
 														<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/utente/PrepareActionUserServlet?idUser=${userItem.id}">Abilita</a>
 							                		</c:if>
 							                		<c:if test="${userItem.stato != 'DISABILITATO'}">
-							                			<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareDeleteUserServlet?idUser=${userItem.id}">Disabilita</a>
+							                			<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareActionUserServlet?idUser=${userItem.id}">Disabilita</a>
 							                		</c:if>
 												</td>
 											</tr>

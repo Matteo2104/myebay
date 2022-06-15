@@ -11,6 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 
 
@@ -41,6 +42,7 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 			return;
 		}
 		
+		Example.setAnnuncioExample(null);
 		response.sendRedirect("ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
 	}
 

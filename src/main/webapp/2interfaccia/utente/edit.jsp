@@ -85,7 +85,7 @@
 				
 				
 				<div style="text-align:center">
-					
+					<a href="ExecuteListUserServlet" class="button" style='width:80px'>Indietro</a>  
 					<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="button is-info">Modifica Utente</button>
 				</div>
 

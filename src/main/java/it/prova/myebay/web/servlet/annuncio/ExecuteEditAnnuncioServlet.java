@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -81,6 +82,7 @@ public class ExecuteEditAnnuncioServlet extends HttpServlet {
 			return;
 		}
 		
+		Example.setAnnuncioExample(null);
 		response.sendRedirect(request.getContextPath() + "/annuncio/ExecuteListAnnunciPersonaliServlet?operationResult=SUCCESS");
 	}
 
