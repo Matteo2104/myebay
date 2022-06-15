@@ -7,4 +7,5 @@ public class Example {
 	public static Utente utenteExample;
 	public static Annuncio annuncioExample;
 	
+	private Example() {}
 }

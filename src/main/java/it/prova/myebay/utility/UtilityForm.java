@@ -15,27 +15,29 @@ import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 
 public class UtilityForm {
+	
+	private UtilityForm() {}
+	
 	public static Annuncio createAnnuncioFromParams(String titolo, String testoAnnuncio, String prezzo, String[] categorie) {
 		Annuncio result = new Annuncio(titolo, testoAnnuncio);
 		
-		if (NumberUtils.isCreatable(prezzo)) {
-			if (Integer.parseInt(prezzo) > 0) {
+		if (NumberUtils.isCreatable(prezzo) && Integer.parseInt(prezzo) > 0) 
 				result.setPrezzo(Integer.parseInt(prezzo));
-			}
-		}
 		
 		result.setAperto(true);
 				
 		if (categorie == null || categorie.length < 1) {
+			
 			result.setCategorie(null);
+		
 		} else {
+			
 			for (int i = 0; i < categorie.length; i++) {
-				try {
-					result.getCategorie().add(new Categoria(Long.parseLong(categorie[i])));
-				} catch (Exception e) {
-					throw new RuntimeException("categoria non valida.");
-				}
+				
+				result.getCategorie().add(new Categoria(Long.parseLong(categorie[i])));
+				
 			}
+			
 		}
 		
 		return result;
@@ -87,40 +89,28 @@ public class UtilityForm {
 	}
 	
 	public static Utente createUtenteFromParamsForRegister(String nome, String cognome, String username, String password) {
-		Utente result = new Utente(nome, cognome, username, password);
-
-		return result;
+		return new Utente(nome, cognome, username, password);
 	}
 	
 	
 	public static boolean validateUtenteInsertBean(UtenteInsert utenteToBeValidated) {
-		if (StringUtils.isBlank(utenteToBeValidated.getNome())
+		return (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
 				|| StringUtils.isBlank(utenteToBeValidated.getPassword())
-				|| utenteToBeValidated.getRuolo() == null) {
-			return false;
-		}
-		return true;
+				|| utenteToBeValidated.getRuolo() == null);
 	}
 	
 	public static boolean validateUtenteBeanForEdit(UtenteEdit utenteToBeValidated) {
-		if (StringUtils.isBlank(utenteToBeValidated.getNome())
+		return (StringUtils.isBlank(utenteToBeValidated.getNome())
 				|| StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) 
-				|| utenteToBeValidated.getStato() == null) {
-			return false;
-		}
-		return true;
+				|| utenteToBeValidated.getStato() == null);
 	}
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {
-		if (StringUtils.isBlank(annuncio.getTestoAnnuncio())
-				|| annuncio.getPrezzo() < 1
-				/*|| annuncio.getCategorie() == null*/) {
-			return false;
-		}
-		return true;
+		return (StringUtils.isBlank(annuncio.getTestoAnnuncio())
+				|| annuncio.getPrezzo() < 1);
 	}
 	
 	public static Date parseDateFromString(String dateStringParam) {
