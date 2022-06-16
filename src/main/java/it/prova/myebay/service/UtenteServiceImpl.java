@@ -29,18 +29,16 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return utenteDAO.list();
+		// eseguo quello che realmente devo fare
+		return utenteDAO.list();
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
@@ -48,19 +46,18 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			Optional<Utente> result = utenteDAO.findByUsernameAndPassword(username, password);
-			return result.isPresent() ? result.get() : null;
+		// eseguo quello che realmente devo fare
+		Optional<Utente> result = utenteDAO.findByUsernameAndPassword(username, password);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		return result.isPresent() ? result.get() : null;
+
+		
 	}
 	
 	@Override
@@ -68,19 +65,17 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			Optional<Utente> result = utenteDAO.findOne(id);
-			return result.isPresent() ? result.get() : null;
+		// eseguo quello che realmente devo fare
+		Optional<Utente> result = utenteDAO.findOne(id);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		
+		return result.isPresent() ? result.get() : null;
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
 	}
 	
 	@Override
@@ -142,19 +137,18 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			Optional<Utente> result = utenteDAO.login(username, password);
-			return result.isPresent() ? result.get() : null;
+		// eseguo quello che realmente devo fare
+		Optional<Utente> result = utenteDAO.login(username, password);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		return result.isPresent() ? result.get() : null;
+
+		
 
 	}
 	
@@ -222,19 +216,17 @@ public class UtenteServiceImpl implements UtenteService {
 	public List<Utente> findByExample(UtenteSearch example) throws UtenteServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return utenteDAO.findByExample(example);
+		// eseguo quello che realmente devo fare
+		return utenteDAO.findByExample(example);
 			
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
@@ -242,22 +234,20 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			Optional<Utente> utenteFound = utenteDAO.findOne(id);
+		// eseguo quello che realmente devo fare
+		Optional<Utente> utenteFound = utenteDAO.findOne(id);
+		
+		if (utenteFound.isEmpty())
+			throw new UtenteServiceException(UTENTENOTFOUND);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 			
-			if (utenteFound.isEmpty())
-				throw new UtenteServiceException(UTENTENOTFOUND);
-				
-			return utenteFound.get();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		return utenteFound.get();
+	
 	}
 	
 	@Override
@@ -265,23 +255,18 @@ public class UtenteServiceImpl implements UtenteService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			Optional<Utente> utenteFound = utenteDAO.findOneEager(id);
+		// eseguo quello che realmente devo fare
+		Optional<Utente> utenteFound = utenteDAO.findOneEager(id);
+		
+		if (utenteFound.isEmpty())
+			throw new UtenteServiceException(UTENTENOTFOUND);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 			
-			if (utenteFound.isEmpty())
-				throw new UtenteServiceException(UTENTENOTFOUND);
-				
-			return utenteFound.get();
-
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		return utenteFound.get();
 	}
 	
 	@Override

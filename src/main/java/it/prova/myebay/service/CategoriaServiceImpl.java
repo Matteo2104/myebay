@@ -21,36 +21,31 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public List<Categoria> listAll() throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			categoriaDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		categoriaDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return categoriaDAO.list();
+		// eseguo quello che realmente devo fare
+		return categoriaDAO.list();
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
 	public Categoria findByCodice(String codice) throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			categoriaDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		categoriaDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return categoriaDAO.findByCodice(codice);
+		// eseguo quello che realmente devo fare
+		return categoriaDAO.findByCodice(codice);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
 	}
 	
 	@Override

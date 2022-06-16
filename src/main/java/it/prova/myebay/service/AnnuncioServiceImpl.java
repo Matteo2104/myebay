@@ -21,18 +21,16 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.listOnlyActive();
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.listOnlyActive();
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
@@ -40,18 +38,16 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.findByExample(example);
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.findByExample(example);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
@@ -59,18 +55,15 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.personalFindByExample(example, idUserInSession);
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.personalFindByExample(example, idUserInSession);
+
 	}
 	
 	@Override
@@ -78,18 +71,16 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.findOne(id).orElse(null);
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.findOne(id).orElse(null);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
@@ -121,54 +112,49 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.findOneEager(id).orElse(null);
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.findOneEager(id).orElse(null);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override
 	public List<Annuncio> listAll() throws AnnuncioServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.list();
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.list();
+
+		
 	}
 	
 	@Override
 	public List<Annuncio> listAll(Long id) throws AnnuncioServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			annuncioDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		annuncioDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return annuncioDAO.list(id);
+		// eseguo quello che realmente devo fare
+		return annuncioDAO.list(id);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 	
 	@Override

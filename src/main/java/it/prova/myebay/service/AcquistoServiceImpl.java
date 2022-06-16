@@ -90,20 +90,13 @@ public class AcquistoServiceImpl implements AcquistoService {
 	@Override
 	public List<Acquisto> listAll(Long id) throws AcquistoServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+	
+		// uso l'injection per i vari DAO
+		acquistoDAO.setEntityManager(entityManager);
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		try {
-			
-			
-			// uso l'injection per i vari DAO
-			acquistoDAO.setEntityManager(entityManager);
-			
-			return acquistoDAO.list(id);
-			
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		return acquistoDAO.list(id);
+		
 	}
 	
 	@Override
@@ -111,17 +104,15 @@ public class AcquistoServiceImpl implements AcquistoService {
 		// questo è come una connection
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
-		try {
-			// uso l'injection per il dao
-			acquistoDAO.setEntityManager(entityManager);
+		
+		// uso l'injection per il dao
+		acquistoDAO.setEntityManager(entityManager);
+		
+		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
-			return acquistoDAO.findOne(id).orElse(null);
+		// eseguo quello che realmente devo fare
+		return acquistoDAO.findOne(id).orElse(null);
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-		}
+		
 	}
 }
