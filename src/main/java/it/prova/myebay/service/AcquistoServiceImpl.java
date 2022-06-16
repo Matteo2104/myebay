@@ -93,10 +93,12 @@ public class AcquistoServiceImpl implements AcquistoService {
 	
 		// uso l'injection per i vari DAO
 		acquistoDAO.setEntityManager(entityManager);
+		
+		List<Acquisto> resultList = acquistoDAO.list(id);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		return acquistoDAO.list(id);
-		
+		return resultList;
 	}
 	
 	@Override
@@ -108,10 +110,11 @@ public class AcquistoServiceImpl implements AcquistoService {
 		// uso l'injection per il dao
 		acquistoDAO.setEntityManager(entityManager);
 		
+		Acquisto acquisto = acquistoDAO.findOne(id).orElse(null);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return acquistoDAO.findOne(id).orElse(null);
+		return acquisto;
 
 		
 	}

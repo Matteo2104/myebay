@@ -25,12 +25,12 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
 		
+		List<Annuncio> resultList = annuncioDAO.listOnlyActive();
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.listOnlyActive();
-
-		
+		return resultList;
+	
 	}
 	
 	@Override
@@ -42,11 +42,11 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
 		
+		List<Annuncio> resultList = annuncioDAO.findByExample(example);	
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.findByExample(example);
-
+		return resultList;
 		
 	}
 	
@@ -58,12 +58,13 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
+		
+		List<Annuncio> resultList = annuncioDAO.personalFindByExample(example, idUserInSession);
 
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
 		// eseguo quello che realmente devo fare
-		return annuncioDAO.personalFindByExample(example, idUserInSession);
-
+		return resultList;
 	}
 	
 	@Override
@@ -75,10 +76,11 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
 		
+		Annuncio annuncio = annuncioDAO.findOne(id).orElse(null);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.findOne(id).orElse(null);
+		return annuncio;
 
 		
 	}
@@ -116,11 +118,12 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
 		
+		Annuncio annuncio = annuncioDAO.findOneEager(id).orElse(null);
+
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.findOneEager(id).orElse(null);
-
+		return annuncio;
 		
 	}
 	
@@ -131,14 +134,13 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
+		
+		List<Annuncio> resultList = annuncioDAO.list();
 
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
 		
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.list();
-
-		
+		return resultList;
 	}
 	
 	@Override
@@ -149,12 +151,12 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		// uso l'injection per il dao
 		annuncioDAO.setEntityManager(entityManager);
 		
+		List<Annuncio> resultList = annuncioDAO.list(id);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return annuncioDAO.list(id);
-
-		
+		return resultList;
+	
 	}
 	
 	@Override

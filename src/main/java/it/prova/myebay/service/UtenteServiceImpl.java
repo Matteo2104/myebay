@@ -33,11 +33,11 @@ public class UtenteServiceImpl implements UtenteService {
 		// uso l'injection per il dao
 		utenteDAO.setEntityManager(entityManager);
 		
+		List<Utente> resultList = utenteDAO.list();
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return utenteDAO.list();
-
+		return resultList;
 		
 	}
 	
@@ -220,13 +220,12 @@ public class UtenteServiceImpl implements UtenteService {
 		// uso l'injection per il dao
 		utenteDAO.setEntityManager(entityManager);
 		
+		List<Utente> resultList = utenteDAO.findByExample(example);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return utenteDAO.findByExample(example);
-			
-
-		
+		return resultList;
+	
 	}
 	
 	@Override

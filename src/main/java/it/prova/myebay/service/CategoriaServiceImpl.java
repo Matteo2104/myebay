@@ -20,17 +20,15 @@ public class CategoriaServiceImpl implements CategoriaService {
 	@Override
 	public List<Categoria> listAll() throws CategoriaServiceException {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
-
 		
 		// uso l'injection per il dao
 		categoriaDAO.setEntityManager(entityManager);
 		
+		List<Categoria> resultList = categoriaDAO.list();
+
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
-
-		// eseguo quello che realmente devo fare
-		return categoriaDAO.list();
-
 		
+		return resultList;
 	}
 	
 	@Override
@@ -41,10 +39,11 @@ public class CategoriaServiceImpl implements CategoriaService {
 		// uso l'injection per il dao
 		categoriaDAO.setEntityManager(entityManager);
 		
+		Categoria categoria = categoriaDAO.findByCodice(codice);
+		
 		LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 
-		// eseguo quello che realmente devo fare
-		return categoriaDAO.findByCodice(codice);
+		return categoria;
 
 	}
 	
