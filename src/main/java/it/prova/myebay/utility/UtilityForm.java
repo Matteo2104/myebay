@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.dto.UtenteEdit;
@@ -14,9 +13,9 @@ import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
-import it.prova.myebay.model.Utente;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
+import it.prova.myebay.model.Utente;
 
 public class UtilityForm {
 	
@@ -130,7 +129,7 @@ public class UtilityForm {
 		Map<Categoria, Boolean> mappa = new HashMap<>();
 		
 		// se nessun ID è stato selezionatoz
-		if (listaIdSelezionati.isEmpty() || listaIdSelezionati.size() == 0) {
+		if (listaIdSelezionati.isEmpty()) {
 			for (Categoria categoria : listaCategorie) {
 				mappa.put(categoria, false);
 			}
@@ -140,12 +139,8 @@ public class UtilityForm {
 		
 		// altrimenti, valorizzo la mappa
 		for (Categoria categoria : listaCategorie) {
-
-			if (listaIdSelezionati.contains(categoria.getId().toString())) {
-				mappa.put(categoria, true);
-			} else {
-				mappa.put(categoria, false);
-			}
+	
+			mappa.put(categoria, listaIdSelezionati.contains(categoria.getId().toString()));
 
 		}
 		return mappa;
