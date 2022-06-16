@@ -1,6 +1,8 @@
 package it.prova.myebay.web.servlet.annuncio;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,35 +46,19 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 		
 			// se la validazione non risulta ok preparo una mappa
 			if (!UtilityForm.validateAnnuncioBean(example)) {
-				request.setAttribute("insert_annuncio_attr", example);
 				
 				List<Categoria> listaCategorie = MyServiceFactory.getCategoriaServiceInstance().listAll();
 				Map<Categoria, Boolean> mappa = new HashMap<>();
+				List<String> listaIdSelezionati = new ArrayList<>();
 				
-				
-				boolean check = false;
-				for (Categoria categoria : listaCategorie) {
-					// se sono state selezionate categorie valorizzo la mappa, altrimenti la riempi con tutti valori settati a false
-					if (categorieIdInput != null) {
-						check = false;
-						for (int i = 0; i < categorieIdInput.length; i++) {
-							if (categoria.getId().toString().equals(categorieIdInput[i])) {
-								mappa.put(categoria, true);
-								check = true;
-							}
-						}
-						if (!check) {
-							mappa.put(categoria, false);
-						}
-						
-						
-					} else {
-						mappa.put(categoria, false);
-					}
-					
+				if (categorieIdInput != null && categorieIdInput.length > 0) {
+					listaIdSelezionati = Arrays.asList(categorieIdInput);
 				}
+								
+				mappa = UtilityForm.creaMappa(listaIdSelezionati, listaCategorie);
+
 				request.setAttribute("mappa_categorie", mappa);
-				
+				request.setAttribute("insert_annuncio_attr", example);
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/annuncio/insert.jsp").forward(request, response);
 				return;

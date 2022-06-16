@@ -47,7 +47,7 @@
 							
 								<div class="col-md-6">
 									<label for="titolo" class="form-label">Titolo <span class="text-danger">*</span></label>
-									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo dell'annuncio" value="${insert_annuncio_attr.testoAnnuncio}" required>
+									<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo dell'annuncio" value="${insert_annuncio_attr.titolo}" required>
 								</div>
 								
 								<div class="col-md-6">

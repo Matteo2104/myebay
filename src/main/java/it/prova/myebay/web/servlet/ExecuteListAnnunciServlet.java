@@ -34,19 +34,13 @@ public class ExecuteListAnnunciServlet extends HttpServlet {
 		} catch (Exception e) {
 			
 			request.setAttribute("errorMessage", "Si è verificato un errore!");
-			try {
-				request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
-			} catch (ServletException se) {
-				
-			}
-			
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
+
 		}
 		
-		try {
-			request.getRequestDispatcher(Path.getPathInterfaccia() + "/list.jsp").forward(request, response);
-		} catch (ServletException e) {
-			
-		}
+		
+		request.getRequestDispatcher(Path.getPathInterfaccia() + "/list.jsp").forward(request, response);
+		
 		
 	}
 

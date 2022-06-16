@@ -3,6 +3,10 @@ package it.prova.myebay.utility;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.dto.UtenteEdit;
@@ -26,11 +30,7 @@ public class UtilityForm {
 		
 		result.setAperto(true);
 				
-		if (categorie == null || categorie.length < 1) {
-			
-			result.setCategorie(null);
-		
-		} else {
+		if (categorie != null) {
 			
 			for (int i = 0; i < categorie.length; i++) {
 				
@@ -109,8 +109,10 @@ public class UtilityForm {
 	}
 	
 	public static boolean validateAnnuncioBean(Annuncio annuncio) {
-		return !StringUtils.isBlank(annuncio.getTestoAnnuncio())
-				&& (annuncio.getPrezzo() >= 1);
+		return !StringUtils.isBlank(annuncio.getTitolo())
+				&& !StringUtils.isBlank(annuncio.getTestoAnnuncio())
+				&& (annuncio.getPrezzo() >= 1)
+				&& !annuncio.getCategorie().isEmpty();
 	}
 	
 	public static Date parseDateFromString(String dateStringParam) {
@@ -122,5 +124,30 @@ public class UtilityForm {
 		} catch (ParseException e) {
 			return null;
 		}
+	}
+	
+	public static Map<Categoria, Boolean> creaMappa(List<String> listaIdSelezionati, List<Categoria> listaCategorie) {
+		Map<Categoria, Boolean> mappa = new HashMap<>();
+		
+		// se nessun ID è stato selezionatoz
+		if (listaIdSelezionati.isEmpty() || listaIdSelezionati.size() == 0) {
+			for (Categoria categoria : listaCategorie) {
+				mappa.put(categoria, false);
+			}
+			return mappa;
+		}
+		
+		
+		// altrimenti, valorizzo la mappa
+		for (Categoria categoria : listaCategorie) {
+
+			if (listaIdSelezionati.contains(categoria.getId().toString())) {
+				mappa.put(categoria, true);
+			} else {
+				mappa.put(categoria, false);
+			}
+
+		}
+		return mappa;
 	}
 }
