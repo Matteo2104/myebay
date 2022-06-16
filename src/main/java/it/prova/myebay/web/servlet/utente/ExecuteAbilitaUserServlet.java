@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 
 
@@ -43,6 +44,7 @@ public class ExecuteAbilitaUserServlet extends HttpServlet {
 			return;
 		}
 
+		Example.setUtenteExample(null);
 		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 	}
 

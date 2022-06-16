@@ -1,10 +1,10 @@
 package it.prova.myebay.utility;
 
+import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.model.Annuncio;
-import it.prova.myebay.model.Utente;
 
 public class Example {
-	private static Utente utenteExample;
+	private static UtenteSearch utenteExample;
 	private static Annuncio annuncioExample;
 	
 	private Example() {}
@@ -17,11 +17,11 @@ public class Example {
 		Example.annuncioExample = annuncioExample;
 	}
 
-	public static Utente getUtenteExample() {
+	public static UtenteSearch getUtenteExample() {
 		return utenteExample;
 	}
 
-	public static void setUtenteExample(Utente utenteExample) {
+	public static void setUtenteExample(UtenteSearch utenteExample) {
 		Example.utenteExample = utenteExample;
 	}
 	

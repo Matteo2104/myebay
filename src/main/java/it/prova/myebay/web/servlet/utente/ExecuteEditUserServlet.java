@@ -10,6 +10,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.dto.UtenteEdit;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -71,6 +72,7 @@ public class ExecuteEditUserServlet extends HttpServlet {
 			return;
 		}
 		
+		Example.setUtenteExample(null);
 		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 
 	}

@@ -11,6 +11,7 @@ import it.prova.myebay.dto.UtenteInsert;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -60,7 +61,7 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 			return;
 		}
 
-		// uso il sendRedirect con parametro per evitare il problema del double save on refresh
+		Example.setUtenteExample(null);
 		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 	}
 

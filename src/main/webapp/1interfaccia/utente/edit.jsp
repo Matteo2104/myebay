@@ -61,6 +61,7 @@
 								</select>
 								
 								<div class="col-12">
+									<a class="btn btn-outline-secondary ml-2" href="ExecuteListUserServlet">Indietro</a>
 									<button type="submit" name="idUser" value="${edit_utente_attr.id}" class="btn btn-primary">Conferma</button>
 									<a class="btn btn-outline-primary ml-2" href="PrepareInsertUserServlet">Add new</a>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">

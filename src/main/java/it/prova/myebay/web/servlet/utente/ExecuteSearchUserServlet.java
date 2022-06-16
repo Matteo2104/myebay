@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.prova.myebay.dto.UtenteSearch;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.Example;
 import it.prova.myebay.utility.Path;
 import it.prova.myebay.utility.UtilityForm;
 
@@ -39,6 +40,8 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
+		
+		Example.setUtenteExample(example);
 		request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/list.jsp").forward(request, response);
 	}
 

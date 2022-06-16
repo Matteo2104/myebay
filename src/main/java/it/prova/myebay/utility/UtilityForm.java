@@ -1,11 +1,17 @@
 package it.prova.myebay.utility;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.dto.UtenteEdit;
@@ -16,6 +22,7 @@ import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.service.MyServiceFactory;
 
 public class UtilityForm {
 	
@@ -144,5 +151,23 @@ public class UtilityForm {
 
 		}
 		return mappa;
+	}
+	
+	public static void showUtenteOperation(String idUser, String attr, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (!NumberUtils.isCreatable(idUser)) {
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore: id non è numerico");
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
+			return;
+		}
+		
+		try {
+			Utente utente = MyServiceFactory.getUtenteServiceInstance().caricaSingoloElemento(Long.parseLong(idUser));
+			request.setAttribute(attr, utente);
+			
+		} catch (Exception e) {
+			request.setAttribute("errorMessage", "Si è verificato un errore.");
+			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
+			return;
+		}
 	}
 }
