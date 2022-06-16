@@ -79,7 +79,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 			whereClauses.add(" a.prezzo >= :prezzo ");
 			paramaterMap.put("prezzo",example.getPrezzo());
 		}
-		if (example.getCategorie() != null) {
+		if (!example.getCategorie().isEmpty()) {
 			List<Long> listCategorieId = new ArrayList<>();
 			for (Categoria categoria : example.getCategorie()) {
 				listCategorieId.add(categoria.getId());
@@ -119,7 +119,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		whereClauses.add(" a.utenteInserimento.id = :id ");
 		paramaterMap.put("id", id);
 		
-		if (example.getCategorie() != null) {
+		if (!example.getCategorie().isEmpty()) {
 			List<Long> listCategorieId = new ArrayList<>();
 			for (Categoria categoria : example.getCategorie()) {
 				listCategorieId.add(categoria.getId());
