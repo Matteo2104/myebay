@@ -56,7 +56,6 @@ public class ExecuteLoginByAnnuncioServlet extends HttpServlet {
 				request.setAttribute("show_annuncio_attr", MyServiceFactory.getAnnuncioServiceInstance().caricaSingoloElementoEager(Long.parseLong(idAnnuncio)));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 		}

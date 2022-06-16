@@ -78,7 +78,6 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

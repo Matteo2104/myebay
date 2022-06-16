@@ -35,7 +35,6 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 		try {
 			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().findByExample(example));
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

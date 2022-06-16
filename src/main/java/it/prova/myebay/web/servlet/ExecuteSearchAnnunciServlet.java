@@ -37,7 +37,6 @@ public class ExecuteSearchAnnunciServlet extends HttpServlet {
 		try {
 			request.setAttribute("annunci_list_attribute", MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

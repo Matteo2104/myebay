@@ -25,7 +25,6 @@ public class PrepareInsertUserServlet extends HttpServlet {
 			request.setAttribute("insert_utente_attr", new UtenteInsert());
 				
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

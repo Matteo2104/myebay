@@ -47,7 +47,6 @@ public class ExecuteRicaricaServlet extends HttpServlet {
 			
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

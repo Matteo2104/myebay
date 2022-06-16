@@ -47,7 +47,6 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 			}
 	
 			// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
-			// occupiamoci delle operazioni di business
 			Utente utenteToInsert = utenteDTO.toModel();
 			utenteToInsert.setStato(StatoUtente.CREATO);
 			utenteToInsert.setDateCreated(new Date());
@@ -56,13 +55,11 @@ public class ExecuteInsertUserServlet extends HttpServlet {
 		
 			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utenteToInsert);
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/utente/insert.jsp").forward(request, response);
 			return;
 		}
 
-		// andiamo ai risultati
 		// uso il sendRedirect con parametro per evitare il problema del double save on refresh
 		response.sendRedirect("ExecuteListUserServlet?operationResult=SUCCESS");
 	}

@@ -58,7 +58,6 @@ public class PrepareActionUserServlet extends HttpServlet {
 
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

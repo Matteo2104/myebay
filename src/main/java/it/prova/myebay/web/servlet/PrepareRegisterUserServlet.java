@@ -25,7 +25,6 @@ public class PrepareRegisterUserServlet extends HttpServlet {
 		try {
 			request.setAttribute("registra_utente_attr", new Utente());
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

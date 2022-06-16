@@ -46,8 +46,6 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 
 			request.setAttribute("show_annuncio_attr", annuncioInstance);
 		} catch (Exception e) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore nella visualizzazione dettagli");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;

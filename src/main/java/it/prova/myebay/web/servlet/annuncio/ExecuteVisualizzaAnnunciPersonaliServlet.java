@@ -47,7 +47,6 @@ public class ExecuteVisualizzaAnnunciPersonaliServlet extends HttpServlet {
 
 			request.setAttribute("show_annuncio_attr", annuncioInstance);
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore nella visualizzazione dettagli");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

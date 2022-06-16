@@ -34,11 +34,8 @@ public class ExecuteDeleteUserServlet extends HttpServlet {
 		
 
 		try {
-			// faccio tutto all'interno di un'unica transazione
 			MyServiceFactory.getUtenteServiceInstance().disabilita(Long.parseLong(idUser));
 		} catch (Exception e) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

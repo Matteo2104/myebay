@@ -36,7 +36,6 @@ public class ExecuteDeleteAnnuncioServlet extends HttpServlet {
 		try {
 			MyServiceFactory.getAnnuncioServiceInstance().rimuovi(Long.parseLong(idAnnuncio));
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

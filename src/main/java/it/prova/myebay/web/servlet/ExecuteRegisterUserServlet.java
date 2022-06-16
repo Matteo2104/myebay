@@ -31,8 +31,7 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
 
-		// preparo un bean (che mi serve sia per tornare in pagina
-		// che per inserire) e faccio il binding dei parametri
+		// preparo un bean 
 		UtenteInsert utenteInstance = UtilityForm.createUtenteInsertFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, "ROLE_CLASSIC_USER");
 		Utente utenteToRegister = null;
 		Utente utenteInSession = null;
@@ -67,7 +66,6 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/login.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

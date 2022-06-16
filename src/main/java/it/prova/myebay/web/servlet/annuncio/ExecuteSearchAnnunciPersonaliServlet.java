@@ -38,7 +38,6 @@ public class ExecuteSearchAnnunciPersonaliServlet extends HttpServlet {
 			request.setAttribute("annunci_list_attribute",
 					MyServiceFactory.getAnnuncioServiceInstance().findByExamplePersonale(example, ((Utente)httpRequest.getSession().getAttribute("userInfo")).getId()));
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nella ricerca!");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

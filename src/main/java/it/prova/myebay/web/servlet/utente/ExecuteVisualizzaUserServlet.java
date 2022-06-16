@@ -38,7 +38,6 @@ public class ExecuteVisualizzaUserServlet extends HttpServlet {
 			request.setAttribute("visualizza_utente_attr", utente);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

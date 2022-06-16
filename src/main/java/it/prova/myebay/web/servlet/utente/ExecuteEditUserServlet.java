@@ -66,7 +66,6 @@ public class ExecuteEditUserServlet extends HttpServlet {
 			MyServiceFactory.getUtenteServiceInstance().aggiorna(utenteDaModificare, utenteModel);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore: " + e);
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

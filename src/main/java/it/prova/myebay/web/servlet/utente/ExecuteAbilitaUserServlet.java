@@ -38,7 +38,6 @@ public class ExecuteAbilitaUserServlet extends HttpServlet {
 			// faccio tutto all'interno di un'unica transazione
 			MyServiceFactory.getUtenteServiceInstance().abilita(Long.parseLong(idUser), stato);
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;

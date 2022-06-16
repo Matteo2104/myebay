@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet {
 				destinazione = Path.getPathInterfaccia() + "/areapersonale.jsp";
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			destinazione = Path.getPathInterfaccia() + LOGINJSP;
 			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore");
 		}

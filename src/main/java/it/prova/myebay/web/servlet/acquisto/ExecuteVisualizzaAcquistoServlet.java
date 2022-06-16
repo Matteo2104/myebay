@@ -43,7 +43,6 @@ public class ExecuteVisualizzaAcquistoServlet extends HttpServlet {
 
 			request.setAttribute("show_acquisto_attr", acquistoInstance);
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute(ERRORMESSAGE, "Si è verificato un errore nella visualizzazione dettagli");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + ERRORJSP).forward(request, response);
 			return;

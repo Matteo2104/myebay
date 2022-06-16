@@ -73,7 +73,6 @@ public class ExecuteInsertAnnuncioServlet extends HttpServlet {
 			MyServiceFactory.getAnnuncioServiceInstance().aggiungi(example);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			request.setAttribute("errorMessage", "Si è verificato un errore nell'inserimento");
 			request.getRequestDispatcher("/" + Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
