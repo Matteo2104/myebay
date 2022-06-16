@@ -30,14 +30,15 @@ public class ExecuteListUserServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String attr = "users_list_attr";
 		try {
-			request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().listAll());
+			request.setAttribute(attr, MyServiceFactory.getUtenteServiceInstance().listAll());
 			
 			UtenteSearch example = Example.getUtenteExample();
 			if (example != null) {
-				request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().findByExample(example));
+				request.setAttribute(attr, MyServiceFactory.getUtenteServiceInstance().findByExample(example));
 			} else {
-				request.setAttribute("users_list_attr", MyServiceFactory.getUtenteServiceInstance().listAll());
+				request.setAttribute(attr, MyServiceFactory.getUtenteServiceInstance().listAll());
 			}
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "Si è verificato un errore");

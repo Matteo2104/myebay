@@ -27,21 +27,20 @@ public class ExecuteRegisterUserByAnnuncioServlet extends HttpServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nomeParam = request.getParameter("nome");
-		String cognomeParam = request.getParameter("cognome");
-		String usernameParam = request.getParameter("username");
-		String passwordParam = request.getParameter("password");
-
-		String idAnnuncio = request.getParameter("idAnnuncio");
-		
-		if (idAnnuncio.isEmpty()) {
+    	String idAnnuncio = request.getParameter("idAnnuncio");
+    	
+    	if (idAnnuncio.isEmpty()) {
 			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore");
 			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
 			return;
 		}
+    	
+    	String nomeParam = request.getParameter("nome");
+		String cognomeParam = request.getParameter("cognome");
+		String usernameParam = request.getParameter("username");
+		String passwordParam = request.getParameter("password");
 
-		// preparo un bean (che mi serve sia per tornare in pagina
-		// che per inserire) e faccio il binding dei parametri
+		// preparo un bean 
 		UtenteInsert utenteInstance = UtilityForm.createUtenteInsertFromParams(nomeParam, cognomeParam, usernameParam, passwordParam, "ROLE_CLASSIC_USER");
 		Utente utenteToRegister = null;
 		Utente utenteInSession = null;

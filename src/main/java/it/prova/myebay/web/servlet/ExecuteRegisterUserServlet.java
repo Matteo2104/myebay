@@ -26,7 +26,15 @@ public class ExecuteRegisterUserServlet extends HttpServlet {
 	
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nomeParam = request.getParameter("nome");
+    	String idAnnuncio = request.getParameter("idAnnuncio");
+    	
+    	if (idAnnuncio.isEmpty()) {
+			request.setAttribute(ERRORMESSAGE, "Attenzione si è verificato un errore");
+			request.getRequestDispatcher(Path.getPathInterfaccia() + "/error.jsp").forward(request, response);
+			return;
+		}
+    	
+    	String nomeParam = request.getParameter("nome");
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
