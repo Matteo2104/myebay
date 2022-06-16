@@ -29,7 +29,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.listOnlyActive();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -49,7 +48,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.findByExample(example);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -69,7 +67,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.personalFindByExample(example, idUserInSession);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -89,7 +86,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.findOne(id).orElse(null);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -114,7 +110,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -134,7 +129,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.findOneEager(id).orElse(null);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -153,7 +147,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.list();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -172,7 +165,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			return annuncioDAO.list(id);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -198,7 +190,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -226,7 +217,6 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);

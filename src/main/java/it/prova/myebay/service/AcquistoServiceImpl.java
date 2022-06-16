@@ -81,7 +81,6 @@ public class AcquistoServiceImpl implements AcquistoService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -101,8 +100,6 @@ public class AcquistoServiceImpl implements AcquistoService {
 			return acquistoDAO.list(id);
 			
 		} catch (Exception e) {
-			
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -122,7 +119,6 @@ public class AcquistoServiceImpl implements AcquistoService {
 			return acquistoDAO.findOne(id).orElse(null);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);

@@ -29,7 +29,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 			return categoriaDAO.list();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -48,7 +47,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 			return categoriaDAO.findByCodice(codice);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -72,7 +70,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);

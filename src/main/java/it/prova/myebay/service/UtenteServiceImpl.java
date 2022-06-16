@@ -37,7 +37,6 @@ public class UtenteServiceImpl implements UtenteService {
 			return utenteDAO.list();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -58,7 +57,6 @@ public class UtenteServiceImpl implements UtenteService {
 			return result.isPresent() ? result.get() : null;
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -79,7 +77,6 @@ public class UtenteServiceImpl implements UtenteService {
 			return result.isPresent() ? result.get() : null;
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -110,7 +107,6 @@ public class UtenteServiceImpl implements UtenteService {
 
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -135,7 +131,6 @@ public class UtenteServiceImpl implements UtenteService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -156,7 +151,6 @@ public class UtenteServiceImpl implements UtenteService {
 			return result.isPresent() ? result.get() : null;
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -188,7 +182,6 @@ public class UtenteServiceImpl implements UtenteService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -219,7 +212,6 @@ public class UtenteServiceImpl implements UtenteService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -239,7 +231,6 @@ public class UtenteServiceImpl implements UtenteService {
 			
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -263,7 +254,6 @@ public class UtenteServiceImpl implements UtenteService {
 				
 			return utenteFound.get();
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -288,7 +278,6 @@ public class UtenteServiceImpl implements UtenteService {
 			return utenteFound.get();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -327,7 +316,6 @@ public class UtenteServiceImpl implements UtenteService {
 		
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
@@ -358,7 +346,6 @@ public class UtenteServiceImpl implements UtenteService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
-			e.printStackTrace();
 			throw e;
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
